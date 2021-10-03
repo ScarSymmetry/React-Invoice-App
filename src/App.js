@@ -1,7 +1,7 @@
-import styles from "./styles/App.module.scss"
+import styles from "./styles/App.global.scss";
 
 const App = () => {
-	return <div>HERRO</div>;
+	return <div className="test">HERRO</div>;
 };
 
 export default App;
