@@ -4,7 +4,6 @@ const InvoiceList = () => {
 	const invoice = data.map((person) => {
 		return (
 			<div
-			
 				key={person.id}
 				style={{
 					color: "white",
@@ -14,7 +13,7 @@ const InvoiceList = () => {
 					margin: "10px",
 				}}
 			>
-				<span>{person.id}</span>
+				<span>#{person.id}</span>
 				<p>{person.clientName}</p>
 			</div>
 		);
