@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@200;300;500;700&display=swap");
+
 // ****colors
 $cl-violet: hsl(252, 94%, 67%);
 $cl-violet-pale: hsl(252, 100%, 73%);
@@ -6,7 +8,7 @@ $cl-dark-grey-blue: hsl(233, 31%, 17%);
 $cl-grey-blue: hsl(233, 30%, 21%);
 
 $cl-light-blue: hsl(231, 73%, 93%);
-$cl-light-grey: hsl(231, 20%, 61%);
+$cl-light-grey: hsla(231, 20%, 36%, 1);
 $cl-grey-blue: hsl(231, 37%, 63%);
 $cl-black: hsl(228, 29%, 7%);
 
@@ -18,6 +20,8 @@ $cl-darker-grey-blue: hsl(233, 30%, 11%);
 // colors
 
 // ***********TYPOGRAPHY
+
+$font-spartan: "Spartan", sans-serif;
 
 $h1-spartan-bold: 32px;
 $h1-spartan-lineHeight: 36px;
@@ -31,8 +35,12 @@ $h3-spartan-bold: 16px;
 $h3-spartan-lineHeight: 24px;
 $h3-spartan-letterSpace: -0.8px;
 
-$h4-spartan-bold: 12px;
-$h4-spartan-lineHeight: 15px;
-$h4-spartan-letterSpace: -0.25px;
+$spartan-body1: 12px;
+$spartan-body1-lineHeight: 15px;
+$spartan-body1-letterSpace: -0.25px;
+
+$spartan-body2: 11px;
+$spartan-body2-lineHeight: 18px;
+$spartan-body2-letterSpace: -0.23px;
 
 // ***********TYPOGRAPHY

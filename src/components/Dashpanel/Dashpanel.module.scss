@@ -1,0 +1,42 @@
+@import "partials/variables";
+@import "partials/layout";
+
+.btnInvoice {
+	font-family: $font-spartan;
+	color: $cl-light-BG;
+	position: relative;
+	background-color: $cl-violet;
+	width: 90px;
+	height: 44px;
+	margin-left: auto;
+	border-radius: 24px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+
+	&::before {
+		content: "";
+		background: url("../../assets/icon-plus.svg");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-color: $cl-light-BG;
+
+		position: absolute;
+		top: 6px;
+		left: 6px;
+
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+	}
+
+	span {
+		margin-left: 46px;
+		font-size: $spartan-body1;
+		line-height: $spartan-body1-lineHeight;
+		letter-spacing: $spartan-body1-letterSpace;
+		font-weight: 700;
+	}
+}

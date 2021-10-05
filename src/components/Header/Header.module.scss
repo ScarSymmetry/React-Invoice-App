@@ -1,0 +1,62 @@
+@import "partials/variables";
+
+.container {
+	color: white;
+	width: 100%;
+	min-height: 72px;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.logoBox {
+	position: relative;
+	width: 72px;
+	height: 72px;
+	background-color: $cl-violet;
+	border-radius: 0px 20px 20px 0px;
+	display: grid;
+	place-items: center;
+
+	&::after {
+		content: "";
+		position: absolute;
+		z-index: 1;
+		height: 50%;
+		width: 100%;
+		background-color: $cl-violet-pale;
+		bottom: 0;
+		border-radius: 20px 0px 20px 0px;
+	}
+
+	.logo {
+		position: absolute;
+		z-index: 2;
+	}
+}
+
+.themeToggler {
+	margin-left: auto;
+	margin-right: 23px;
+
+	img {
+		display: block;
+	}
+}
+
+.avatar {
+	border-left: 1px $cl-light-grey solid;
+
+	width: 80px;
+	align-self: stretch;
+	display: grid;
+	place-items: center;
+
+	img {
+		border-radius: 50%;
+		max-width: 32px;
+		height: auto;
+		display: block;
+	}
+}
