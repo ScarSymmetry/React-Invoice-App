@@ -1,13 +1,13 @@
 import Dashpanel from "./components/Dashpanel/Dashpanel";
 import Header from "./components/Header/Header";
-import InvoiceList from "./components/InvoiceList";
+import InvoiceItem from "./components/Invoices/InvoiceItem";
 
 const App = () => {
 	return (
 		<div>
 			<Header />
 			<Dashpanel />
-			<InvoiceList />
+			<InvoiceItem />
 		</div>
 	);
 };

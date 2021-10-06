@@ -2,6 +2,13 @@
 	width: 87.2vw;
 	margin: 0 auto;
 	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.wrapper--noflex {
+	width: 87.2vw;
+	margin: 0 auto;
 }
 
 .block-margin {

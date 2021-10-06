@@ -8,7 +8,7 @@
 	background-color: $cl-violet;
 	width: 90px;
 	height: 44px;
-	margin-left: auto;
+
 	border-radius: 24px;
 	outline: none;
 	border: none;
@@ -55,5 +55,23 @@
 		line-height: $spartan-body1-lineHeight;
 		letter-spacing: $spartan-body1-letterSpace;
 		font-weight: 500;
+	}
+}
+
+.filterBtn {
+	background: transparent;
+	border: none;
+	color: $cl-light-BG;
+	font-size: $spartan-body1;
+	line-height: $spartan-body1-lineHeight;
+	letter-spacing: $spartan-body1-letterSpace;
+	font-weight: 700;
+	margin-left: auto;
+	margin-right: 4.77px;
+	padding: 5px;
+	cursor: pointer;
+
+	img {
+		margin-left: 12px;
 	}
 }

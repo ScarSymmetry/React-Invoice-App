@@ -1,0 +1,41 @@
+@import "partials/variables";
+@import "partials/layout";
+
+.frame {
+	color: $cl-light-BG;
+	min-height: 134px;
+	background-color: $cl-dark-grey-blue;
+	border-radius: 8px;
+	box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+	list-style: none;
+
+	.userId {
+		font-size: $spartan-body1;
+		line-height: $spartan-body1-lineHeight;
+		letter-spacing: $spartan-body1-letterSpace;
+		font-weight: 700;
+
+		span {
+			color: $cl-grey-blue;
+		}
+	}
+
+	.userName {
+		font-size: $spartan-body1;
+		line-height: $spartan-body1-lineHeight;
+		letter-spacing: $spartan-body1-letterSpace;
+		font-weight: 500;
+	}
+
+	.payment {
+		color: $cl-light-blue;
+		font-size: $spartan-body1;
+		line-height: $spartan-body1-lineHeight;
+		letter-spacing: $spartan-body1-letterSpace;
+		font-weight: 500;
+	}
+
+    .total {
+       
+    }
+}
