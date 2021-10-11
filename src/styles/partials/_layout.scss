@@ -1,14 +1,24 @@
+@import "partials/breakpoints";
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 1fr;
+	@include media(">=1000px") {
+		grid-template-columns: 105px 1fr;
+		grid-template-rows: max-content 1fr;
+	}
+}
+
 .wrapper {
+	grid-column: 1 / -1;
 	width: 87.2vw;
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-}
-
-.wrapper--noflex {
-	width: 87.2vw;
-	margin: 0 auto;
+	@include media(">=1000px") {
+		grid-column: 2 / -1;
+	}
 }
 
 .block-margin {

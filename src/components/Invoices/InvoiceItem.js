@@ -30,11 +30,7 @@ const InvoiceItem = () => {
 		);
 	});
 
-	return (
-		<div>
-			<ul className={`${styles.invoiceBox} wrapper--noflex`}>{userCard}</ul>
-		</div>
-	);
+	return <ul className={styles.invoiceBox}>{userCard}</ul>;
 };
 
 export default InvoiceItem;

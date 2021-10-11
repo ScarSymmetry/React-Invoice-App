@@ -5,12 +5,12 @@ import InvoiceItem from "./components/Invoices/InvoiceItem";
 
 const App = () => {
 	return (
-		<>
+		<div className="grid-container">
 			<Header />
 			<Dashpanel />
-			<Dropdown />
+			
 			<InvoiceItem />
-		</>
+		</div>
 	);
 };
 
