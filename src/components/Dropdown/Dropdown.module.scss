@@ -25,4 +25,45 @@
 }
 
 .checkboxContainer {
+	label {
+		user-select: none;
+		text-transform: capitalize;
+		cursor: pointer;
+		font-size: $spartan-body2;
+		line-height: $spartan-body2-lineHeight;
+		letter-spacing: $spartan-body2-letterSpace;
+		font-weight: 500;
+		display: flex;
+
+		&::before {
+			content: "";
+			width: 16px;
+			height: 16px;
+
+			background-color: $cl-dark-grey-blue;
+			border-radius: 2px;
+			border: 1px solid transparent;
+			margin-right: 13px;
+		}
+		&:hover::before {
+			border-color: $cl-violet;
+		}
+	}
+	input {
+		position: absolute;
+		cursor: pointer;
+		margin-right: 13px;
+		vertical-align: -2px;
+		opacity: 0;
+
+		&:hover + label::before {
+			border-color: $cl-violet;
+		}
+		&:checked + label::before {
+			background: url("../../assets/icon-check.svg");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-color: $cl-violet;
+		}
+	}
 }

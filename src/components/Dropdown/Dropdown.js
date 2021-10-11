@@ -36,12 +36,14 @@ const Dropdown = () => {
 					<div className={styles.checkboxContainer} key={index}>
 						<input
 							type="checkbox"
+							name={box.value}
+							id={box.id}
 							checked={box.checked}
 							onChange={() => {
 								handleChange(index);
 							}}
 						/>
-						<label>{box.value}</label>
+						<label htmlFor={box.id}>{box.value}</label>
 					</div>
 				))}
 			</div>
