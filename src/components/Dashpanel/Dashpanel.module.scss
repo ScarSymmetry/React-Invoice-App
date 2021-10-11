@@ -72,6 +72,12 @@
 	cursor: pointer;
 
 	img {
-		margin-left: 12px;
+		transition: transform 300ms ease-in-out;
+		transform-origin: center;
+		padding-inline: 12px;
+	}
+
+	.active {
+		transform: rotate(180deg);
 	}
 }
