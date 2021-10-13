@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./Dropdown.module.scss";
 
-const Dropdown = () => {
+const Dropdown = ({ Open }) => {
 	const [options, setOptions] = useState([
 		{
 			id: 0,
@@ -28,6 +28,8 @@ const Dropdown = () => {
 			})
 		);
 	};
+
+	if (!Open) return null;
 
 	return (
 		<div className={styles.popUpInputs}>

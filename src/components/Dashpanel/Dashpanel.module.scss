@@ -33,6 +33,7 @@
 	}
 
 	span {
+		margin-top: 3px;
 		margin-left: 46px;
 		font-size: $spartan-body1;
 		line-height: $spartan-body1-lineHeight;
@@ -55,6 +56,15 @@
 		line-height: $spartan-body1-lineHeight;
 		letter-spacing: $spartan-body1-letterSpace;
 		font-weight: 500;
+	}
+	@include media(">=1000px") {
+		h2 {
+			font-size: $h1-spartan-bold;
+			line-height: $h1-spartan-lineHeight;
+			letter-spacing: $h1-spartan-letterSpace;
+			font-weight: 700;
+			margin-bottom: 8px;
+		}
 	}
 }
 

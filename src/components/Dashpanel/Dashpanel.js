@@ -1,9 +1,8 @@
 import styles from "./Dashpanel.module.scss";
 import arrow from "../../assets/icon-arrow-down.svg";
-import { useState } from "react";
-const Dashpanel = () => {
-	const [filterClicked, setFilterClicked] = useState(false);
+import Dropdown from "../Dropdown/Dropdown";
 
+const Dashpanel = ({ filterClicked, setFilterClicked }) => {
 	return (
 		<div className="wrapper block-margin">
 			<div className={styles.invoiceCount}>
@@ -24,8 +23,9 @@ const Dashpanel = () => {
 				</span>
 			</button>
 			<button className={styles.btnInvoice}>
-				<span>New</span>
+				<span className={styles.mobileInvoice}>New</span>
 			</button>
+			<Dropdown Open={filterClicked} />
 		</div>
 	);
 };

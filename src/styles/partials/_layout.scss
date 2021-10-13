@@ -13,14 +13,20 @@
 	grid-column: 1 / -1;
 	width: 87.2vw;
 	margin: 0 auto;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+
 	@include media(">=1000px") {
+		width: 70vw;
 		grid-column: 2 / -1;
+	}
+
+	@include media(">=1440px") {
+		width: 50.98vw;
 	}
 }
 
 .block-margin {
 	margin-block: 32px 32px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }

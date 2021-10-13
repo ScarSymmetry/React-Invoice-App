@@ -108,11 +108,8 @@
 
 .invoiceBox {
 	padding-bottom: 16px;
-	width: 87.2vw;
+
 	margin: 0 auto;
-	@include media(">=1000px") {
-		grid-column: 2 / -1;
-	}
 }
 
 .paid {
