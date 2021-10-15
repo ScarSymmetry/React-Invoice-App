@@ -1,2 +1,43 @@
+.statusState {
+	justify-self: end;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 104px;
+	height: 40px;
+	text-transform: capitalize;
+	border-radius: 6px;
+	@include media(">=768px") {
+		grid-column: 5;
+		grid-row: 1;
+	}
 
+	.indicator {
+		margin-right: 8px;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background-color: currentColor;
+	}
+	.statusText {
+		font-size: $spartan-body1;
+		line-height: $spartan-body1-lineHeight;
+		letter-spacing: $spartan-body1-letterSpace;
+		font-weight: 500;
+	}
+}
 
+.paid {
+	background-color: hsla(160, 67%, 52%, 0.06);
+	color: hsla(160, 67%, 52%, 1);
+}
+
+.pending {
+	background-color: hsla(34, 100%, 50%, 0.06);
+	color: hsla(34, 100%, 50%, 1);
+}
+
+.draft {
+	background-color: hsla(231, 75%, 93%, 0.06);
+	color: hsla(231, 75%, 93%, 1);
+}
