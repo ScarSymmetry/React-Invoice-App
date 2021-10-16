@@ -5,7 +5,7 @@ const Modal = () => {
 	return (
 		<div className={styles.backdrop}>
 			<div className={`${styles.modalBody} wrapper`}>
-				<button>
+				<button className={styles.backButton}>
 					<span>
 						{" "}
 						<img src={chevron} alt="back" />{" "}
@@ -61,6 +61,24 @@ const Modal = () => {
 						<h2 className={styles.totalPrice}>$760</h2>
 					</div>
 				</section>
+
+				<div className={styles.buttonWrapper}>
+					<button className={`${styles.buttonComponent} ${styles.editButton}`}>
+						Edit
+					</button>
+					<button
+						className={`${styles.buttonComponent} ${styles.deleteButton}`}
+					>
+						Delete
+					</button>
+					<button
+						className={`${styles.buttonComponent} ${styles.markAsPaidButton}`}
+					>
+						Mark as Paid
+					</button>
+				</div>
+
+				<div className={styles.footer}></div>
 			</div>
 		</div>
 	);
