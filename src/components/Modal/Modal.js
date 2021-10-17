@@ -1,7 +1,10 @@
 import styles from "./Modal.module.scss";
 import chevron from "../../assets/icon-arrow-left.svg";
+import data from "../../data.json";
 
 const Modal = () => {
+	const json = data[2];
+
 	return (
 		<div className={styles.backdrop}>
 			<div className={styles.modalBody}>
@@ -15,9 +18,9 @@ const Modal = () => {
 
 				<div className={styles.statusPanel}>
 					<h5 className={styles.statusHeading}>Status</h5>
-					<div className={`${styles.statusState} ${styles.paid}`}>
+					<div className={`${styles.statusState} ${styles[json.status]}`}>
 						<div className={styles.indicator}></div>
-						<p className={`${styles.statusText} ${styles.paid}`}>LOL</p>
+						<p className={styles.statusText}>{json.status}</p>
 					</div>
 				</div>
 
@@ -25,49 +28,59 @@ const Modal = () => {
 					<div className={styles.idAndSubject}>
 						<h5 className={styles.idNumber}>
 							{" "}
-							<span>#</span> gtx1090
+							<span>#</span> {json.id}
 						</h5>
-						<p className={styles.subject}>Graphic Design</p>
+						<p className={styles.subject}>{json.description}</p>
 					</div>
 
 					<div className={styles.detailedAdress}>
-						<p className={styles.street}>19 Union Terrace</p>
-						<p className={styles.city}>London</p>
-						<p className={styles.postCode}> E1 3EZ</p>
-						<p className={styles.country}>United Kingdom</p>
+						<p className={styles.street}>{json.senderAddress.street}</p>
+						<p className={styles.city}>{json.senderAddress.city}</p>
+						<p className={styles.postCode}>{json.senderAddress.postCode}</p>
+						<p className={styles.country}>{json.senderAddress.country}</p>
 					</div>
 
 					<div className={styles.invoicesDetails}>
 						<p className={styles.invoiceEvent}>Invoice Date</p>
-						<h5 className={styles.invoiceDate}>21 aug blabla</h5>
+						<h5 className={styles.invoiceDate}>{json.createdAt}</h5>
 
 						<p className={styles.invoiceEvent}>Payment Due</p>
-						<h5 className={styles.invoiceDate}>20 sep 2021</h5>
+						<h5 className={styles.invoiceDate}>{json.paymentDue}</h5>
 					</div>
 
 					<div className={styles.billingDetails}>
 						<p className={styles.billTo}>Bill To</p>
-						<h5 className={styles.clientName}> John Johns</h5>
-						<p className={styles.billingAdress}>84 Church Way</p>
-						<p className={styles.billingCity}>Bradford</p>
-						<p className={styles.billingPostCode}>BD1 9PB</p>
-						<p className={styles.billingCountry}>United KIngdom</p>
+						<h5 className={styles.clientName}>{json.clientName}</h5>
+						<p className={styles.billingAdress}>{json.clientAddress.street}</p>
+						<p className={styles.billingCity}>{json.clientAddress.city}</p>
+						<p className={styles.billingPostCode}>
+							{json.clientAddress.postCode}
+						</p>
+						<p className={styles.billingCountry}>
+							{json.clientAddress.country}
+						</p>
 					</div>
 
 					<div className={styles.emailDetails}>
 						<p className={styles.sentTo}>Sent to</p>
-						<h5 className={styles.clientEmail}>symphonyx@jersey.com</h5>
+						<h5 className={styles.clientEmail}>{json.clientEmail}</h5>
 					</div>
 
 					<section className={styles.expandoCheckout}>
-						<div className={styles.expandoCheckoutItem}>
-							<h5 className={styles.serviceDescription}>Banner Design</h5>
-							<h6 className={styles.pricePerItem}>1 x 160.00</h6>
-							<h5 className={styles.totalItemsPrice}> 160</h5>
-						</div>
+						{json.items.map((item, index) => {
+							return (
+								<div key={index} className={styles.expandoCheckoutItem}>
+									<h5 className={styles.serviceDescription}>{item.name}</h5>
+									<h6 className={styles.pricePerItem}>
+										<span>{item.quantity}</span> x {item.price}
+									</h6>
+									<h5 className={styles.totalItemsPrice}> {item.total}</h5>
+								</div>
+							);
+						})}
 						<div className={styles.expandoCheckoutTotals}>
 							<p className={styles.expandoCheckoutAmount}>Amount Due</p>
-							<h2 className={styles.totalPrice}>$760</h2>
+							<h2 className={styles.totalPrice}>{json.total}</h2>
 						</div>
 					</section>
 				</section>
@@ -89,7 +102,6 @@ const Modal = () => {
 						Mark as Paid
 					</button>
 				</div>
-				
 			</div>
 		</div>
 	);
