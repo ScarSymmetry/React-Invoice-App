@@ -16,15 +16,17 @@
 
 .modalBody {
 	display: grid;
+	margin: 0 auto;
 	row-gap: 16px;
-	grid-template-columns: 1fr;
-	color: $cl-light-BG;
 	outline: 1px solid yellowgreen;
+	grid-template-columns: 6.4vw 1fr 6.4vw;
+	grid-template-rows: repeat(2, max-content) 1fr 150px;
+	color: $cl-light-BG;
 }
 
 .backButton {
 	justify-self: start;
-	grid-column: 1 / -1;
+	grid-column: 2 / 3;
 	grid-row: 1 / 2;
 	color: $cl-light-BG;
 	border: none;
@@ -42,7 +44,7 @@
 }
 
 .statusPanel {
-	grid-column: 1 / -1;
+	grid-column: 2 / 3;
 	grid-row: 2 / 3;
 	display: flex;
 	justify-content: space-between;
@@ -62,24 +64,125 @@
 	}
 }
 
-.invoiceDetails {
-	grid-column: 1 / -1;
+.invoiceWrapper {
+	display: grid;
+	gap: 30px;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(4, max-content);
+
+	grid-column: 2 / 3;
 	grid-row: 3 / 4;
-	height: 695px;
+
 	background-color: $cl-dark-grey-blue;
 	padding-block: 24px 24px;
 	padding-inline: 24px 24px;
 	box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
 	border-radius: 8px;
+
+	.idAndSubject {
+		grid-column: 1 / -1;
+		grid-row: 1 / 2;
+
+		.idNumber {
+			text-transform: uppercase;
+			font-size: $spartan-body1;
+			line-height: $spartan-body1-lineHeight;
+			letter-spacing: $spartan-body1-letterSpace;
+			font-weight: 700;
+
+			span {
+				color: $cl-light-grey-blue;
+			}
+		}
+		.subject {
+			font-size: $spartan-body1;
+			line-height: $spartan-body1-lineHeight;
+			letter-spacing: $spartan-body1-letterSpace;
+			font-weight: 500;
+		}
+	}
+
+	.detailedAdress {
+		grid-column: 1 / 2;
+		grid-row: 2 / 3;
+
+		font-size: $spartan-body2;
+		line-height: $spartan-body2-lineHeight;
+		letter-spacing: $spartan-body2-letterSpace;
+		font-weight: 500;
+	}
+
+	.invoicesDetails {
+		grid-column: 1 / 2;
+		grid-row: 3 / 4;
+
+		.invoiceEvent {
+			font-size: $spartan-body1;
+			line-height: $spartan-body1-lineHeight;
+			letter-spacing: $spartan-body1-letterSpace;
+			font-weight: 500;
+			margin-bottom: 12px;
+		}
+		.invoiceDate {
+			font-size: $h3-spartan-bold;
+			line-height: $h3-spartan-lineHeight;
+			letter-spacing: $h3-spartan-letterSpace;
+			font-weight: 700;
+			margin-bottom: 32px;
+		}
+	}
+
+	.billingDetails {
+		grid-column: 2 / -1;
+		grid-row: 3 / 4;
+
+		.billTo {
+			font-size: $spartan-body1;
+			line-height: $spartan-body1-lineHeight;
+			letter-spacing: $spartan-body1-letterSpace;
+			font-weight: 500;
+		}
+
+		.clientName {
+			font-size: $h3-spartan-bold;
+			line-height: $h3-spartan-lineHeight;
+			letter-spacing: $h3-spartan-letterSpace;
+			font-weight: 700;
+			margin-block: 12px 8px;
+		}
+
+		p {
+			font-size: $spartan-body2;
+			line-height: $spartan-body2-lineHeight;
+			letter-spacing: $spartan-body2-letterSpace;
+			font-weight: 500;
+		}
+	}
+
+	.emailDetails {
+		grid-column: 1 / -1;
+		grid-row: 4 / 5;
+
+		.sentTo {
+			font-size: $spartan-body1;
+			line-height: $spartan-body1-lineHeight;
+			letter-spacing: $spartan-body1-letterSpace;
+			font-weight: 500;
+			margin-bottom: 12px;
+		}
+
+		.clientEmail {
+			font-size: $h3-spartan-bold;
+			line-height: $h3-spartan-lineHeight;
+			letter-spacing: $h3-spartan-letterSpace;
+			font-weight: 700;
+		}
+	}
 }
 
 .expandoCheckout {
 	grid-column: 1 / -1;
-	grid-row: 3 / 4;
-	align-self: end;
-
-	padding-block: 24px 24px;
-	padding-inline: 24px 24px;
+	grid-row: 5 / 6;
 
 	.expandoCheckoutItem {
 		display: grid;
@@ -150,12 +253,19 @@
 }
 
 .buttonWrapper {
+	grid-column: 1 / -1;
+	grid-row: 4 / -1;
+	align-self: end;
+
 	display: flex;
 	justify-content: space-between;
-}
+	padding-block: 22px;
+	padding-inline: 24px;
+	position: sticky;
+	bottom: 0;
+	width: 100%;
 
-.footer {
-	height: 90px;
 	background-color: $cl-dark-grey-blue;
-	outline: 1px solid yellow;
+
+	box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
 }
