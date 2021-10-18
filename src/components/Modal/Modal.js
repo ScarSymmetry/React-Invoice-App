@@ -67,12 +67,22 @@ const Modal = () => {
 					</div>
 
 					<section className={styles.expandoCheckout}>
+						<div
+							className={`${styles.expandoCheckoutItem} ${styles.tableHeader}`}
+						>
+							<h5 className={styles.tableHeader__name}>Item Name</h5>
+							<h5 className={styles.tableHeader__QTY}>QTY.</h5>
+							<h5 className={styles.tableHeader__price}>Price</h5>
+							<h5 className={styles.tableHeader__total}>Total</h5>
+						</div>
 						{json.items.map((item, index) => {
 							return (
 								<div key={index} className={styles.expandoCheckoutItem}>
 									<h5 className={styles.serviceDescription}>{item.name}</h5>
 									<h6 className={styles.pricePerItem}>
-										<span>{item.quantity}</span> x {item.price}
+										<span className={styles.itemQuantity}>{item.quantity}</span>
+										<span className={styles.multiplier}>X</span>{" "}
+										<span className={styles.singleItemPrice}>{item.price}</span>
 									</h6>
 									<h5 className={styles.totalItemsPrice}> {item.total}</h5>
 								</div>

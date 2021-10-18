@@ -60,15 +60,30 @@
 
 .editButton {
 	width: 73px;
+	transition: $fade-transition;
+
 	background-color: $cl-grey-blue;
+	&:hover {
+		color: $cl-light-grey;
+		background-color: $cl-bright-grey;
+	}
 }
 
 .deleteButton {
 	width: 90px;
+	transition: $fade-transition;
 	background-color: $cl-red;
+	&:hover {
+		background-color: $cl-light-red;
+	}
 }
 
 .markAsPaidButton {
 	width: 150px;
+	transition: $fade-transition;
 	background-color: $cl-violet;
+
+	&:hover {
+		background-color: $cl-violet-pale;
+	}
 }
