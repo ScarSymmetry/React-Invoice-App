@@ -11,6 +11,17 @@
 # production
 /build
 
+
+*.sketch
+*.fig
+
+
+*.xd
+
+# Avoid your project being littered with annoying .DS_Store files!
+
+.prettierignore
+
 # misc
 .DS_Store
 .env.local
