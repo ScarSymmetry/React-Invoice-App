@@ -8,7 +8,9 @@ const Modal = () => {
 	return (
 		<div className={styles.backdrop}>
 			<div className={styles.modalBody}>
-				<button className={styles.backButton}>
+				<button
+					className={`${styles.backButton} ${styles.backButtonJustifyStart}`}
+				>
 					<span>
 						{" "}
 						<img src={chevron} alt="back" />{" "}

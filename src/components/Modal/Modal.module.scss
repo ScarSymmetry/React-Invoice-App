@@ -28,25 +28,6 @@
 	}
 }
 
-.backButton {
-	justify-self: start;
-	grid-column: 2 / 3;
-	grid-row: 1 / 2;
-	color: $cl-light-BG;
-	border: none;
-	padding-inline: 0px 24px;
-	padding-block: 40px 24px;
-	background-color: transparent;
-	font-size: $spartan-body1;
-	line-height: $spartan-body1-lineHeight;
-	letter-spacing: $spartan-body1-letterSpace;
-	font-weight: 700;
-
-	img {
-		margin-right: 23px;
-	}
-}
-
 .statusPanel {
 	grid-column: 2 / 3;
 	grid-row: 2 / 3;

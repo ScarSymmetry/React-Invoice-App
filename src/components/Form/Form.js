@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import chevron from "../../assets/icon-arrow-left.svg";
 import styles from "./Form.module.scss";
 
 const Form = () => {
@@ -20,29 +21,70 @@ const Form = () => {
 	console.log(state);
 
 	return (
-		<div className={styles.form}>
-			<form onSubmit={handleSubmit(checkShit)}>
-				<label htmlFor="id">#</label>
-				<input {...register("id")} id="id" />
+		<div className={styles.formContainer}>
+			<button className={styles.backButton}>
+				{" "}
+				<span>
+					<img src={chevron} alt="back" />
+				</span>{" "}
+				Go back
+			</button>
 
-				<label htmlFor="createdAt">Invoice Date</label>
-				<input {...register("createdAt")} id="createdAt" />
+			<div className={styles.editId}>
+				<h3>
+					Edit<span>#</span>XM8123
+				</h3>
+			</div>
 
-				<label htmlFor="paymentDue">Payment terms</label>
-				<input {...register("paymentDue")} id="paymentDue" />
+			<form className={styles.form} onSubmit={handleSubmit(checkShit)}>
+				<section className={styles.billFrom}>
+					<h5 className={styles.billFrom__heading}>Bill From</h5>
+					<label className={styles.streetFrom} htmlFor="street">
+						Street Address
+						<input type="text" />
+					</label>
+					<label className={styles.cityFrom} htmlFor="city">
+						City
+						<input type="text" />
+					</label>
+					<label className={styles.postCodeFrom} htmlFor="postcode">
+						Post Code
+						<input type="text" />
+					</label>
+					<label className={styles.countryFrom} htmlFor="country">
+						Country
+						<input type="text" />
+					</label>
+				</section>
 
-				<label htmlFor="clientName">Client`s Name</label>
-				<input {...register("clientName")} id="clientName" />
-
-				<button
-					onClick={() =>
-						setValue("status", "pending", {
-							shouldValidate: true,
-						})
-					}
-				>
-					Set Last Name
-				</button>
+				<section className={styles.billTo}>
+					<h5 className={styles.billTo__heading}>Bill To</h5>
+					<label className={styles.clientTo} htmlFor="client">
+						Client`s Name
+						<input type="text" />
+					</label>
+					<label className={styles.emailTo} htmlFor="email">
+						Client`s Email
+						<input type="text" />
+					</label>
+					<label className={styles.streetTo} htmlFor="street">
+						Street Address
+						<input type="text" />
+					</label>
+					<label className={styles.cityTo} htmlFor="city">
+						City
+						<input type="text" />
+					</label>
+					<label className={styles.postCodeTo} htmlFor="city">
+						Post Code
+						<input type="text" />
+					</label>
+					<label className={styles.countryTo} htmlFor="city">
+						Country
+						<input type="text" />
+					</label>
+				</section>
+				
 			</form>
 		</div>
 	);

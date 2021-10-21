@@ -12,8 +12,8 @@ const App = () => {
 	return (
 		<div className="grid-container">
 			{/* <Modal /> */}
-			{/* <Header />
-			<Dashpanel filterClicked={open} setFilterClicked={setOpen} />
+			<Header />
+			{/* <Dashpanel filterClicked={open} setFilterClicked={setOpen} />
 
 			<InvoiceItem /> */}
 
