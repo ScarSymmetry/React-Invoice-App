@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import chevron from "../../assets/icon-arrow-left.svg";
+import trashcan from "../../assets/icon-delete.svg";
 import styles from "./Form.module.scss";
 
 const Form = () => {
@@ -84,7 +85,60 @@ const Form = () => {
 						<input type="text" />
 					</label>
 				</section>
-				
+
+				<section className={styles.invoiceDates}>
+					<label htmlFor="">
+						Invoice Date
+						<input className={styles.invoiceStart} type="date" />
+					</label>
+					<label className={styles.paymentDropdown} htmlFor="dropdown">
+						Payment Terms
+						<select name="dropdown" id="dropdown">
+							<option value="1">Net 1 day</option>
+							<option value="7">Net 7 days</option>
+							<option value="14">Net 14 days</option>
+							<option value="30" selected>
+								Net 30 days
+							</option>
+						</select>
+					</label>
+
+					<label className={styles.projectDescription} htmlFor="">
+						Project / Description
+						<input placeholder="e.g Design and prototype" type="text" />
+					</label>
+				</section>
+
+				<section className={styles.itemsContainer}>
+					<h5 className={styles.itemsContainer__title}>Item List</h5>
+					<div className={styles.itemList}>
+						<label className={styles.itemName} htmlFor="itemName">
+							Item Name
+							<input type="text" />
+						</label>
+						<label className={styles.itemQuantity} htmlFor="itemQuantity">
+							Qty.
+							<input type="text" />
+						</label>
+						<label className={styles.itemPrice} htmlFor="itemPrice">
+							Price
+							<input type="text" />
+						</label>
+						<div className={styles.totalCounter}>
+							<p>Total</p>
+							<h5>150</h5>
+						</div>
+						<button className={styles.deleteItem}>
+							<img src={trashcan} alt="delete" />
+						</button>
+					</div>
+				</section>
+
+				<button
+					className={`${styles.buttonComponent} ${styles.addNewItemButton}`}
+				>
+					+ Add new item
+				</button>
 			</form>
 		</div>
 	);

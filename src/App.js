@@ -4,14 +4,14 @@ import Form from "./components/Form/Form";
 
 import Header from "./components/Header/Header";
 import InvoiceItem from "./components/Invoices/InvoiceItem";
-import Modal from "./components/Modal/Modal";
+import UserDetailsPage from "./components/UserDetailsPage/UserDetailsPage";
 
 const App = () => {
 	const [open, setOpen] = useState(false);
 
 	return (
 		<div className="grid-container">
-			{/* <Modal /> */}
+			<UserDetailsPage open={true} />
 			<Header />
 			{/* <Dashpanel filterClicked={open} setFilterClicked={setOpen} />
 
