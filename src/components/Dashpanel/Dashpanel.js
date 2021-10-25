@@ -2,7 +2,8 @@ import styles from "./Dashpanel.module.scss";
 import arrow from "../../assets/icon-arrow-down.svg";
 import Dropdown from "../Dropdown/Dropdown";
 
-const Dashpanel = ({ filterClicked, setFilterClicked }) => {
+
+const Dashpanel = ({ filterClicked, setFilterClicked, filteredData }) => {
 	return (
 		<>
 			<div className="wrapper block-margin">
@@ -28,7 +29,7 @@ const Dashpanel = ({ filterClicked, setFilterClicked }) => {
 				</button>
 			</div>
 
-			<Dropdown Open={filterClicked} />
+			<Dropdown Open={filterClicked} filterInvoice={filteredData} />
 		</>
 	);
 };

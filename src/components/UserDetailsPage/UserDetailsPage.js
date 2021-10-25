@@ -1,17 +1,23 @@
 import styles from "./UserDetailsPage.module.scss";
 import chevron from "../../assets/icon-arrow-left.svg";
-import data from "../../data.json";
 import Modal from "../Modal/Modal";
+import DeletePopup from "./DeletePopup";
+import { useParams, useHistory } from "react-router";
 
-const UserDetailsPage = ({ open }) => {
-	const json = data[2];
+const UserDetailsPage = ({ open, userData }) => {
+	const { id } = useParams();
+	const history = useHistory();
+	const testfind = userData.find((user) => user.id === id);
+	const json = testfind;
+	if (!json) return null;
 
 	return (
-		<Modal isOpen={open}>
+		<Modal isOpen={open} opaque={true}>
 			<div className={styles.backdrop}>
 				<div className={styles.modalBody}>
 					<button
 						className={`${styles.backButton} ${styles.backButtonJustifyStart}`}
+						onClick={() => history.goBack()}
 					>
 						<span>
 							{" "}

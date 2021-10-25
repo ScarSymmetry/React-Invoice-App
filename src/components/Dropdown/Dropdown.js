@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from "./Dropdown.module.scss";
 
-const Dropdown = ({ Open }) => {
-	const [options, setOptions] = useState([
+const Dropdown = ({ Open, filterInvoice }) => {
+	const [dropDownValues, setDropDownValues] = useState([
 		{
 			id: 0,
 			value: "draft",
@@ -19,12 +19,17 @@ const Dropdown = ({ Open }) => {
 			checked: false,
 		},
 	]);
+
 	const handleChange = (index) => {
-		setOptions(
-			options.map((option) => {
-				return index === option.id
-					? { ...option, checked: !option.checked }
-					: { ...option, checked: false };
+		setDropDownValues(
+			dropDownValues.map((option) => {
+				if (index === option.id) {
+					filterInvoice(option.checked ? "all" : option.value);
+
+					return { ...option, checked: !option.checked };
+				}
+
+				return { ...option, checked: false };
 			})
 		);
 	};
@@ -34,7 +39,7 @@ const Dropdown = ({ Open }) => {
 	return (
 		<div className={styles.popUpInputs}>
 			<div className={styles.checkboxWrapper}>
-				{options.map((box, index) => (
+				{dropDownValues.map((box, index) => (
 					<div className={styles.checkboxContainer} key={index}>
 						<input
 							type="checkbox"

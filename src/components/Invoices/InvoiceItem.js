@@ -1,7 +1,10 @@
 import styles from "./InvoiceItem.module.scss";
-import data from "../../data.json";
+import { useHistory } from "react-router";
 
-const InvoiceItem = () => {
+const InvoiceItem = ({ data }) => {
+	const history = useHistory();
+	if (!data) return null;
+
 	const numberFormatter = new Intl.NumberFormat("en-GB", {
 		style: "currency",
 		currency: "GBP",
@@ -10,13 +13,25 @@ const InvoiceItem = () => {
 		dateStyle: "medium",
 	});
 
+	if (data.length === 0) {
+		return (
+			<div>
+				<h1>NO INVOiCES</h1>
+			</div>
+		);
+	}
+
 	return (
 		<ul className={`${styles.invoiceBox} wrapper`}>
 			{data.map((user) => {
 				const paymentDue = new Date(user.paymentDue);
 
 				return (
-					<li key={user.id} className={styles.frame}>
+					<li
+						key={user.id}
+						className={styles.frame}
+						onClick={() => history.push(`/invoices/${user.id}`)}
+					>
 						<h3 className={styles.userId}>
 							<span>#</span>
 							{user.id}
