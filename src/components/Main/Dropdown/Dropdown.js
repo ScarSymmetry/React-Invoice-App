@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./Dropdown.module.scss";
 
-const Dropdown = ({ Open, filterInvoice }) => {
+const Dropdown = ({ open, setFilterInvoice }) => {
 	const [dropDownValues, setDropDownValues] = useState([
 		{
 			id: 0,
@@ -24,7 +24,7 @@ const Dropdown = ({ Open, filterInvoice }) => {
 		setDropDownValues(
 			dropDownValues.map((option) => {
 				if (index === option.id) {
-					filterInvoice(option.checked ? "all" : option.value);
+					setFilterInvoice(option.checked ? "all" : option.value);
 
 					return { ...option, checked: !option.checked };
 				}
@@ -34,7 +34,7 @@ const Dropdown = ({ Open, filterInvoice }) => {
 		);
 	};
 
-	if (!Open) return null;
+	if (!open) return null;
 
 	return (
 		<div className={styles.popUpInputs}>

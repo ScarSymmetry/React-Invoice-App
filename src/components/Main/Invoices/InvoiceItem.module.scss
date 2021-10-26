@@ -3,8 +3,13 @@
 @import "partials/breakpoints";
 @import "partials/components";
 
+.invoiceWrapper {
+	grid-column: 2 / 3;
+}
+
 .frame {
 	display: grid;
+
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: 1fr 32px 1fr;
 	cursor: pointer;
@@ -83,4 +88,3 @@
 
 	margin: 0 auto;
 }
-

@@ -4,7 +4,7 @@ import Modal from "../Modal/Modal";
 import DeletePopup from "./DeletePopup";
 import { useParams, useHistory } from "react-router";
 
-const UserDetailsPage = ({ open, userData }) => {
+const UserDetailsPage = ({ userData }) => {
 	const { id } = useParams();
 	const history = useHistory();
 	const testfind = userData.find((user) => user.id === id);
@@ -12,7 +12,7 @@ const UserDetailsPage = ({ open, userData }) => {
 	if (!json) return null;
 
 	return (
-		<Modal isOpen={open} opaque={true}>
+		<Modal isOpen={true} opaque={true}>
 			<div className={styles.backdrop}>
 				<div className={styles.modalBody}>
 					<button

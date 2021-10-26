@@ -3,30 +3,10 @@
 .grid-container {
 	display: grid;
 	grid-template-columns: 1fr;
-	@include media(">=1000px") {
-		grid-template-columns: 105px 1fr;
-		grid-template-rows: max-content 1fr;
-	}
-}
-
-.wrapper {
-	grid-column: 1 / -1;
-	width: 87.2vw;
-	margin: 0 auto;
+	grid-template-rows: 72px 32px 1fr;
 
 	@include media(">=1000px") {
-		width: 70vw;
-		grid-column: 2 / -1;
+		grid-template-columns: 105px 0.5fr 3fr 0.5fr;
+		grid-template-rows: 72px max-content 65px 1fr;
 	}
-
-	@include media(">=1440px") {
-		width: 50.98vw;
-	}
-}
-
-.block-margin {
-	margin-block: 32px 32px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 }

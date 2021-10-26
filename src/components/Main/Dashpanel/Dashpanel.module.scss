@@ -1,6 +1,15 @@
 @import "partials/variables";
 @import "partials/layout";
 
+.navWrapper {
+	grid-column: 2 / 3;
+	grid-row: 1 / 2;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	
+}
+
 .btnInvoice {
 	font-family: $font-spartan;
 	color: $cl-light-BG;
@@ -18,7 +27,7 @@
 
 	&::before {
 		content: "";
-		background: url("../../assets/icon-plus.svg");
+		background: url("../../../assets/icon-plus.svg");
 		background-position: center;
 		background-repeat: no-repeat;
 		background-color: $cl-light-BG;
@@ -43,12 +52,14 @@
 }
 
 .invoiceCount {
+	align-self: center;
 	color: $cl-light-BG;
 	h2 {
 		font-size: $h2-spartan-bold;
 		line-height: $h2-spartan-lineHeight;
 		letter-spacing: $h2-spartan-letterSpace;
 		font-weight: 700;
+		margin-bottom: 4px;
 	}
 
 	P {
