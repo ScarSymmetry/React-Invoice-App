@@ -70,6 +70,7 @@
 // *******************BUTTONS*************************
 
 .buttonComponent {
+	cursor: pointer;
 	border-radius: 24px;
 	color: $cl-light-BG;
 	border: none;
@@ -79,11 +80,11 @@
 	line-height: $spartan-body1-lineHeight;
 	letter-spacing: $spartan-body1-letterSpace;
 	font-weight: 700;
+	transition: $fade-transition;
 }
 
 .editButton {
 	width: 73px;
-	transition: $fade-transition;
 
 	background-color: $cl-grey-blue;
 	&:hover {
@@ -94,7 +95,7 @@
 
 .deleteButton {
 	width: 90px;
-	transition: $fade-transition;
+
 	background-color: $cl-red;
 	&:hover {
 		background-color: $cl-light-red;
@@ -103,7 +104,7 @@
 
 .markAsPaidButton {
 	width: 150px;
-	transition: $fade-transition;
+
 	background-color: $cl-violet;
 
 	&:hover {
@@ -115,4 +116,22 @@
 	width: 100%;
 	background-color: $cl-grey-blue;
 	color: $cl-light-grey;
+}
+
+.cancelAndDiscardButton {
+	width: 96px;
+	background-color: $cl-grey-blue;
+	&:hover {
+		color: $cl-light-grey;
+		background-color: $cl-bright-grey;
+	}
+}
+
+.saveChangesButton {
+	width: 138px;
+	background-color: $cl-violet;
+
+	&:hover {
+		background-color: $cl-violet-pale;
+	}
 }

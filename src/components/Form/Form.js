@@ -29,94 +29,93 @@ const Form = ({ open }) => {
 
 				<div className={styles.editId}>
 					<h3>
-						Edit<span>#</span>XM8123
+						{/* Edit<span>#</span> */}
+						New Invoice
 					</h3>
 				</div>
 
-				<form className={styles.form} onSubmit={handleSubmit(checkShit)}>
-					<section className={styles.billFrom}>
+				<form className={styles.form} id="registerForm">
+					<fieldset className={styles.billFrom}>
 						<h5 className={styles.billFrom__heading}>Bill From</h5>
-						<label className={styles.streetFrom} htmlFor="street">
+						<label className={styles.streetFrom}>
 							Street Address
 							<input type="text" />
 						</label>
-						<label className={styles.cityFrom} htmlFor="city">
+						<label className={styles.cityFrom}>
 							City
 							<input type="text" />
 						</label>
-						<label className={styles.postCodeFrom} htmlFor="postcode">
+						<label className={styles.postCodeFrom}>
 							Post Code
 							<input type="text" />
 						</label>
-						<label className={styles.countryFrom} htmlFor="country">
+						<label className={styles.countryFrom}>
 							Country
 							<input type="text" />
 						</label>
-					</section>
+					</fieldset>
 
-					<section className={styles.billTo}>
+					<fieldset className={styles.billTo}>
 						<h5 className={styles.billTo__heading}>Bill To</h5>
-						<label className={styles.clientTo} htmlFor="client">
+						<label className={styles.clientTo}>
 							Client`s Name
 							<input type="text" />
 						</label>
-						<label className={styles.emailTo} htmlFor="email">
+						<label className={styles.emailTo}>
 							Client`s Email
 							<input type="text" />
 						</label>
-						<label className={styles.streetTo} htmlFor="street">
+						<label className={styles.streetTo}>
 							Street Address
 							<input type="text" />
 						</label>
-						<label className={styles.cityTo} htmlFor="city">
+						<label className={styles.cityTo}>
 							City
 							<input type="text" />
 						</label>
-						<label className={styles.postCodeTo} htmlFor="city">
+						<label className={styles.postCodeTo}>
 							Post Code
 							<input type="text" />
 						</label>
-						<label className={styles.countryTo} htmlFor="city">
+						<label className={styles.countryTo}>
 							Country
 							<input type="text" />
 						</label>
-					</section>
+					</fieldset>
 
-					<section className={styles.invoiceDates}>
-						<label htmlFor="">
+					<fieldset className={styles.invoiceDates}>
+						<label className={styles.invoiceStart}>
 							Invoice Date
-							<input className={styles.invoiceStart} type="date" />
+							<input type="date" />
 						</label>
-						<label className={styles.paymentDropdown} htmlFor="dropdown">
+						<label className={styles.paymentDropdown}>
 							Payment Terms
-							<select name="dropdown" id="dropdown">
-								<option value="1">Net 1 day</option>
-								<option value="7">Net 7 days</option>
+							<select name="dropdown">
+								<option value="30">Net 30 day</option>
 								<option value="14">Net 14 days</option>
-								<option value="30" selected>
-									Net 30 days
-								</option>
+								<option value="7">Net 7 days</option>
+								<option value="1">Net 1 day</option>
 							</select>
 						</label>
 
-						<label className={styles.projectDescription} htmlFor="">
+						<label className={styles.projectDescription}>
 							Project / Description
 							<input placeholder="e.g Design and prototype" type="text" />
 						</label>
-					</section>
+					</fieldset>
 
-					<section className={styles.itemsContainer}>
+					<fieldset className={styles.itemsContainer}>
 						<h5 className={styles.itemsContainer__title}>Item List</h5>
 						<div className={styles.itemList}>
-							<label className={styles.itemName} htmlFor="itemName">
+							<label className={styles.itemName}>
 								Item Name
 								<input type="text" />
 							</label>
-							<label className={styles.itemQuantity} htmlFor="itemQuantity">
+							<label className={styles.itemQuantity}>
 								Qty.
 								<input type="text" />
 							</label>
-							<label className={styles.itemPrice} htmlFor="itemPrice">
+							<label className={styles.itemPrice}>
 								Price
 								<input type="text" />
 							</label>
@@ -128,7 +127,7 @@ const Form = ({ open }) => {
 								<img src={trashcan} alt="delete" />
 							</button>
 						</div>
-					</section>
+					</fieldset>
 
 					<button
 						className={`${styles.buttonComponent} ${styles.addNewItemButton}`}
@@ -136,6 +135,28 @@ const Form = ({ open }) => {
 						+ Add new item
 					</button>
 				</form>
+
+				<fieldset className={styles.formButtonControls}>
+					<div className={styles.formButtonControls__panel}>
+						<button
+							className={`${styles.buttonComponent} ${styles.cancelAndDiscardButton}`}
+						>
+							Cancel
+						</button>
+						<button
+							className={`${styles.buttonComponent} ${styles.cancelAndDiscardButton}`}
+						>
+							Save as Draft
+						</button>
+						<button
+							type="submit"
+							form="registerForm"
+							className={`${styles.buttonComponent} ${styles.saveChangesButton}`}
+						>
+							Save Changes
+						</button>
+					</div>
+				</fieldset>
 			</div>
 		</Modal>
 	);
@@ -144,7 +165,7 @@ const Form = ({ open }) => {
 export default Form;
 
 const testObj = {
-	id: generateRandomId(),
+	id: "",
 	createdAt: "",
 	paymentDue: "",
 	description: "",
@@ -184,5 +205,5 @@ function generateRandomId() {
 		characters += alphabet[Math.floor(Math.random() * alphabet.length)];
 	}
 
-	return `${characters}${digits}`;
+	return `${characters.toUpperCase()}${digits}`;
 }

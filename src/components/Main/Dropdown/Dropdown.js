@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import useClickOutside from "../../../hooks/useClickOutside";
 import styles from "./Dropdown.module.scss";
 
-const Dropdown = ({ open, setFilterInvoice }) => {
+const Dropdown = ({ open, setFilterInvoice, onClickOutside }) => {
+	const modalRef = useRef();
+
+	useClickOutside(modalRef, () => {
+		if (open) onClickOutside(false);
+	});
+
 	const [dropDownValues, setDropDownValues] = useState([
 		{
 			id: 0,
@@ -37,7 +44,7 @@ const Dropdown = ({ open, setFilterInvoice }) => {
 	if (!open) return null;
 
 	return (
-		<div className={styles.popUpInputs}>
+		<div ref={modalRef} className={styles.popUpInputs}>
 			<div className={styles.checkboxWrapper}>
 				{dropDownValues.map((box, index) => (
 					<div className={styles.checkboxContainer} key={index}>

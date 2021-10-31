@@ -1,12 +1,11 @@
+import { useState } from "react";
 import styles from "./Dashpanel.module.scss";
 import arrow from "../../../assets/icon-arrow-down.svg";
 import Dropdown from "../Dropdown/Dropdown";
 
-const Dashpanel = ({
-	filterClicked,
-	setFilterClicked,
-	setInvoiceFilterStatus,
-}) => {
+const Dashpanel = ({ setInvoiceFilterStatus }) => {
+	const [dropDownOpen, setDropDownOpen] = useState(false);
+
 	return (
 		<nav className={styles.navWrapper}>
 			<div className={styles.invoiceCount}>
@@ -15,12 +14,14 @@ const Dashpanel = ({
 			</div>
 			<button
 				className={styles.filterBtn}
-				onClick={() => setFilterClicked(!filterClicked)}
+				onClick={(e) => {
+					setDropDownOpen(!dropDownOpen);
+				}}
 			>
 				<span>
 					Filter{" "}
 					<img
-						className={filterClicked ? styles.active : undefined}
+						className={dropDownOpen ? styles.active : undefined}
 						src={arrow}
 						alt="filter"
 					/>
@@ -31,8 +32,9 @@ const Dashpanel = ({
 			</button>
 
 			<Dropdown
-				open={filterClicked}
+				open={dropDownOpen}
 				setFilterInvoice={setInvoiceFilterStatus}
+				onClickOutside={setDropDownOpen}
 			/>
 		</nav>
 	);

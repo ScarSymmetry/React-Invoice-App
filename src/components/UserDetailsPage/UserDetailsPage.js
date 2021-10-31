@@ -3,13 +3,17 @@ import chevron from "../../assets/icon-arrow-left.svg";
 import Modal from "../Modal/Modal";
 import DeletePopup from "./DeletePopup";
 import { useParams, useHistory } from "react-router";
+import { useContext } from "react";
+import { InvoicesContext } from "../../context/invoices.context";
 
-const UserDetailsPage = ({ userData }) => {
+const UserDetailsPage = () => {
+	
+	const data = useContext(InvoicesContext);
 	const { id } = useParams();
 	const history = useHistory();
-	const testfind = userData.find((user) => user.id === id);
-	const json = testfind;
-	if (!json) return null;
+	const testfind = data.find((user) => user.id === id);
+	const userDataDetails = testfind;
+	if (!userDataDetails) return null;
 
 	return (
 		<Modal isOpen={true} opaque={true}>
@@ -28,9 +32,13 @@ const UserDetailsPage = ({ userData }) => {
 
 					<div className={styles.statusPanel}>
 						<h5 className={styles.statusHeading}>Status</h5>
-						<div className={`${styles.statusState} ${styles[json.status]}`}>
+						<div
+							className={`${styles.statusState} ${
+								styles[userDataDetails.status]
+							}`}
+						>
 							<div className={styles.indicator}></div>
-							<p className={styles.statusText}>{json.status}</p>
+							<p className={styles.statusText}>{userDataDetails.status}</p>
 						</div>
 					</div>
 
@@ -38,44 +46,62 @@ const UserDetailsPage = ({ userData }) => {
 						<div className={styles.idAndSubject}>
 							<h5 className={styles.idNumber}>
 								{" "}
-								<span>#</span> {json.id}
+								<span>#</span> {userDataDetails.id}
 							</h5>
-							<p className={styles.subject}>{json.description}</p>
+							<p className={styles.subject}>{userDataDetails.description}</p>
 						</div>
 
 						<div className={styles.detailedAdress}>
-							<p className={styles.street}>{json.senderAddress.street}</p>
-							<p className={styles.city}>{json.senderAddress.city}</p>
-							<p className={styles.postCode}>{json.senderAddress.postCode}</p>
-							<p className={styles.country}>{json.senderAddress.country}</p>
+							<p className={styles.street}>
+								{userDataDetails.senderAddress.street}
+							</p>
+							<p className={styles.city}>
+								{userDataDetails.senderAddress.city}
+							</p>
+							<p className={styles.postCode}>
+								{userDataDetails.senderAddress.postCode}
+							</p>
+							<p className={styles.country}>
+								{userDataDetails.senderAddress.country}
+							</p>
 						</div>
 
 						<div className={styles.invoicesDetails}>
 							<p className={styles.invoiceEvent}>Invoice Date</p>
-							<h5 className={styles.invoiceDate}>{json.createdAt}</h5>
+							<h5 className={styles.invoiceDate}>
+								{userDataDetails.createdAt}
+							</h5>
 
 							<p className={styles.invoiceEvent}>Payment Due</p>
-							<h5 className={styles.invoiceDate}>{json.paymentDue}</h5>
+							<h5 className={styles.invoiceDate}>
+								{userDataDetails.paymentDue}
+							</h5>
 						</div>
 
 						<div className={styles.billingDetails}>
 							<p className={styles.billTo}>Bill To</p>
-							<h5 className={styles.clientName}>{json.clientName}</h5>
+							<h5 className={styles.clientName}>
+								{userDataDetails.clientName}
+							</h5>
 							<p className={styles.billingAdress}>
-								{json.clientAddress.street}
+								{userDataDetails.clientAddress.street}
 							</p>
-							<p className={styles.billingCity}>{json.clientAddress.city}</p>
+							<p className={styles.billingCity}>
+								{userDataDetails.clientAddress.city}
+							</p>
 							<p className={styles.billingPostCode}>
-								{json.clientAddress.postCode}
+								{userDataDetails.clientAddress.postCode}
 							</p>
 							<p className={styles.billingCountry}>
-								{json.clientAddress.country}
+								{userDataDetails.clientAddress.country}
 							</p>
 						</div>
 
 						<div className={styles.emailDetails}>
 							<p className={styles.sentTo}>Sent to</p>
-							<h5 className={styles.clientEmail}>{json.clientEmail}</h5>
+							<h5 className={styles.clientEmail}>
+								{userDataDetails.clientEmail}
+							</h5>
 						</div>
 
 						<section className={styles.expandoCheckout}>
@@ -87,7 +113,7 @@ const UserDetailsPage = ({ userData }) => {
 								<h5 className={styles.tableHeader__price}>Price</h5>
 								<h5 className={styles.tableHeader__total}>Total</h5>
 							</div>
-							{json.items.map((item, index) => {
+							{userDataDetails.items.map((item, index) => {
 								return (
 									<div key={index} className={styles.expandoCheckoutItem}>
 										<h5 className={styles.serviceDescription}>{item.name}</h5>
@@ -106,7 +132,7 @@ const UserDetailsPage = ({ userData }) => {
 							})}
 							<div className={styles.expandoCheckoutTotals}>
 								<p className={styles.expandoCheckoutAmount}>Amount Due</p>
-								<h2 className={styles.totalPrice}>{json.total}</h2>
+								<h2 className={styles.totalPrice}>{userDataDetails.total}</h2>
 							</div>
 						</section>
 					</section>

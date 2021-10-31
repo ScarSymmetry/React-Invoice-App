@@ -3,20 +3,11 @@ import Dashpanel from "./Dashpanel/Dashpanel";
 
 import styles from "./Main.module.scss";
 
-const Main = ({
-	filterClicked,
-	setFilterClicked,
-	setInvoiceFilterStatus,
-	filteredInvoice,
-}) => {
+const Main = ({ setInvoiceFilterStatus}) => {
 	return (
 		<div className={styles.generalView}>
-			<Dashpanel
-				filterClicked={filterClicked}
-				setFilterClicked={setFilterClicked}
-				setInvoiceFilterStatus={setInvoiceFilterStatus}
-			/>
-			<InvoiceItem data={filteredInvoice} />
+			<Dashpanel setInvoiceFilterStatus={setInvoiceFilterStatus} />
+			<InvoiceItem/>
 		</div>
 	);
 };

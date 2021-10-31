@@ -1,9 +1,12 @@
-import styles from "./InvoiceItem.module.scss";
 import { useHistory } from "react-router";
+import { useContext } from "react";
+import { InvoicesContext } from "../../../context/invoices.context";
+import styles from "./InvoiceItem.module.scss";
 
-const InvoiceItem = ({ data }) => {
+const InvoiceItem = () => {
 	const history = useHistory();
-	if (!data) return null;
+	const data = useContext(InvoicesContext);
+	console.log(data.length);
 
 	const numberFormatter = new Intl.NumberFormat("en-GB", {
 		style: "currency",
@@ -13,7 +16,7 @@ const InvoiceItem = ({ data }) => {
 		dateStyle: "medium",
 	});
 
-	if (data.length === 0) {
+	if (!data || data.length === 0) {
 		return (
 			<div>
 				<h1>NO INVOiCES</h1>
