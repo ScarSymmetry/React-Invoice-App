@@ -1,9 +1,12 @@
 import { useState, useRef } from "react";
-import useClickOutside from "../../../hooks/useClickOutside";
+import useClickOutside from "../../hooks/useClickOutside";
+import { useContext } from "react/cjs/react.development";
+import { DispatchContext } from "../../../context/invoices.context";
 import styles from "./Dropdown.module.scss";
 
-const Dropdown = ({ open, setFilterInvoice, onClickOutside }) => {
+const Dropdown = ({ open, onClickOutside }) => {
 	const modalRef = useRef();
+	const dispatch = useContext(DispatchContext);
 
 	useClickOutside(modalRef, () => {
 		if (open) onClickOutside(false);
@@ -31,8 +34,10 @@ const Dropdown = ({ open, setFilterInvoice, onClickOutside }) => {
 		setDropDownValues(
 			dropDownValues.map((option) => {
 				if (index === option.id) {
-					setFilterInvoice(option.checked ? "all" : option.value);
-
+					dispatch({
+						type: "FILTER_INVOICE",
+						status: option.checked ? null : option.value,
+					});
 					return { ...option, checked: !option.checked };
 				}
 

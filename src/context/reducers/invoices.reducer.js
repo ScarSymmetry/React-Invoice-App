@@ -1,18 +1,22 @@
-export const FILTER_INVOICE = "FILTER_INVOICE";
-export const ADD_INVOICE = "ADD_INVOICE";
-export const EDIT_INVOICE = "EDIT_INVOICE";
-export const DELETE_INVOICE = "DELETE_INVOICE";
-
 const reducer = (state, action) => {
 	switch (action.type) {
-		case FILTER_INVOICE:
-			return [...state];
-		case ADD_INVOICE:
-			return [...state];
-		case EDIT_INVOICE:
-			return [...state];
-		case DELETE_INVOICE:
-			return [...state];
+		case "FILTER_INVOICE": {
+			if (!action.status) {
+				return {
+					...state,
+					filteredInvoices: [...state.initialInvoices],
+				};
+			}
+			return {
+				...state,
+				filteredInvoices: [
+					...state.initialInvoices.filter(
+						(user) => user.status === action.status
+					),
+				],
+			};
+		}
+
 		default:
 			return state;
 	}

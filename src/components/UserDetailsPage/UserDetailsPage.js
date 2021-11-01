@@ -7,12 +7,11 @@ import { useContext } from "react";
 import { InvoicesContext } from "../../context/invoices.context";
 
 const UserDetailsPage = () => {
-	
-	const data = useContext(InvoicesContext);
+	const { filteredInvoices } = useContext(InvoicesContext);
+
 	const { id } = useParams();
 	const history = useHistory();
-	const testfind = data.find((user) => user.id === id);
-	const userDataDetails = testfind;
+	const userDataDetails = filteredInvoices.find((user) => user.id === id);
 	if (!userDataDetails) return null;
 
 	return (

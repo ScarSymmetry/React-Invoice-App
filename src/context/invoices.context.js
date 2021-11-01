@@ -1,9 +1,11 @@
 import React, { createContext } from "react";
-import { useLocalStorageReducer } from "../hooks/useLocalStorageReducer";
+import { useLocalStorageReducer } from "../components/hooks/useLocalStorageReducer";
 import invoiceReducer from "./reducers/invoices.reducer";
 import data from "../data";
 
 const defaultInvoices = data;
+
+defaultInvoices.filteredInvoices = [...data.initialInvoices];
 
 export const InvoicesContext = createContext();
 export const DispatchContext = createContext();

@@ -5,8 +5,7 @@ import styles from "./InvoiceItem.module.scss";
 
 const InvoiceItem = () => {
 	const history = useHistory();
-	const data = useContext(InvoicesContext);
-	console.log(data.length);
+	const { initialInvoices, filteredInvoices } = useContext(InvoicesContext);
 
 	const numberFormatter = new Intl.NumberFormat("en-GB", {
 		style: "currency",
@@ -16,7 +15,7 @@ const InvoiceItem = () => {
 		dateStyle: "medium",
 	});
 
-	if (!data || data.length === 0) {
+	if (!initialInvoices || initialInvoices.length === 0) {
 		return (
 			<div>
 				<h1>NO INVOiCES</h1>
@@ -27,7 +26,7 @@ const InvoiceItem = () => {
 	return (
 		<section className={styles.invoiceWrapper}>
 			<ul className={styles.invoiceBox}>
-				{data.map((user) => {
+				{filteredInvoices.map((user) => {
 					const paymentDue = new Date(user.paymentDue);
 
 					return (
