@@ -5,9 +5,12 @@ import DeletePopup from "./DeletePopup";
 import { useParams, useHistory } from "react-router";
 import { useContext } from "react";
 import { InvoicesContext } from "../../context/invoices.context";
+import { useState } from "react/cjs/react.development";
 
 const UserDetailsPage = () => {
 	const { filteredInvoices } = useContext(InvoicesContext);
+
+	const [deletePopUpOpen, setDeletePopUpOpen] = useState(false);
 
 	const { id } = useParams();
 	const history = useHistory();
@@ -16,6 +19,12 @@ const UserDetailsPage = () => {
 
 	return (
 		<Modal isOpen={true} opaque={true}>
+			<DeletePopup
+				open={deletePopUpOpen}
+				invoiceId={id}
+				onClickOutside={setDeletePopUpOpen}
+			/>
+
 			<div className={styles.backdrop}>
 				<div className={styles.modalBody}>
 					<button
@@ -145,6 +154,7 @@ const UserDetailsPage = () => {
 							Edit
 						</button>
 						<button
+							onClick={() => setDeletePopUpOpen(true)}
 							className={`${styles.buttonComponent} ${styles.deleteButton}`}
 						>
 							Delete

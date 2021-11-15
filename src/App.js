@@ -12,13 +12,13 @@ const App = () => {
 			<InvoicesProvider>
 				<Router>
 					<Header />
-					<Main />
+					{/* <Main />
 
 					<Route path="/invoices/:id">
 						<UserDetailsPage />
-					</Route>
+					</Route> */}
 
-					<Form open={false} />
+					<Form open={true} />
 				</Router>
 			</InvoicesProvider>
 		</div>
@@ -26,15 +26,3 @@ const App = () => {
 };
 
 export default App;
-
-// useEffect(() => {
-// 	const handleCheckboxFilter = (filter) => {
-// 		if (filter === "all") {
-// 			setFilteredInvoices(initialData);
-// 			return;
-// 		}
-// 		const newFilter = initialData.filter((user) => user.status === filter);
-// 		setFilteredInvoices(newFilter);
-// 	};
-// 	handleCheckboxFilter(Invoicefilter);
-// }, [Invoicefilter, initialData]);

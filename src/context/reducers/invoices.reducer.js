@@ -16,7 +16,15 @@ const reducer = (state, action) => {
 				],
 			};
 		}
+		case "RESET": {
+			return {
+				...state,
+				filteredInvoices: [...state.initialInvoices],
+			};
+		}
 
+		case "DELETE_INVOICE": {
+		}
 		default:
 			return state;
 	}

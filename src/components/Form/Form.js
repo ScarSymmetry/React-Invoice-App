@@ -1,20 +1,41 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
+import { useForm, useFieldArray } from "react-hook-form";
 import chevron from "../../assets/icon-arrow-left.svg";
 import trashcan from "../../assets/icon-delete.svg";
 import Modal from "../Modal/Modal";
 import styles from "./Form.module.scss";
 
 const Form = ({ open }) => {
-	const { register, handleSubmit, setValue } = useForm({
-		defaultValues: testObj,
-	});
-
 	const [state, setState] = useState(testObj);
 
+	const { register, handleSubmit, setValue, control, watch } = useForm({
+		defaultValues: state,
+	});
+	const { fields, append, remove } = useFieldArray({ control, name: "items" });
+
 	const checkShit = (data) => {
-		setState((prevState) => ({ data }));
+		setState((prevState) => ({ ...prevState, ...data }));
+
+		// const calculateTotalAmount = state.items
+		// 	.map((item) => item.total)
+		// 	.reduce((sum, item) => sum + item, 0);
+		// setValue("total", calculateTotalAmount);
+
+		console.log("submit triggered");
 	};
+
+	useEffect(() => {
+		setValue("status", "pending");
+		setValue("id", generateRandomId());
+		
+	}, []);
+
+	useEffect(() => {
+		console.log("render");
+		setValue("total", Math.random());
+	});
+
+	console.log(state);
 
 	return (
 		<Modal isOpen={open}>
@@ -34,24 +55,28 @@ const Form = ({ open }) => {
 					</h3>
 				</div>
 
-				<form className={styles.form} id="registerForm">
+				<form
+					onSubmit={handleSubmit(checkShit)}
+					className={styles.form}
+					id="registerForm"
+				>
 					<fieldset className={styles.billFrom}>
 						<h5 className={styles.billFrom__heading}>Bill From</h5>
 						<label className={styles.streetFrom}>
 							Street Address
-							<input type="text" />
+							<input {...register("senderAddress.street")} type="text" />
 						</label>
 						<label className={styles.cityFrom}>
 							City
-							<input type="text" />
+							<input {...register("senderAddress.city")} type="text" />
 						</label>
 						<label className={styles.postCodeFrom}>
 							Post Code
-							<input type="text" />
+							<input {...register("senderAddress.postCode")} type="text" />
 						</label>
 						<label className={styles.countryFrom}>
 							Country
-							<input type="text" />
+							<input {...register("senderAddress.country")} type="text" />
 						</label>
 					</fieldset>
 
@@ -59,38 +84,38 @@ const Form = ({ open }) => {
 						<h5 className={styles.billTo__heading}>Bill To</h5>
 						<label className={styles.clientTo}>
 							Client`s Name
-							<input type="text" />
+							<input {...register("clientName")} type="text" />
 						</label>
 						<label className={styles.emailTo}>
 							Client`s Email
-							<input type="text" />
+							<input {...register("clientEmail")} type="text" />
 						</label>
 						<label className={styles.streetTo}>
 							Street Address
-							<input type="text" />
+							<input {...register("clientAddress.street")} type="text" />
 						</label>
 						<label className={styles.cityTo}>
 							City
-							<input type="text" />
+							<input {...register("clientAddress.city")} type="text" />
 						</label>
 						<label className={styles.postCodeTo}>
 							Post Code
-							<input type="text" />
+							<input {...register("clientAddress.postCode")} type="text" />
 						</label>
 						<label className={styles.countryTo}>
 							Country
-							<input type="text" />
+							<input {...register("clientAddress.country")} type="text" />
 						</label>
 					</fieldset>
 
 					<fieldset className={styles.invoiceDates}>
 						<label className={styles.invoiceStart}>
 							Invoice Date
-							<input type="date" />
+							<input {...register("createdAt")} type="date" />
 						</label>
 						<label className={styles.paymentDropdown}>
 							Payment Terms
-							<select name="dropdown">
+							<select {...register("paymentTerms")}>
 								<option value="30">Net 30 day</option>
 								<option value="14">Net 14 days</option>
 								<option value="7">Net 7 days</option>
@@ -100,36 +125,83 @@ const Form = ({ open }) => {
 
 						<label className={styles.projectDescription}>
 							Project / Description
-							<input placeholder="e.g Design and prototype" type="text" />
+							<input
+								{...register("description")}
+								placeholder="e.g Design and prototype"
+								type="text"
+							/>
 						</label>
 					</fieldset>
 
 					<fieldset className={styles.itemsContainer}>
 						<h5 className={styles.itemsContainer__title}>Item List</h5>
-						<div className={styles.itemList}>
-							<label className={styles.itemName}>
-								Item Name
-								<input type="text" />
-							</label>
-							<label className={styles.itemQuantity}>
-								Qty.
-								<input type="text" />
-							</label>
-							<label className={styles.itemPrice}>
-								Price
-								<input type="text" />
-							</label>
-							<div className={styles.totalCounter}>
-								<p>Total</p>
-								<h5>150</h5>
-							</div>
-							<button className={styles.deleteItem}>
-								<img src={trashcan} alt="delete" />
-							</button>
-						</div>
+
+						{/* ACHTUNG! area that gives me endless f@cking headaches IS HERE */}
+
+						{fields.map(({ id, name, quantity, price }, index) => {
+							const [quantityOfItems, priceOfItems] = watch([
+								`items.${index}.quantity`,
+								`items.${index}.price`,
+							]);
+
+							const totalPrice =
+								(Number(quantityOfItems) || 0) * (Number(priceOfItems) || 0);
+
+							setValue(`items.${index}.total`, totalPrice);
+
+							return (
+								<div key={id} className={styles.itemList}>
+									<label className={styles.itemName}>
+										Item Name
+										<input
+											{...register(`items.${index}.name`)}
+											type="text"
+											defaultValue={name}
+										/>
+									</label>
+
+									<label className={styles.itemQuantity}>
+										Qty.
+										<input
+											{...register(`items.${index}.quantity`, {
+												maxLength: 6,
+												min: 1,
+											})}
+											type="number"
+											defaultValue={quantity}
+										/>
+									</label>
+									<label className={styles.itemPrice}>
+										Price
+										<input
+											{...register(`items.${index}.price`, {
+												maxLength: 6,
+												min: 1,
+											})}
+											defaultValue={price}
+											type="number"
+										/>
+									</label>
+
+									<div className={styles.totalCounter}>
+										<p>Total</p>
+										<h5>{totalPrice}</h5>
+									</div>
+
+									<button
+										onClick={() => remove(index)}
+										className={styles.deleteItem}
+									>
+										<img src={trashcan} alt="delete" />
+									</button>
+								</div>
+							);
+						})}
 					</fieldset>
 
 					<button
+						onClick={() => append({})}
+						type="button"
 						className={`${styles.buttonComponent} ${styles.addNewItemButton}`}
 					>
 						+ Add new item
@@ -144,6 +216,7 @@ const Form = ({ open }) => {
 							Cancel
 						</button>
 						<button
+							onClick={() => setValue("status", "draft")}
 							className={`${styles.buttonComponent} ${styles.cancelAndDiscardButton}`}
 						>
 							Save as Draft
@@ -172,7 +245,7 @@ const testObj = {
 	paymentTerms: "",
 	clientName: "",
 	clientEmail: "",
-	status: "draft",
+	status: "",
 	senderAddress: {
 		street: "",
 		city: "",
@@ -185,21 +258,14 @@ const testObj = {
 		postCode: "",
 		country: "",
 	},
-	items: [
-		{
-			name: "",
-			quantity: "",
-			price: "",
-			total: "",
-		},
-	],
+	items: [],
 	total: "",
 };
 
 function generateRandomId() {
 	const digits = Math.floor(Math.random() * 8999 + 1000);
-	let characters = "";
 	const alphabet = "abcdefghijklmnopqrstuvwxyz";
+	let characters = "";
 
 	while (characters.length < 2) {
 		characters += alphabet[Math.floor(Math.random() * alphabet.length)];

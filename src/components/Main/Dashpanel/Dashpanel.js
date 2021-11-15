@@ -27,7 +27,7 @@ const Dashpanel = ({ setInvoiceFilterStatus }) => {
 					/>
 				</span>
 			</button>
-			<button className={styles.btnInvoice}>
+			<button onClick={() => console.log("YO")} className={styles.btnInvoice}>
 				<span className={styles.mobileInvoice}>New</span>
 			</button>
 
