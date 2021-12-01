@@ -3,8 +3,9 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import chevron from '../../assets/icon-arrow-left.svg';
 import trashcan from '../../assets/icon-delete.svg';
 import { DispatchContext } from '../../context/invoices.context';
-import { dateFormatter } from '../../utils/formatters';
+
 import { generateRandomId } from '../../utils/generateId';
+import dayjs from 'dayjs';
 import Modal from '../Modal/Modal';
 import styles from './Form.module.scss';
 
@@ -24,19 +25,23 @@ const Form = ({ open }) => {
       'createdAt',
       'paymentTerms',
     ]);
+
+    const paymentDueISO = dayjs(creationDate)
+      .add(Number(paymentTermDate), 'day')
+      .format('YYYY-MM-DD');
+
     const out = {
       ...testObj,
       ...data,
       id: generateRandomId(),
-
+      paymentDue: paymentDueISO,
       total: data.items.reduce((s, k) => s + k.total, 0),
     };
 
     dispatch({ type: 'ADD_INVOICE', payload: out });
 
     console.log(out);
-    const termDateRaw = new Date(creationDate).setDate(Number(paymentTermDate));
-    console.log(new Date(termDateRaw).toISOString().slice(0, 10));
+    console.log(paymentDueISO);
   };
 
   console.log(state);

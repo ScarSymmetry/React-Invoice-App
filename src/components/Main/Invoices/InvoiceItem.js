@@ -20,7 +20,7 @@ const InvoiceItem = () => {
     <section className={styles.invoiceWrapper}>
       <ul className={styles.invoiceBox}>
         {initialInvoices.map((user) => {
-          //   const paymentDue = new Date(user.paymentDue);
+          const paymentDue = new Date(user.paymentDue);
 
           return (
             <li
@@ -34,7 +34,7 @@ const InvoiceItem = () => {
               </h3>
               <p className={styles.userName}>{user.clientName}</p>
               <p className={styles.payment}>
-                {/* Due {dateFormatter.format(paymentDue)} */}
+                Due {dateFormatter.format(paymentDue)}
               </p>
               <p className={styles.total}>
                 {numberFormatter.format(user.total)}
