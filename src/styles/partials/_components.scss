@@ -1,137 +1,152 @@
 // ************DYNAMIC STATUS (ORANGE,WHITE,GREEN)**********
 
 .statusState {
-	justify-self: end;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 104px;
-	height: 40px;
-	text-transform: capitalize;
-	border-radius: 6px;
-	@include media(">=768px") {
-		grid-column: 5;
-		grid-row: 1;
-	}
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 104px;
+  height: 40px;
+  text-transform: capitalize;
+  border-radius: 6px;
+  @include media('>=768px') {
+    grid-column: 5;
+    grid-row: 1;
+  }
 
-	.indicator {
-		margin-right: 8px;
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		background-color: currentColor;
-	}
-	.statusText {
-		font-size: $spartan-body1;
-		line-height: $spartan-body1-lineHeight;
-		letter-spacing: $spartan-body1-letterSpace;
-		font-weight: 500;
-	}
+  .indicator {
+    margin-right: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: currentColor;
+  }
+  .statusText {
+    font-size: $spartan-body1;
+    line-height: $spartan-body1-lineHeight;
+    letter-spacing: $spartan-body1-letterSpace;
+    font-weight: 500;
+  }
 }
 
 .backButton {
-	color: $cl-light-BG;
-	border: none;
-	cursor: pointer;
-	padding-inline: 0px 24px;
-	padding-block: 40px 24px;
-	background-color: transparent;
-	font-size: $spartan-body1;
-	line-height: $spartan-body1-lineHeight;
-	letter-spacing: $spartan-body1-letterSpace;
-	font-weight: 700;
+  color: $cl-light-BG;
+  border: none;
+  cursor: pointer;
+  padding-inline: 0px 24px;
+  padding-block: 40px 24px;
+  background-color: transparent;
+  font-size: $spartan-body1;
+  line-height: $spartan-body1-lineHeight;
+  letter-spacing: $spartan-body1-letterSpace;
+  font-weight: 700;
 
-	img {
-		margin-right: 23px;
-	}
+  img {
+    margin-right: 23px;
+  }
 }
 
 .backButtonJustifyStart {
-	justify-self: start;
-	grid-column: 2 / 3;
-	grid-row: 1 / 2;
+  justify-self: start;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
 }
 
 .paid {
-	background-color: hsla(160, 67%, 52%, 0.06);
-	color: hsla(160, 67%, 52%, 1);
+  background-color: hsla(160, 67%, 52%, 0.06);
+  color: hsla(160, 67%, 52%, 1);
 }
 
 .pending {
-	background-color: hsla(34, 100%, 50%, 0.06);
-	color: hsla(34, 100%, 50%, 1);
+  background-color: hsla(34, 100%, 50%, 0.06);
+  color: hsla(34, 100%, 50%, 1);
 }
 
 .draft {
-	background-color: hsla(231, 75%, 93%, 0.06);
-	color: hsla(231, 75%, 93%, 1);
+  background-color: hsla(231, 75%, 93%, 0.06);
+  color: hsla(231, 75%, 93%, 1);
 }
 
 // *******************BUTTONS*************************
 
 .buttonComponent {
-	cursor: pointer;
-	border-radius: 24px;
-	color: $cl-light-BG;
-	border: none;
-	padding-block: 16px;
-	padding-inline: 24px;
-	font-size: $spartan-body1;
-	line-height: $spartan-body1-lineHeight;
-	letter-spacing: $spartan-body1-letterSpace;
-	font-weight: 700;
-	transition: $fade-transition;
+  cursor: pointer;
+  border-radius: 24px;
+  color: $cl-light-BG;
+  border: none;
+  padding-block: 16px;
+  padding-inline: 24px;
+  font-size: $spartan-body1;
+  line-height: $spartan-body1-lineHeight;
+  letter-spacing: $spartan-body1-letterSpace;
+  font-weight: 700;
+  transition: $fade-transition;
 }
 
 .editButton {
-	width: 73px;
+  width: 73px;
 
-	background-color: $cl-grey-blue;
-	&:hover {
-		color: $cl-light-grey;
-		background-color: $cl-bright-grey;
-	}
+  background-color: $cl-grey-blue;
+  &:hover {
+    color: $cl-light-grey;
+    background-color: $cl-bright-grey;
+  }
 }
 
 .deleteButton {
-	width: 90px;
+  width: 90px;
 
-	background-color: $cl-red;
-	&:hover {
-		background-color: $cl-light-red;
-	}
+  background-color: $cl-red;
+  &:hover {
+    background-color: $cl-light-red;
+  }
 }
 
 .markAsPaidButton {
-	width: 150px;
+  width: 150px;
 
-	background-color: $cl-violet;
+  background-color: $cl-violet;
 
-	&:hover {
-		background-color: $cl-violet-pale;
-	}
+  &:hover {
+    background-color: $cl-violet-pale;
+  }
 }
 
 .addNewItemButton {
-	width: 100%;
-	background-color: $cl-grey-blue;
-	color: $cl-light-grey;
+  width: 100%;
+  background-color: $cl-grey-blue;
+  color: $cl-light-grey;
 }
 
 .cancelAndDiscardButton {
-	width: 96px;
-	background-color: $cl-grey-blue;
-	&:hover {
-		color: $cl-light-grey;
-		background-color: $cl-bright-grey;
-	}
+  background-color: $cl-grey-blue;
+  &:hover {
+    color: $cl-light-grey;
+    background-color: $cl-bright-grey;
+  }
 }
 
 .saveChangesButton {
-	width: 138px;
-	background-color: $cl-violet;
+  width: 130px;
+  background-color: $cl-violet;
 
-	&:hover {
-		background-color: $cl-violet-pale;
-	}
+  &:hover {
+    background-color: $cl-violet-pale;
+  }
+}
+
+.saveAndSendButton {
+  background-color: $cl-violet;
+
+  &:hover {
+    background-color: $cl-violet-pale;
+  }
+}
+
+.saveAsDraftButton {
+  background-color: $cl-light-grey;
+  &:hover {
+    color: $cl-light-grey;
+    background-color: $cl-bright-grey;
+  }
 }

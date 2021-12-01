@@ -12,13 +12,13 @@ const App = () => {
 			<InvoicesProvider>
 				<Router>
 					<Header />
-					{/* <Main />
+					<Main />
 
 					<Route path="/invoices/:id">
 						<UserDetailsPage />
-					</Route> */}
+					</Route>
 
-					<Form open={true} />
+					<Form open={1} />
 				</Router>
 			</InvoicesProvider>
 		</div>

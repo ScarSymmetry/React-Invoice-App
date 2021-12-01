@@ -2,7 +2,7 @@ const data = {
 	initialInvoices: [
 		{
 			id: "RT3080",
-			createdAt: "2021-08-18",
+			createdAt: "",
 			paymentDue: "2021-08-19",
 			description: "Re-branding",
 			paymentTerms: 1,
