@@ -10,12 +10,12 @@ import { useState } from 'react/cjs/react.development';
 const UserDetailsPage = () => {
   const { initialInvoices } = useContext(InvoicesContext);
 
-	const [deletePopUpOpen, setDeletePopUpOpen] = useState(false);
-	
-	console.log(initialInvoices)
+  const [deletePopUpOpen, setDeletePopUpOpen] = useState(false);
 
-	const { id } = useParams();
-	console.log('useparams',id)
+  console.log(initialInvoices);
+
+  const { id } = useParams();
+
   const history = useHistory();
   const userDataDetails = initialInvoices.find((user) => user.id === id);
   if (!userDataDetails) return null;

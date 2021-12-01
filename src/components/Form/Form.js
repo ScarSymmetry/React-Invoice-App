@@ -11,11 +11,10 @@ import styles from './Form.module.scss';
 
 const Form = ({ open }) => {
   const dispatch = useContext(DispatchContext);
-  const [state, setState] = useState(testObj);
 
   const { register, handleSubmit, setValue, control, watch, getValues } =
     useForm({
-      defaultValues: state,
+      defaultValues: testObj,
     });
   const { fields, append, remove } = useFieldArray({ control, name: 'items' });
 
@@ -43,8 +42,6 @@ const Form = ({ open }) => {
     console.log(out);
     console.log(paymentDueISO);
   };
-
-  console.log(state);
 
   return (
     <Modal isOpen={open} opaque={true}>
