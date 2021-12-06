@@ -6,7 +6,22 @@ import styles from './InvoiceItem.module.scss';
 
 const InvoiceItem = () => {
   const history = useHistory();
-  const { initialInvoices } = useContext(InvoicesContext);
+  const { initialInvoices, filter } = useContext(InvoicesContext);
+
+  const getFilteredInvoices = () => {
+    if (filter === 'paid') {
+      return initialInvoices.filter((invoice) => invoice.status === 'paid');
+    }
+    if (filter === 'pending') {
+      return initialInvoices.filter((invoice) => invoice.status === 'pending');
+    }
+    if (filter === 'draft') {
+      return initialInvoices.filter((invoice) => invoice.status === 'draft');
+    }
+    return initialInvoices;
+  };
+
+  const filteredInvoices = getFilteredInvoices();
 
   if (!initialInvoices || initialInvoices.length === 0) {
     return (
@@ -19,7 +34,7 @@ const InvoiceItem = () => {
   return (
     <section className={styles.invoiceWrapper}>
       <ul className={styles.invoiceBox}>
-        {initialInvoices.map((user) => {
+        {filteredInvoices.map((user) => {
           const paymentDue = new Date(user.paymentDue);
 
           return (

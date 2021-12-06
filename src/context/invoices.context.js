@@ -3,7 +3,7 @@ import { useLocalStorageReducer } from '../components/hooks/useLocalStorageReduc
 import invoiceReducer from './reducers/invoices.reducer';
 import data from '../data';
 
-const defaultInvoices = data;
+const defaultInvoices = { initialInvoices: data, filter: '' };
 
 export const InvoicesContext = createContext();
 export const DispatchContext = createContext();
