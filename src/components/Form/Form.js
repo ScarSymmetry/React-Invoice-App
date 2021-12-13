@@ -1,5 +1,7 @@
 import { useState, useContext } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import chevron from '../../assets/icon-arrow-left.svg';
 import trashcan from '../../assets/icon-delete.svg';
 import { DispatchContext } from '../../context/invoices.context';
@@ -9,13 +11,87 @@ import dayjs from 'dayjs';
 import Modal from '../Modal/Modal';
 import styles from './Form.module.scss';
 
+const testObj = {
+  id: '',
+  createdAt: new Date().toISOString().slice(0, 10),
+  paymentDue: '',
+  description: '',
+  paymentTerms: 30,
+  clientName: '',
+  clientEmail: '',
+  status: 'draft',
+  senderAddress: {
+    street: '',
+    city: '',
+    postCode: '',
+    country: '',
+  },
+  clientAddress: {
+    street: '',
+    city: '',
+    postCode: '',
+    country: '',
+  },
+  items: [],
+  total: '',
+};
+
+const schema = yup.object().shape({
+  description: yup.string().required('Fill the description'),
+  paymentTerms: yup.string().required('Payment terms required'),
+  clientName: yup.string().required('Client`s name is required'),
+  clientEmail: yup
+    .string()
+    .email('Email is not valid')
+    .required('Email required'),
+  senderAddress: yup.object().shape({
+    street: yup.string().max(32).required('Sender`s street required'),
+    city: yup.string().max(16).required('Sender`s city required'),
+    postCode: yup.string().max(16).min(4).required('Postal code required'),
+    country: yup.string().max(16).required('Sender`s country required'),
+  }),
+  clientAddress: yup.object().shape({
+    street: yup.string().max(32).required('Client`s street required'),
+    city: yup.string().max(16).required('Client`s city required'),
+    postCode: yup.string().max(16).min(4).required('Postal code required'),
+    country: yup.string().max(16).required('Client`s country required'),
+  }),
+  items: yup
+    .array()
+    .of(
+      yup.object().shape({
+        name: yup.string().max(16).required('Item name is required'),
+        quantity: yup
+          .number()
+          .positive()
+          .typeError('Invalid input')
+          .required('Quantity required'),
+        price: yup
+          .number()
+          .positive()
+          .typeError('Invalid input')
+          .required('Price required'),
+        total: yup.number(),
+      })
+    )
+    .min(1, 'Add an item'),
+});
+
 const Form = ({ open }) => {
   const dispatch = useContext(DispatchContext);
 
-  const { register, handleSubmit, setValue, control, watch, getValues } =
-    useForm({
-      defaultValues: testObj,
-    });
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    control,
+    watch,
+    getValues,
+    formState: { errors },
+  } = useForm({
+    defaultValues: testObj,
+    resolver: yupResolver(schema),
+  });
   const { fields, append, remove } = useFieldArray({ control, name: 'items' });
 
   const submitFunction = (data) => {
@@ -72,6 +148,7 @@ const Form = ({ open }) => {
               Street Address
               <input {...register('senderAddress.street')} type='text' />
             </label>
+
             <label className={styles.cityFrom}>
               City
               <input {...register('senderAddress.city')} type='text' />
@@ -242,28 +319,3 @@ const Form = ({ open }) => {
 };
 
 export default Form;
-
-const testObj = {
-  id: '',
-  createdAt: new Date().toISOString().slice(0, 10),
-  paymentDue: '',
-  description: '',
-  paymentTerms: 30,
-  clientName: '',
-  clientEmail: '',
-  status: 'draft',
-  senderAddress: {
-    street: '',
-    city: '',
-    postCode: '',
-    country: '',
-  },
-  clientAddress: {
-    street: '',
-    city: '',
-    postCode: '',
-    country: '',
-  },
-  items: [],
-  total: '',
-};

@@ -18,7 +18,7 @@ const App = () => {
 						<UserDetailsPage />
 					</Route>
 
-					<Form open={0} />
+					<Form open={1} />
 				</Router>
 			</InvoicesProvider>
 		</div>
