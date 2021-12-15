@@ -87,6 +87,7 @@ const Form = ({ open }) => {
     control,
     watch,
     getValues,
+    clearErrors,
     formState: { errors },
   } = useForm({
     defaultValues: testObj,
@@ -95,7 +96,6 @@ const Form = ({ open }) => {
   const { fields, append, remove } = useFieldArray({ control, name: 'items' });
 
   const submitFunction = (data) => {
-    // setState((prevState) => ({ ...prevState, ...data }));
     const [creationDate, paymentTermDate] = getValues([
       'createdAt',
       'paymentTerms',
@@ -105,18 +105,18 @@ const Form = ({ open }) => {
       .add(Number(paymentTermDate), 'day')
       .format('YYYY-MM-DD');
 
-    const out = {
+    const formPayload = {
       ...testObj,
       ...data,
+
       id: generateRandomId(),
       paymentDue: paymentDueISO,
       total: data.items.reduce((s, k) => s + k.total, 0),
     };
 
-    dispatch({ type: 'ADD_INVOICE', payload: out });
+    dispatch({ type: 'ADD_INVOICE', payload: formPayload });
 
-    console.log(out);
-    console.log(paymentDueISO);
+    console.log(formPayload);
   };
 
   return (
@@ -299,12 +299,15 @@ const Form = ({ open }) => {
               Cancel
             </button>
             <button
-              onClick={() => setValue('status', 'draft')}
+              onClick={() => {
+                submitFunction(getValues());
+              }}
               className={`${styles.buttonComponent} ${styles.saveAsDraftButton}`}
             >
               Save as Draft
             </button>
             <button
+              onClick={() => setValue('status', 'pending')}
               type='submit'
               form='registerForm'
               className={`${styles.buttonComponent} ${styles.saveAndSendButton}`}
