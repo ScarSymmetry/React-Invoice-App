@@ -1,11 +1,49 @@
+@import 'partials/variables';
+@import 'partials/breakpoints';
+@import 'partials/components';
+
 .popUpBody {
-	position: absolute;
-	z-index: 300;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	color: white;
-	width: 327px;
-	height: 220px;
-	background-color: rgb(41, 41, 112);
+  position: absolute;
+  z-index: 300;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 327px;
+  height: 220px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  justify-content: space-between;
+
+  background-color: $cl-dark-grey-blue;
+}
+
+.textWrapper {
+  .title {
+    color: white;
+    margin-bottom: 8px;
+    font-size: $h2-spartan-bold;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: $h2-spartan-letterSpace;
+  }
+  .warningText {
+    color: $cl-light-grey;
+    font-size: $spartan-body1;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: $spartan-body1-letterSpace;
+  }
+}
+
+.buttonWrapper {
+  display: flex;
+
+  justify-content: flex-end;
+
+  .deleteButton {
+    margin-left: 8px;
+  }
 }

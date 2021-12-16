@@ -11,7 +11,7 @@ import dayjs from 'dayjs';
 import Modal from '../Modal/Modal';
 import styles from './Form.module.scss';
 
-const testObj = {
+const initialFormValues = {
   id: '',
   createdAt: new Date().toISOString().slice(0, 10),
   paymentDue: '',
@@ -90,7 +90,7 @@ const Form = ({ open }) => {
     clearErrors,
     formState: { errors },
   } = useForm({
-    defaultValues: testObj,
+    defaultValues: initialFormValues,
     resolver: yupResolver(schema),
   });
   const { fields, append, remove } = useFieldArray({ control, name: 'items' });
@@ -106,7 +106,7 @@ const Form = ({ open }) => {
       .format('YYYY-MM-DD');
 
     const formPayload = {
-      ...testObj,
+      ...initialFormValues,
       ...data,
 
       id: generateRandomId(),
@@ -272,6 +272,7 @@ const Form = ({ open }) => {
                   </div>
 
                   <button
+                    type='button'
                     onClick={() => remove(index)}
                     className={styles.deleteItem}
                   >
