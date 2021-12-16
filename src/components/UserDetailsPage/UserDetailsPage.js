@@ -18,6 +18,7 @@ const UserDetailsPage = () => {
 
   const history = useHistory();
   const userDataDetails = initialInvoices.find((user) => user.id === id);
+
   if (!userDataDetails) return null;
 
   return (
@@ -162,11 +163,14 @@ const UserDetailsPage = () => {
             >
               Delete
             </button>
-            <button
-              className={`${styles.buttonComponent} ${styles.markAsPaidButton}`}
-            >
-              Mark as Paid
-            </button>
+
+            {userDataDetails.status !== 'paid' && (
+              <button
+                className={`${styles.buttonComponent} ${styles.markAsPaidButton}`}
+              >
+                Mark as Paid
+              </button>
+            )}
           </div>
         </div>
       </div>
