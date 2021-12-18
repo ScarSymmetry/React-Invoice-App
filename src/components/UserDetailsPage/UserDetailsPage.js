@@ -3,9 +3,8 @@ import chevron from '../../assets/icon-arrow-left.svg';
 import Modal from '../Modal/Modal';
 import DeletePopup from './DeletePopup';
 import { useParams, useHistory } from 'react-router';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { InvoicesContext } from '../../context/invoices.context';
-import { useState } from 'react/cjs/react.development';
 
 const UserDetailsPage = () => {
   const { initialInvoices } = useContext(InvoicesContext);

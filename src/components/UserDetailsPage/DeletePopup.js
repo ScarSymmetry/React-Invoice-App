@@ -1,13 +1,22 @@
 import Modal from '../Modal/Modal';
 import styles from './DeletePopup.module.scss';
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 import useClickOutside from '../hooks/useClickOutside';
+import { DispatchContext } from '../../context/invoices.context';
 
 const DeletePopup = ({ open, onClickOutside, invoiceId }) => {
+  const dispatch = useContext(DispatchContext);
   const modalRef = useRef();
   useClickOutside(modalRef, () => {
     if (open) onClickOutside(false);
   });
+
+  console.log(typeof invoiceId);
+
+  const deleteInvoice = () => {
+    dispatch({ type: 'DELETE_INVOICE', payload: invoiceId});
+    onClickOutside(false);
+  };
 
   return (
     <Modal isOpen={open}>
@@ -29,6 +38,7 @@ const DeletePopup = ({ open, onClickOutside, invoiceId }) => {
           </button>
 
           <button
+            onClick={deleteInvoice}
             className={`${styles.buttonComponent} ${styles.deleteButton}`}
           >
             Delete
