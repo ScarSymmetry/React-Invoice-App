@@ -119,6 +119,8 @@ const Form = ({ open }) => {
     console.log(formPayload);
   };
 
+  const getUnvalidatedFields = getValues();
+
   return (
     <Modal isOpen={open} opaque={true}>
       <div className={styles.formContainer}>
@@ -301,7 +303,7 @@ const Form = ({ open }) => {
             </button>
             <button
               onClick={() => {
-                submitFunction(getValues());
+                submitFunction(getUnvalidatedFields);
               }}
               className={`${styles.buttonComponent} ${styles.saveAsDraftButton}`}
             >

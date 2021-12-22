@@ -3,7 +3,27 @@ import { useLocalStorageReducer } from '../components/hooks/useLocalStorageReduc
 import invoiceReducer from './reducers/invoices.reducer';
 import data from '../data';
 
-const defaultInvoices = { initialInvoices: data, filter: '' };
+const defaultInvoices = {
+  initialInvoices: data,
+  filter: '',
+  statusCheckbox: [
+    {
+      id: 0,
+      value: 'draft',
+      checked: false,
+    },
+    {
+      id: 1,
+      value: 'pending',
+      checked: false,
+    },
+    {
+      id: 2,
+      value: 'paid',
+      checked: false,
+    },
+  ],
+};
 
 export const InvoicesContext = createContext();
 export const DispatchContext = createContext();

@@ -14,7 +14,7 @@ const DeletePopup = ({ open, onClickOutside, invoiceId }) => {
   console.log(typeof invoiceId);
 
   const deleteInvoice = () => {
-    dispatch({ type: 'DELETE_INVOICE', payload: invoiceId});
+    dispatch({ type: 'DELETE_INVOICE', payload: invoiceId });
     onClickOutside(false);
   };
 
