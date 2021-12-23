@@ -37,6 +37,21 @@ const reducer = (state, action) => {
         filter: action.payload,
       };
     }
+    case 'MARK_PAID': {
+      const markAsPaid = state.initialInvoices.map((invoices) => {
+        if (invoices.id === action.payload) {
+          return {
+            ...invoices,
+            status: 'paid',
+          };
+        }
+        return invoices;
+      });
+      return {
+        ...state,
+        initialInvoices: [...markAsPaid],
+      };
+    }
 
     default:
       return state;

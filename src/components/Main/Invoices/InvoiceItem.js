@@ -23,11 +23,11 @@ const InvoiceItem = () => {
 
   const filteredInvoices = getFilteredInvoices();
 
-  if (!initialInvoices || initialInvoices.length === 0) {
+  if (!filteredInvoices || filteredInvoices.length === 0) {
     return (
-      <div>
+      <section className={styles.invoiceWrapper}>
         <h1>NO INVOiCES</h1>
-      </div>
+      </section>
     );
   }
 

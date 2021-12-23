@@ -4,10 +4,14 @@ import Modal from '../Modal/Modal';
 import DeletePopup from './DeletePopup';
 import { useParams, useHistory } from 'react-router';
 import { useContext, useState } from 'react';
-import { InvoicesContext } from '../../context/invoices.context';
+import {
+  InvoicesContext,
+  DispatchContext,
+} from '../../context/invoices.context';
 
 const UserDetailsPage = () => {
   const { initialInvoices } = useContext(InvoicesContext);
+  const dispatch = useContext(DispatchContext);
 
   const [deletePopUpOpen, setDeletePopUpOpen] = useState(false);
 
@@ -165,6 +169,7 @@ const UserDetailsPage = () => {
 
             {userDataDetails.status !== 'paid' && (
               <button
+                onClick={() => dispatch({ type: 'MARK_PAID', payload: id })}
                 className={`${styles.buttonComponent} ${styles.markAsPaidButton}`}
               >
                 Mark as Paid
