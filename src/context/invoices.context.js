@@ -23,6 +23,7 @@ const defaultInvoices = {
       checked: false,
     },
   ],
+  formOpen: false,
 };
 
 export const InvoicesContext = createContext();

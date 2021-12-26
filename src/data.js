@@ -1,8 +1,8 @@
 const data = [
   {
     id: 'RT3080',
-    createdAt: '',
-    paymentDue: '2021-08-19',
+    createdAt: '2021-08-21',
+    paymentDue: '2021-08-22',
     description: 'Re-branding',
     paymentTerms: 1,
     clientName: 'Jensen Huang',

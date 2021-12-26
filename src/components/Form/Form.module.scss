@@ -274,15 +274,20 @@
     align-items: center;
 
     .cancelAndDiscardButton {
-      padding-inline: 18px;
+      padding-inline: 16px;
+      width: 84px;
     }
 
     .saveAsDraftButton {
-      padding-inline: 18px;
+      margin-left: auto;
+      margin-right: 8px;
+      padding-inline: 16px;
+      width: 117px;
     }
 
     .saveAndSendButton {
-      padding-inline: 18px;
+      padding-inline: 16px;
+      width: 112px;
     }
   }
 }

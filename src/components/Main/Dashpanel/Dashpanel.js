@@ -3,11 +3,15 @@ import styles from './Dashpanel.module.scss';
 import arrow from '../../../assets/icon-arrow-down.svg';
 import Dropdown from '../Dropdown/Dropdown';
 import { useContext } from 'react';
-import { InvoicesContext } from '../../../context/invoices.context';
+import {
+  InvoicesContext,
+  DispatchContext,
+} from '../../../context/invoices.context';
 
 const Dashpanel = ({ setInvoiceFilterStatus }) => {
   const [dropDownOpen, setDropDownOpen] = useState(false);
-  const { initialInvoices } = useContext(InvoicesContext);
+  const { initialInvoices, formOpen } = useContext(InvoicesContext);
+  const dispatch = useContext(DispatchContext);
 
   const InvoicesQuantity = initialInvoices.length;
 
@@ -34,7 +38,10 @@ const Dashpanel = ({ setInvoiceFilterStatus }) => {
           />
         </span>
       </button>
-      <button onClick={() => console.log('YO')} className={styles.btnInvoice}>
+      <button
+        onClick={() => dispatch({ type: 'OPEN_FORM', payload: true})}
+        className={styles.btnInvoice}
+      >
         <span className={styles.mobileInvoice}>New</span>
       </button>
 

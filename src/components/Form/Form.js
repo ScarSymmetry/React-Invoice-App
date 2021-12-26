@@ -1,10 +1,15 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { schema } from './validationObjects/schema';
 import chevron from '../../assets/icon-arrow-left.svg';
 import trashcan from '../../assets/icon-delete.svg';
-import { DispatchContext } from '../../context/invoices.context';
+import {
+  DispatchContext,
+  InvoicesContext,
+} from '../../context/invoices.context';
+
+import { useLocation, useParams } from 'react-router-dom';
 
 import { generateRandomId } from '../../utils/generateId';
 import dayjs from 'dayjs';
@@ -36,49 +41,14 @@ const initialFormValues = {
   total: '',
 };
 
-const schema = yup.object().shape({
-  description: yup.string().required('Fill the description'),
-  paymentTerms: yup.string().required('Payment terms required'),
-  clientName: yup.string().required('Client`s name is required'),
-  clientEmail: yup
-    .string()
-    .email('Email is not valid')
-    .required('Email required'),
-  senderAddress: yup.object().shape({
-    street: yup.string().max(32).required('Sender`s street required'),
-    city: yup.string().max(16).required('Sender`s city required'),
-    postCode: yup.string().max(16).min(4).required('Postal code required'),
-    country: yup.string().max(16).required('Sender`s country required'),
-  }),
-  clientAddress: yup.object().shape({
-    street: yup.string().max(32).required('Client`s street required'),
-    city: yup.string().max(16).required('Client`s city required'),
-    postCode: yup.string().max(16).min(4).required('Postal code required'),
-    country: yup.string().max(16).required('Client`s country required'),
-  }),
-  items: yup
-    .array()
-    .of(
-      yup.object().shape({
-        name: yup.string().max(16).required('Item name is required'),
-        quantity: yup
-          .number()
-          .positive()
-          .typeError('Invalid input')
-          .required('Quantity required'),
-        price: yup
-          .number()
-          .positive()
-          .typeError('Invalid input')
-          .required('Price required'),
-        total: yup.number(),
-      })
-    )
-    .min(1, 'Add an item'),
-});
-
-const Form = ({ open }) => {
+const Form = () => {
   const dispatch = useContext(DispatchContext);
+  const { formOpen, initialInvoices } = useContext(InvoicesContext);
+  const [editing, setEditing] = useState(false);
+
+  const location = useLocation();
+  const invoiceId = location.pathname.slice(-6);
+  const testshit = initialInvoices.find((invoice) => invoice.id === invoiceId);
 
   const {
     register,
@@ -87,13 +57,19 @@ const Form = ({ open }) => {
     control,
     watch,
     getValues,
-    clearErrors,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: initialFormValues,
     resolver: yupResolver(schema),
   });
   const { fields, append, remove } = useFieldArray({ control, name: 'items' });
+
+  console.log(invoiceId);
+
+  useEffect(() => {
+    reset(testshit);
+  }, [invoiceId]);
 
   const submitFunction = (data) => {
     const [creationDate, paymentTermDate] = getValues([
@@ -115,14 +91,12 @@ const Form = ({ open }) => {
     };
 
     dispatch({ type: 'ADD_INVOICE', payload: formPayload });
-
-    console.log(formPayload);
   };
 
   const getUnvalidatedFields = getValues();
 
   return (
-    <Modal isOpen={open} opaque={true}>
+    <Modal isOpen={1} opaque={true}>
       <div className={styles.formContainer}>
         <button className={styles.backButton}>
           {' '}
@@ -133,10 +107,13 @@ const Form = ({ open }) => {
         </button>
 
         <div className={styles.editId}>
-          <h3>
-            {/* Edit<span>#</span> */}
-            New Invoice
-          </h3>
+          {editing ? (
+            <h3>
+              Edit<span>#{invoiceId}</span>
+            </h3>
+          ) : (
+            <h3>New Invoice</h3>
+          )}
         </div>
 
         <form
@@ -295,29 +272,46 @@ const Form = ({ open }) => {
         </form>
 
         <fieldset className={styles.formButtonControls}>
-          <div className={styles.formButtonControls__panel}>
-            <button
-              className={`${styles.buttonComponent} ${styles.cancelAndDiscardButton}`}
-            >
-              Cancel
-            </button>
-            <button
-              onClick={() => {
-                submitFunction(getUnvalidatedFields);
-              }}
-              className={`${styles.buttonComponent} ${styles.saveAsDraftButton}`}
-            >
-              Save as Draft
-            </button>
-            <button
-              onClick={() => setValue('status', 'pending')}
-              type='submit'
-              form='registerForm'
-              className={`${styles.buttonComponent} ${styles.saveAndSendButton}`}
-            >
-              Save & Send
-            </button>
-          </div>
+          {editing ? (
+            <div className={styles.formButtonControls__panel}>
+              <button
+                className={`${styles.buttonComponent} ${styles.cancelAndDiscardButton}`}
+              >
+                Cancel
+              </button>
+
+              <button
+                onClick={() => setValue('status', 'pending')}
+                type='submit'
+                form='registerForm'
+                className={`${styles.buttonComponent} ${styles.saveAndSendButton}`}
+              >
+                Save Changes
+              </button>
+            </div>
+          ) : (
+            <div className={styles.formButtonControls__panel}>
+              <button
+                className={`${styles.buttonComponent} ${styles.cancelAndDiscardButton}`}
+              >
+                Discard
+              </button>
+              <button
+                onClick={() => submitFunction(getUnvalidatedFields)}
+                className={`${styles.buttonComponent} ${styles.saveAsDraftButton}`}
+              >
+                Save as Draft
+              </button>
+              <button
+                onClick={() => setValue('status', 'pending')}
+                type='submit'
+                form='registerForm'
+                className={`${styles.buttonComponent} ${styles.saveAndSendButton}`}
+              >
+                Save & Send
+              </button>
+            </div>
+          )}
         </fieldset>
       </div>
     </Modal>

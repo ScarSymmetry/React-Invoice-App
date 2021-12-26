@@ -52,6 +52,12 @@ const reducer = (state, action) => {
         initialInvoices: [...markAsPaid],
       };
     }
+    case 'OPEN_FORM': {
+      return {
+        ...state,
+        formOpen: action.payload,
+      };
+    }
 
     default:
       return state;
