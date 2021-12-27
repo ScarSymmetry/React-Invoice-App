@@ -39,7 +39,12 @@ const Dashpanel = ({ setInvoiceFilterStatus }) => {
         </span>
       </button>
       <button
-        onClick={() => dispatch({ type: 'OPEN_FORM', payload: true})}
+        onClick={() =>
+          dispatch({
+            type: 'OPEN_FORM',
+            payload: { isToggled: true, isEditing: false },
+          })
+        }
         className={styles.btnInvoice}
       >
         <span className={styles.mobileInvoice}>New</span>

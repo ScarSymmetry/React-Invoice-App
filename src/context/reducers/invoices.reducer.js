@@ -17,6 +17,19 @@ const reducer = (state, action) => {
       };
     }
 
+    case 'EDIT_INVOICE': {
+      const editedInvoice = state.initialInvoices.map((invoices) => {
+        if (invoices.id === action.payload.id) {
+          return { ...invoices, ...action.payload.data };
+        }
+        return { ...invoices };
+      });
+      return {
+        ...state,
+        initialInvoices: [...editedInvoice],
+      };
+    }
+
     case 'SET_FILTER': {
       const currentStatus = state.statusCheckbox.map((checkbox) => {
         if (checkbox.id === action.payload) {
@@ -55,7 +68,10 @@ const reducer = (state, action) => {
     case 'OPEN_FORM': {
       return {
         ...state,
-        formOpen: action.payload,
+        formOpen: {
+          isEditing: action.payload.isEditing,
+          isToggled: action.payload.isToggled,
+        },
       };
     }
 

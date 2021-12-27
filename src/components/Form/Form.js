@@ -2,53 +2,29 @@ import { useState, useContext, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from './validationObjects/schema';
+import { initialFormValues } from './validationObjects/initialFormValues';
+
 import chevron from '../../assets/icon-arrow-left.svg';
 import trashcan from '../../assets/icon-delete.svg';
 import {
   DispatchContext,
   InvoicesContext,
 } from '../../context/invoices.context';
-
-import { useLocation, useParams } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
 import { generateRandomId } from '../../utils/generateId';
 import dayjs from 'dayjs';
 import Modal from '../Modal/Modal';
 import styles from './Form.module.scss';
 
-const initialFormValues = {
-  id: '',
-  createdAt: new Date().toISOString().slice(0, 10),
-  paymentDue: '',
-  description: '',
-  paymentTerms: 30,
-  clientName: '',
-  clientEmail: '',
-  status: 'draft',
-  senderAddress: {
-    street: '',
-    city: '',
-    postCode: '',
-    country: '',
-  },
-  clientAddress: {
-    street: '',
-    city: '',
-    postCode: '',
-    country: '',
-  },
-  items: [],
-  total: '',
-};
-
 const Form = () => {
   const dispatch = useContext(DispatchContext);
   const { formOpen, initialInvoices } = useContext(InvoicesContext);
-  const [editing, setEditing] = useState(false);
 
   const location = useLocation();
   const invoiceId = location.pathname.slice(-6);
   const testshit = initialInvoices.find((invoice) => invoice.id === invoiceId);
+
+  console.log(formOpen.isToggled, formOpen.isEditing);
 
   const {
     register,
@@ -65,11 +41,11 @@ const Form = () => {
   });
   const { fields, append, remove } = useFieldArray({ control, name: 'items' });
 
-  console.log(invoiceId);
-
   useEffect(() => {
-    reset(testshit);
-  }, [invoiceId]);
+    if (formOpen.isEditing) {
+      reset(testshit);
+    }
+  }, [formOpen.isEditing, testshit]);
 
   const submitFunction = (data) => {
     const [creationDate, paymentTermDate] = getValues([
@@ -91,12 +67,22 @@ const Form = () => {
     };
 
     dispatch({ type: 'ADD_INVOICE', payload: formPayload });
+    dispatch({
+      type: 'OPEN_FORM',
+      payload: { isToggled: false, isEditing: false },
+    });
+  };
+
+  const editInvoice = (data) => {
+    console.log('from edit shit', data);
+    dispatch({ type: 'EDIT_INVOICE', payload: { id: data.id, data: data } });
   };
 
   const getUnvalidatedFields = getValues();
+  console.log(getUnvalidatedFields);
 
   return (
-    <Modal isOpen={1} opaque={true}>
+    <Modal isOpen={formOpen.isToggled} opaque={true}>
       <div className={styles.formContainer}>
         <button className={styles.backButton}>
           {' '}
@@ -107,7 +93,7 @@ const Form = () => {
         </button>
 
         <div className={styles.editId}>
-          {editing ? (
+          {formOpen.isEditing ? (
             <h3>
               Edit<span>#{invoiceId}</span>
             </h3>
@@ -228,6 +214,7 @@ const Form = () => {
                       {...register(`items.${index}.quantity`, {
                         maxLength: 6,
                         min: 1,
+                        valueAsNumber: true,
                       })}
                       type='number'
                       defaultValue={quantity}
@@ -239,6 +226,7 @@ const Form = () => {
                       {...register(`items.${index}.price`, {
                         maxLength: 6,
                         min: 1,
+                        valueAsNumber: true,
                       })}
                       defaultValue={price}
                       type='number'
@@ -271,8 +259,9 @@ const Form = () => {
           </button>
         </form>
 
+        {/* control buttons ******************* */}
         <fieldset className={styles.formButtonControls}>
-          {editing ? (
+          {formOpen.isEditing ? (
             <div className={styles.formButtonControls__panel}>
               <button
                 className={`${styles.buttonComponent} ${styles.cancelAndDiscardButton}`}
@@ -281,9 +270,9 @@ const Form = () => {
               </button>
 
               <button
-                onClick={() => setValue('status', 'pending')}
-                type='submit'
-                form='registerForm'
+                onClick={handleSubmit(editInvoice)}
+                // type='submit'
+                // form='registerForm'
                 className={`${styles.buttonComponent} ${styles.saveAndSendButton}`}
               >
                 Save Changes
@@ -292,6 +281,7 @@ const Form = () => {
           ) : (
             <div className={styles.formButtonControls__panel}>
               <button
+                onClick={() => reset()}
                 className={`${styles.buttonComponent} ${styles.cancelAndDiscardButton}`}
               >
                 Discard
