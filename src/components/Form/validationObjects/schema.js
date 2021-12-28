@@ -12,19 +12,19 @@ export const schema = yup.object().shape({
     street: yup.string().max(32).required('Sender`s street required'),
     city: yup.string().max(16).required('Sender`s city required'),
     postCode: yup.string().max(16).min(4).required('Postal code required'),
-    country: yup.string().max(16).required('Sender`s country required'),
+    country: yup.string().max(32).required('Sender`s country required'),
   }),
   clientAddress: yup.object().shape({
     street: yup.string().max(32).required('Client`s street required'),
     city: yup.string().max(16).required('Client`s city required'),
     postCode: yup.string().max(16).min(4).required('Postal code required'),
-    country: yup.string().max(16).required('Client`s country required'),
+    country: yup.string().max(32).required('Client`s country required'),
   }),
   items: yup
     .array()
     .of(
       yup.object().shape({
-        name: yup.string().max(16).required('Item name is required'),
+        name: yup.string().max(32).required('Item name is required'),
         quantity: yup
           .number()
           .positive()

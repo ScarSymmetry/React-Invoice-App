@@ -156,6 +156,12 @@ const UserDetailsPage = () => {
 
           <div className={styles.buttonWrapper}>
             <button
+              onClick={() =>
+                dispatch({
+                  type: 'OPEN_FORM',
+                  payload: { isEditing: true, isToggled: true },
+                })
+              }
               className={`${styles.buttonComponent} ${styles.editButton}`}
             >
               Edit

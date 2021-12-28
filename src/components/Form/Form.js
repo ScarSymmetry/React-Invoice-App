@@ -10,7 +10,7 @@ import {
   DispatchContext,
   InvoicesContext,
 } from '../../context/invoices.context';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { generateRandomId } from '../../utils/generateId';
 import dayjs from 'dayjs';
 import Modal from '../Modal/Modal';
@@ -21,6 +21,7 @@ const Form = () => {
   const { formOpen, initialInvoices } = useContext(InvoicesContext);
 
   const location = useLocation();
+  const history = useHistory();
   const invoiceId = location.pathname.slice(-6);
   const testshit = initialInvoices.find((invoice) => invoice.id === invoiceId);
 
@@ -63,7 +64,10 @@ const Form = () => {
 
       id: generateRandomId(),
       paymentDue: paymentDueISO,
-      total: data.items.reduce((s, k) => s + k.total, 0),
+      total: data.items.reduce(
+        (grandTotal, item) => grandTotal + item.total,
+        0
+      ),
     };
 
     dispatch({ type: 'ADD_INVOICE', payload: formPayload });
@@ -73,13 +77,20 @@ const Form = () => {
     });
   };
 
+  const resetAndCloseForm = () => {
+    dispatch({
+      type: 'OPEN_FORM',
+      payload: { isToggled: false, isEditing: false },
+    });
+    history.push('/');
+  };
+
   const editInvoice = (data) => {
-    console.log('from edit shit', data);
     dispatch({ type: 'EDIT_INVOICE', payload: { id: data.id, data: data } });
+    resetAndCloseForm();
   };
 
   const getUnvalidatedFields = getValues();
-  console.log(getUnvalidatedFields);
 
   return (
     <Modal isOpen={formOpen.isToggled} opaque={true}>
@@ -214,7 +225,6 @@ const Form = () => {
                       {...register(`items.${index}.quantity`, {
                         maxLength: 6,
                         min: 1,
-                        valueAsNumber: true,
                       })}
                       type='number'
                       defaultValue={quantity}
@@ -226,7 +236,6 @@ const Form = () => {
                       {...register(`items.${index}.price`, {
                         maxLength: 6,
                         min: 1,
-                        valueAsNumber: true,
                       })}
                       defaultValue={price}
                       type='number'
@@ -264,6 +273,7 @@ const Form = () => {
           {formOpen.isEditing ? (
             <div className={styles.formButtonControls__panel}>
               <button
+                onClick={resetAndCloseForm}
                 className={`${styles.buttonComponent} ${styles.cancelAndDiscardButton}`}
               >
                 Cancel
@@ -281,7 +291,7 @@ const Form = () => {
           ) : (
             <div className={styles.formButtonControls__panel}>
               <button
-                onClick={() => reset()}
+                onClick={resetAndCloseForm}
                 className={`${styles.buttonComponent} ${styles.cancelAndDiscardButton}`}
               >
                 Discard
