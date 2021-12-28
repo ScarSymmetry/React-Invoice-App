@@ -71,10 +71,8 @@ const Form = () => {
     };
 
     dispatch({ type: 'ADD_INVOICE', payload: formPayload });
-    dispatch({
-      type: 'OPEN_FORM',
-      payload: { isToggled: false, isEditing: false },
-    });
+
+    resetAndCloseForm();
   };
 
   const resetAndCloseForm = () => {
@@ -82,6 +80,8 @@ const Form = () => {
       type: 'OPEN_FORM',
       payload: { isToggled: false, isEditing: false },
     });
+    reset(initialFormValues);
+
     history.push('/');
   };
 
@@ -89,8 +89,6 @@ const Form = () => {
     dispatch({ type: 'EDIT_INVOICE', payload: { id: data.id, data: data } });
     resetAndCloseForm();
   };
-
-  const getUnvalidatedFields = getValues();
 
   return (
     <Modal isOpen={formOpen.isToggled} opaque={true}>
@@ -297,7 +295,9 @@ const Form = () => {
                 Discard
               </button>
               <button
-                onClick={() => submitFunction(getUnvalidatedFields)}
+                onClick={() => {
+                  submitFunction(getValues());
+                }}
                 className={`${styles.buttonComponent} ${styles.saveAsDraftButton}`}
               >
                 Save as Draft
