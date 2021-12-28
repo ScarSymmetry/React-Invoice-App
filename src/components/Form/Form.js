@@ -86,7 +86,15 @@ const Form = () => {
   };
 
   const editInvoice = (data) => {
-    dispatch({ type: 'EDIT_INVOICE', payload: { id: data.id, data: data } });
+    const GrandTotalValue = data.items.reduce(
+      (grandTotal, item) => grandTotal + item.total,
+      0
+    );
+
+    dispatch({
+      type: 'EDIT_INVOICE',
+      payload: { id: data.id, data: data, total: GrandTotalValue },
+    });
     resetAndCloseForm();
   };
 

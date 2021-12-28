@@ -20,7 +20,11 @@ const reducer = (state, action) => {
     case 'EDIT_INVOICE': {
       const editedInvoice = state.initialInvoices.map((invoices) => {
         if (invoices.id === action.payload.id) {
-          return { ...invoices, ...action.payload.data };
+          return {
+            ...invoices,
+            ...action.payload.data,
+            total: action.payload.total,
+          };
         }
         return { ...invoices };
       });
