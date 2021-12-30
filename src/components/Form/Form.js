@@ -86,7 +86,7 @@ const Form = () => {
   };
 
   const editInvoice = (data) => {
-    const GrandTotalValue = data.items.reduce(
+    const GrandTotalValue = data.items?.reduce(
       (grandTotal, item) => grandTotal + item.total,
       0
     );
@@ -97,6 +97,7 @@ const Form = () => {
     });
     resetAndCloseForm();
   };
+  
 
   return (
     <Modal isOpen={formOpen.isToggled} opaque={true}>

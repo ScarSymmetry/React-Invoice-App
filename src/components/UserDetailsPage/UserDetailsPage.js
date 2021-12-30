@@ -3,11 +3,12 @@ import chevron from '../../assets/icon-arrow-left.svg';
 import Modal from '../Modal/Modal';
 import DeletePopup from './DeletePopup';
 import { useParams, useHistory } from 'react-router';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import {
   InvoicesContext,
   DispatchContext,
 } from '../../context/invoices.context';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 const UserDetailsPage = () => {
   const { initialInvoices } = useContext(InvoicesContext);
@@ -34,16 +35,18 @@ const UserDetailsPage = () => {
 
       <div className={styles.backdrop}>
         <div className={styles.modalBody}>
-          <button
-            className={`${styles.backButton} ${styles.backButtonJustifyStart}`}
-            onClick={() => history.goBack()}
-          >
-            <span>
-              {' '}
-              <img src={chevron} alt='back' />{' '}
-            </span>{' '}
-            Go back
-          </button>
+          <div className={styles.navigationButton}>
+            <button
+              className={`${styles.backButton} ${styles.backButtonJustifyStart}`}
+              onClick={() => history.goBack()}
+            >
+              <span>
+                {' '}
+                <img src={chevron} alt='back' />{' '}
+              </span>{' '}
+              Go back
+            </button>
+          </div>
 
           <div className={styles.statusPanel}>
             <h5 className={styles.statusHeading}>Status</h5>
