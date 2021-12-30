@@ -20,6 +20,7 @@
   row-gap: 16px;
   outline: 1px solid yellowgreen;
   height: 100vh;
+  width: 100vw;
   grid-template-columns: 6.4vw 1fr 6.4vw;
   grid-template-rows: 72px repeat(2, max-content) 1fr 150px;
   color: $cl-light-BG;
@@ -28,6 +29,13 @@
     row-gap: 24px;
     grid-template-rows: 80px minmax(48px, max-content) max-content max-content;
   }
+  @include media('>=1000px') {
+    grid-template-columns: 105px minmax(6.4vw, 24vw) minmax(730px, 1fr) minmax(
+        6.4vw,
+        24vw
+      );
+    grid-template-rows: 64px minmax(48px, max-content) max-content max-content;
+  }
 }
 
 .navigationButton {
@@ -35,6 +43,9 @@
   grid-row: 2 / 3;
   @include media('>=768px') {
     align-self: center;
+  }
+  @include media('>=1000px') {
+    grid-column: 3 / 4;
   }
 }
 
@@ -52,6 +63,9 @@
   padding-block: 24px 24px;
   @include media('>=768px') {
     justify-content: start;
+  }
+  @include media('>=1000px') {
+    grid-column: 3 / 4;
   }
 
   .statusHeading {
@@ -83,6 +97,9 @@
   @include media('>=768px') {
     grid-template-columns: 1fr 1fr 1.5fr;
     grid-template-rows: repeat(3, max-content);
+  }
+  @include media('>=1000px') {
+    grid-column: 3 / 4;
   }
 
   .idAndSubject {
@@ -377,6 +394,9 @@
     .deleteButton {
       margin-inline: 8px;
     }
+  }
+  @include media('>=1000px') {
+    grid-column: 3 / 4;
   }
 
   display: flex;
