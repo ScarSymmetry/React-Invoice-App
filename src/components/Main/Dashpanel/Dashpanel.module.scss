@@ -1,103 +1,103 @@
-@import "partials/variables";
-@import "partials/layout";
+@import 'partials/variables';
+@import 'partials/layout';
 
 .navWrapper {
-	grid-column: 2 / 3;
-	grid-row: 1 / 2;
-	width: 100%;
-	display: flex;
-	align-items: center;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .btnInvoice {
-	font-family: $font-spartan;
-	color: $cl-light-BG;
-	position: relative;
-	background-color: $cl-violet;
-	width: 90px;
-	height: 44px;
+  font-family: $font-spartan;
+  color: $cl-light-BG;
+  position: relative;
+  background-color: $cl-violet;
+  width: 90px;
+  height: 44px;
 
-	border-radius: 24px;
-	outline: none;
-	border: none;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
+  border-radius: 24px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 
-	&::before {
-		content: "";
-		background: url("../../../assets/icon-plus.svg");
-		background-position: center;
-		background-repeat: no-repeat;
-		background-color: $cl-light-BG;
+  &::before {
+    content: '';
+    background: url('../../../assets/icon-plus.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: $cl-light-BG;
 
-		position: absolute;
-		top: 6px;
-		left: 6px;
+    position: absolute;
+    top: 6px;
+    left: 6px;
 
-		width: 32px;
-		height: 32px;
-		border-radius: 50%;
-	}
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
 
-	span {
-		margin-top: 3px;
-		margin-left: 46px;
-		font-size: $spartan-body1;
-		line-height: $spartan-body1-lineHeight;
-		letter-spacing: $spartan-body1-letterSpace;
-		font-weight: 700;
-	}
+  span {
+    margin-top: 3px;
+    margin-left: 46px;
+    font-size: $spartan-body1;
+    line-height: $spartan-body1-lineHeight;
+    letter-spacing: $spartan-body1-letterSpace;
+    font-weight: 700;
+  }
 }
 
 .invoiceCount {
-	align-self: center;
-	color: $cl-light-BG;
-	h2 {
-		font-size: $h2-spartan-bold;
-		line-height: $h2-spartan-lineHeight;
-		letter-spacing: $h2-spartan-letterSpace;
-		font-weight: 700;
-		margin-bottom: 4px;
-	}
+  align-self: center;
+  color: $cl-light-BG;
+  h2 {
+    font-size: $h2-spartan-bold;
+    line-height: $h2-spartan-lineHeight;
+    letter-spacing: $h2-spartan-letterSpace;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
 
-	P {
-		font-size: $spartan-body1;
-		line-height: $spartan-body1-lineHeight;
-		letter-spacing: $spartan-body1-letterSpace;
-		font-weight: 500;
-	}
-	@include media(">=1000px") {
-		h2 {
-			font-size: $h1-spartan-bold;
-			line-height: $h1-spartan-lineHeight;
-			letter-spacing: $h1-spartan-letterSpace;
-			font-weight: 700;
-			margin-bottom: 8px;
-		}
-	}
+  P {
+    font-size: $spartan-body1;
+    line-height: $spartan-body1-lineHeight;
+    letter-spacing: $spartan-body1-letterSpace;
+    font-weight: 500;
+  }
+  @include media('>=768px') {
+    h2 {
+      font-size: $h1-spartan-bold;
+      line-height: $h1-spartan-lineHeight;
+      letter-spacing: $h1-spartan-letterSpace;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+  }
 }
 
 .filterBtn {
-	background: transparent;
-	border: none;
-	color: $cl-light-BG;
-	font-size: $spartan-body1;
-	line-height: $spartan-body1-lineHeight;
-	letter-spacing: $spartan-body1-letterSpace;
-	font-weight: 700;
-	margin-left: auto;
-	margin-right: 4.77px;
-	padding: 5px;
-	cursor: pointer;
+  background: transparent;
+  border: none;
+  color: $cl-light-BG;
+  font-size: $spartan-body1;
+  line-height: $spartan-body1-lineHeight;
+  letter-spacing: $spartan-body1-letterSpace;
+  font-weight: 700;
+  margin-left: auto;
+  margin-right: 4.77px;
+  padding: 5px;
+  cursor: pointer;
 
-	img {
-		transition: transform 300ms ease-in-out;
-		transform-origin: center;
-		padding-inline: 12px;
-	}
+  img {
+    transition: transform 300ms ease-in-out;
+    transform-origin: center;
+    padding-inline: 12px;
+  }
 
-	.active {
-		transform: rotate(180deg);
-	}
+  .active {
+    transform: rotate(180deg);
+  }
 }
