@@ -100,7 +100,7 @@ const Form = () => {
   
 
   return (
-    <Modal isOpen={formOpen.isToggled} opaque={true}>
+    <Modal isOpen={formOpen.isToggled} opaque={false}>
       <div className={styles.formContainer}>
         <button className={styles.backButton}>
           {' '}

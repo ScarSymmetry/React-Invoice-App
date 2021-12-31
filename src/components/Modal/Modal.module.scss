@@ -1,17 +1,17 @@
-@import "partials/variables";
-@import "partials/breakpoints";
+@import 'partials/variables';
+@import 'partials/breakpoints';
 
 .modalWrapper {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 200;
-	width: 100vw;
-	height: 100%;
-	display: grid;
-	background-color: $overlay;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  background-color: $overlay;
 }
 
 .backgroundOpaque {
-	background-color: $cl-darker-grey-blue;
+  background-color: $cl-darker-grey-blue;
 }

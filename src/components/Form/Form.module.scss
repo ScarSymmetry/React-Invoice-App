@@ -12,8 +12,13 @@
   height: 100%;
   color: $cl-light-BG;
   background-color: $cl-darker-grey-blue;
+  overflow-y: auto;
 
   border: 1px solid yellow;
+  @include media('>=768px') {
+    grid-template-rows: 104px repeat(2, max-content) max-content max-content;
+    max-width: 80vw;
+  }
 }
 
 .backButton {
@@ -250,6 +255,8 @@
 }
 
 .formButtonControls {
+  position: sticky;
+  bottom: 0;
   grid-column: 1 / -1;
   grid-row: 5 / -1;
 
@@ -261,9 +268,6 @@
   background-color: $cl-dark-grey-blue;
 
   .formButtonControls__panel {
-    position: sticky;
-    bottom: 0;
-
     width: 100%;
 
     display: flex;
