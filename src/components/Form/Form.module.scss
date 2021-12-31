@@ -13,9 +13,19 @@
   color: $cl-light-BG;
   background-color: $cl-darker-grey-blue;
   overflow-y: auto;
+  & {
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll;
+  }
+
+  &::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
 
   @include media('>=768px') {
     max-width: 617px;
+    grid-template-columns: 24px 1fr 24px;
   }
   @include media('>=1000px') {
     transform: translateX(100px);
@@ -47,7 +57,6 @@
   grid-column: 2 / 3;
   grid-row: 4;
 
-  outline: 1px solid red;
   display: grid;
   row-gap: 24px;
 
@@ -136,6 +145,24 @@
   .countryFrom {
     grid-column: 1 / -1;
   }
+
+  @include media('>=768px') {
+    grid-template-columns: repeat(3, 1fr);
+    .streetFrom {
+      grid-column: 1 / -1;
+    }
+
+    .cityFrom {
+      grid-column: 1 / 2;
+    }
+    .postCodeFrom {
+      grid-column: 2 / 3;
+    }
+
+    .countryFrom {
+      grid-column: 3 / -1;
+    }
+  }
 }
 
 // ********************END BILL FROM ***************
@@ -175,6 +202,28 @@
   .countryTo {
     grid-column: 1 / -1;
   }
+
+  @include media('>=768px') {
+    grid-template-columns: repeat(3, 1fr);
+    .clientTo {
+      grid-column: 1 / -1;
+    }
+    .emailTo {
+      grid-column: 1 / -1;
+    }
+    .streetTo {
+      grid-column: 1 / -1;
+    }
+    .cityTo {
+      grid-column: 1 / 2;
+    }
+    .postCodeTo {
+      grid-column: 2 / 3;
+    }
+    .countryTo {
+      grid-column: 3 / -1;
+    }
+  }
 }
 
 .invoiceDates {
@@ -193,6 +242,19 @@
   .paymentDropdown {
     & select {
       padding-left: 20px;
+    }
+  }
+  @include media('>=768px') {
+    grid-template-columns: repeat(2, 1fr);
+    .invoiceStart {
+      grid-column: 1 / 2;
+    }
+
+    .paymentDropdown {
+      grid-column: 2 / -1;
+    }
+    .projectDescription {
+      grid-column: 1 / -1;
     }
   }
 }
@@ -257,7 +319,9 @@
 
 .formButtonControls {
   position: sticky;
+
   bottom: 0;
+
   grid-column: 1 / -1;
   grid-row: 5 / -1;
 
