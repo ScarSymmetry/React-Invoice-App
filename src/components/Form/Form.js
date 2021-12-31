@@ -1,8 +1,9 @@
-import { useState, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from './validationObjects/schema';
 import { initialFormValues } from './validationObjects/initialFormValues';
+import { useWindowSize } from '../hooks/useWindowSize';
 
 import chevron from '../../assets/icon-arrow-left.svg';
 import trashcan from '../../assets/icon-delete.svg';
@@ -19,7 +20,7 @@ import styles from './Form.module.scss';
 const Form = () => {
   const dispatch = useContext(DispatchContext);
   const { formOpen, initialInvoices } = useContext(InvoicesContext);
-
+  const size = useWindowSize();
   const location = useLocation();
   const history = useHistory();
   const invoiceId = location.pathname.slice(-6);
@@ -97,18 +98,19 @@ const Form = () => {
     });
     resetAndCloseForm();
   };
-  
 
   return (
     <Modal isOpen={formOpen.isToggled} opaque={false}>
       <div className={styles.formContainer}>
-        <button className={styles.backButton}>
-          {' '}
-          <span>
-            <img src={chevron} alt='back' />
-          </span>{' '}
-          Go back
-        </button>
+        {size.width < 768 && (
+          <button className={styles.backButton}>
+            {' '}
+            <span>
+              <img src={chevron} alt='back' />
+            </span>{' '}
+            Go back
+          </button>
+        )}
 
         <div className={styles.editId}>
           {formOpen.isEditing ? (

@@ -14,10 +14,11 @@
   background-color: $cl-darker-grey-blue;
   overflow-y: auto;
 
-  border: 1px solid yellow;
   @include media('>=768px') {
-    grid-template-rows: 104px repeat(2, max-content) max-content max-content;
-    max-width: 80vw;
+    max-width: 617px;
+  }
+  @include media('>=1000px') {
+    transform: translateX(100px);
   }
 }
 
@@ -266,6 +267,10 @@
   border: none;
   height: 91px;
   background-color: $cl-dark-grey-blue;
+
+  @include media('>=768px') {
+    background-color: $cl-darker-grey-blue;
+  }
 
   .formButtonControls__panel {
     width: 100%;
