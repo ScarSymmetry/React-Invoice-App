@@ -26,6 +26,7 @@
   @include media('>=768px') {
     max-width: 617px;
     grid-template-columns: 24px 1fr 24px;
+    grid-template-rows: 36px repeat(2, max-content) max-content max-content;
   }
   @include media('>=1000px') {
     transform: translateX(100px);
@@ -261,7 +262,11 @@
 
 .itemsContainer {
   &__title {
-    margin-block: 24px;
+    margin-block: 16px;
+    color: $cl-light-grey;
+    font-size: $h3-spartan-bold;
+    letter-spacing: $h3-spartan-letterSpace;
+    line-height: $h3-spartan-lineHeight;
   }
   .itemList {
     display: grid;
@@ -315,6 +320,9 @@
 
 .addNewItemButton {
   margin-block: 24px;
+  @include media('>=768px') {
+    margin-block: 8px;
+  }
 }
 
 .formButtonControls {

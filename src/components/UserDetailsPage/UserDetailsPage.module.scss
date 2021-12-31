@@ -2,28 +2,18 @@
 @import 'partials/breakpoints';
 @import 'partials/components';
 
-.backdrop {
-  position: absolute;
-  z-index: 100;
-
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  background-color: $cl-darker-grey-blue;
-  overflow: auto;
-}
-
 .modalBody {
   display: grid;
   margin: 0 auto;
   row-gap: 16px;
   outline: 1px solid yellowgreen;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   grid-template-columns: 6.4vw 1fr 6.4vw;
   grid-template-rows: 72px repeat(2, max-content) 1fr 150px;
   color: $cl-light-BG;
+
+  overflow-y: auto;
 
   @include media('>=768px') {
     row-gap: 24px;
