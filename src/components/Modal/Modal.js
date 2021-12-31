@@ -1,10 +1,6 @@
 import { createPortal } from 'react-dom';
 import styles from './Modal.module.scss';
-import {
-  disableBodyScroll,
-  enableBodyScroll,
-  clearAllBodyScrollLocks,
-} from 'body-scroll-lock';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { useRef, useEffect } from 'react';
 
 const rootModal = document.getElementById('modal');

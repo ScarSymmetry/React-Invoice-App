@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from 'react';
+import { useRef, useContext } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
 
 import {

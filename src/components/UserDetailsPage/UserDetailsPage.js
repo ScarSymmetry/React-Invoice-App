@@ -3,7 +3,7 @@ import chevron from '../../assets/icon-arrow-left.svg';
 import Modal from '../Modal/Modal';
 import DeletePopup from './DeletePopup';
 import { useParams, useHistory } from 'react-router';
-import { useContext, useState, useEffect, useRef } from 'react';
+import { useContext, useState } from 'react';
 
 import {
   InvoicesContext,

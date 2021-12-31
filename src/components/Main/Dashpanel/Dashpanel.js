@@ -10,7 +10,7 @@ import {
 
 const Dashpanel = ({ setInvoiceFilterStatus }) => {
   const [dropDownOpen, setDropDownOpen] = useState(false);
-  const { initialInvoices, formOpen } = useContext(InvoicesContext);
+  const { initialInvoices } = useContext(InvoicesContext);
   const dispatch = useContext(DispatchContext);
 
   const InvoicesQuantity = initialInvoices.length;

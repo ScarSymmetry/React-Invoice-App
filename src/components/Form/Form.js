@@ -47,7 +47,7 @@ const Form = () => {
     if (formOpen.isEditing) {
       reset(testshit);
     }
-  }, [formOpen.isEditing, testshit]);
+  }, [formOpen.isEditing, testshit, reset]);
 
   const submitFunction = (data) => {
     const [creationDate, paymentTermDate] = getValues([
