@@ -7,6 +7,32 @@
   grid-column: 2 / 3;
 }
 
+.noInvoices {
+  color: $cl-light-BG;
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  .textWrapper {
+    margin-top: 36px;
+    max-width: 217px;
+    h2 {
+      margin-bottom: 24px;
+      font-size: $h2-spartan-bold;
+      line-height: $h2-spartan-lineHeight;
+      letter-spacing: $h2-spartan-letterSpace;
+    }
+    p {
+      font-size: $spartan-body1;
+      line-height: $spartan-body1-lineHeight;
+      letter-spacing: $spartan-body1-letterSpace;
+      text-align: center;
+    }
+  }
+}
+
 .frame {
   display: grid;
 

@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { InvoicesContext } from '../../../context/invoices.context';
 import { numberFormatter, dateFormatter } from '../../../utils/formatters';
 import styles from './InvoiceItem.module.scss';
+import empty from '../../../assets/illustration-empty.svg';
 
 const InvoiceItem = () => {
   const history = useHistory();
@@ -26,7 +27,16 @@ const InvoiceItem = () => {
   if (!filteredInvoices || filteredInvoices.length === 0) {
     return (
       <section className={styles.invoiceWrapper}>
-        <h1>NO INVOiCES</h1>
+        <div className={styles.noInvoices}>
+          <img src={empty} alt='empty list' />
+          <div className={styles.textWrapper}>
+            <h2>There is nothing here</h2>
+            <p>
+              Create and invoice by clicking the <span>New</span> button and get
+              started
+            </p>
+          </div>
+        </div>
       </section>
     );
   }
