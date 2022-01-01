@@ -91,6 +91,10 @@
     background-color: $cl-dark-grey-blue;
   }
 
+  input:focus {
+    outline: none;
+  }
+
   select {
     color: $cl-light-BG;
     max-width: 100%;

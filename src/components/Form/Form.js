@@ -150,7 +150,13 @@ const Form = () => {
 
             <label className={styles.cityFrom}>
               City
-              <input {...register('senderAddress.city')} type='text' />
+              <input
+                {...register('senderAddress.city')}
+                type='text'
+                style={{
+                  border: errors.senderAddress?.city ? '1px solid #EC5757' : '',
+                }}
+              />
               <ErrorMessage
                 errors={errors}
                 name='senderAddress.city'
@@ -161,7 +167,15 @@ const Form = () => {
             </label>
             <label className={styles.postCodeFrom}>
               Post Code
-              <input {...register('senderAddress.postCode')} type='text' />
+              <input
+                {...register('senderAddress.postCode')}
+                type='text'
+                style={{
+                  border: errors.senderAddress?.postCode
+                    ? '1px solid #EC5757'
+                    : '',
+                }}
+              />
               <ErrorMessage
                 errors={errors}
                 name='senderAddress.postCode'
@@ -172,7 +186,15 @@ const Form = () => {
             </label>
             <label className={styles.countryFrom}>
               Country
-              <input {...register('senderAddress.country')} type='text' />
+              <input
+                {...register('senderAddress.country')}
+                type='text'
+                style={{
+                  border: errors.senderAddress?.country
+                    ? '1px solid #EC5757'
+                    : '',
+                }}
+              />
               <ErrorMessage
                 errors={errors}
                 name='senderAddress.country'
@@ -187,7 +209,13 @@ const Form = () => {
             <h5 className={styles.billTo__heading}>Bill To</h5>
             <label className={styles.clientTo}>
               Client`s Name
-              <input {...register('clientName')} type='text' />
+              <input
+                {...register('clientName')}
+                type='text'
+                style={{
+                  border: errors?.clientName ? '1px solid #EC5757' : '',
+                }}
+              />
               <ErrorMessage
                 errors={errors}
                 name='clientName'
@@ -198,7 +226,13 @@ const Form = () => {
             </label>
             <label className={styles.emailTo}>
               Client`s Email
-              <input {...register('clientEmail')} type='text' />
+              <input
+                {...register('clientEmail')}
+                type='text'
+                style={{
+                  border: errors?.clientEmail ? '1px solid #EC5757' : '',
+                }}
+              />
               <ErrorMessage
                 errors={errors}
                 name='clientEmail'
@@ -209,7 +243,15 @@ const Form = () => {
             </label>
             <label className={styles.streetTo}>
               Street Address
-              <input {...register('clientAddress.street')} type='text' />
+              <input
+                {...register('clientAddress.street')}
+                type='text'
+                style={{
+                  border: errors?.clientAddress?.street
+                    ? '1px solid #EC5757'
+                    : '',
+                }}
+              />
               <ErrorMessage
                 errors={errors}
                 name='clientAddress.street'
@@ -220,7 +262,15 @@ const Form = () => {
             </label>
             <label className={styles.cityTo}>
               City
-              <input {...register('clientAddress.city')} type='text' />
+              <input
+                {...register('clientAddress.city')}
+                type='text'
+                style={{
+                  border: errors?.clientAddress?.city
+                    ? '1px solid #EC5757'
+                    : '',
+                }}
+              />
               <ErrorMessage
                 errors={errors}
                 name='clientAddress.city'
@@ -231,7 +281,15 @@ const Form = () => {
             </label>
             <label className={styles.postCodeTo}>
               Post Code
-              <input {...register('clientAddress.postCode')} type='text' />
+              <input
+                {...register('clientAddress.postCode')}
+                type='text'
+                style={{
+                  border: errors?.clientAddress?.postCode
+                    ? '1px solid #EC5757'
+                    : '',
+                }}
+              />
               <ErrorMessage
                 errors={errors}
                 name='clientAddress.postCode'
@@ -242,7 +300,15 @@ const Form = () => {
             </label>
             <label className={styles.countryTo}>
               Country
-              <input {...register('clientAddress.country')} type='text' />
+              <input
+                {...register('clientAddress.country')}
+                type='text'
+                style={{
+                  border: errors?.clientAddress?.country
+                    ? '1px solid #EC5757'
+                    : '',
+                }}
+              />
               <ErrorMessage
                 errors={errors}
                 name='clientAddress.country'
@@ -281,6 +347,9 @@ const Form = () => {
                 {...register('description')}
                 placeholder='e.g Design and prototype'
                 type='text'
+                style={{
+                  border: errors?.description ? '1px solid #EC5757' : '',
+                }}
               />
               <ErrorMessage
                 errors={errors}
@@ -323,6 +392,11 @@ const Form = () => {
                       {...register(`items.${index}.name`)}
                       type='text'
                       defaultValue={name}
+                      style={{
+                        border: errors.items?.[index]?.name
+                          ? '1px solid #EC5757'
+                          : '',
+                      }}
                     />
                     {errors.items?.[index]?.name && (
                       <p className={styles.errorMessage}>Item`s name missing</p>
@@ -338,6 +412,11 @@ const Form = () => {
                       })}
                       type='number'
                       defaultValue={quantity}
+                      style={{
+                        border: errors.items?.[index]?.quantity
+                          ? '1px solid #EC5757'
+                          : '',
+                      }}
                     />
                     {errors.items?.[index]?.quantity && (
                       <p className={styles.errorMessage}>Fill quantity FFS</p>
@@ -352,10 +431,15 @@ const Form = () => {
                       })}
                       defaultValue={price}
                       type='number'
+                      style={{
+                        border: errors.items?.[index]?.price
+                          ? '1px solid #EC5757'
+                          : '',
+                      }}
                     />
                     {errors.items?.[index]?.price && (
                       <p className={styles.errorMessage}>
-                        Everything has its price
+                        Price missing
                       </p>
                     )}
                   </label>
