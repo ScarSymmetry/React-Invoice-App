@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { ErrorMessage } from '@hookform/error-message';
 import { schema } from './validationObjects/schema';
 import { initialFormValues } from './validationObjects/initialFormValues';
 import { useWindowSize } from '../hooks/useWindowSize';
@@ -25,8 +26,6 @@ const Form = () => {
   const history = useHistory();
   const invoiceId = location.pathname.slice(-6);
   const testshit = initialInvoices.find((invoice) => invoice.id === invoiceId);
-
-  console.log(formOpen.isToggled, formOpen.isEditing);
 
   const {
     register,
@@ -131,20 +130,56 @@ const Form = () => {
             <h5 className={styles.billFrom__heading}>Bill From</h5>
             <label className={styles.streetFrom}>
               Street Address
-              <input {...register('senderAddress.street')} type='text' />
+              <input
+                {...register('senderAddress.street')}
+                type='text'
+                style={{
+                  border: errors.senderAddress?.street
+                    ? '1px solid #EC5757'
+                    : '',
+                }}
+              />
+              <ErrorMessage
+                errors={errors}
+                name='senderAddress.street'
+                render={({ message }) => (
+                  <p className={styles.errorMessage}>{message}</p>
+                )}
+              />
             </label>
 
             <label className={styles.cityFrom}>
               City
               <input {...register('senderAddress.city')} type='text' />
+              <ErrorMessage
+                errors={errors}
+                name='senderAddress.city'
+                render={({ message }) => (
+                  <p className={styles.errorMessage}>{message}</p>
+                )}
+              />
             </label>
             <label className={styles.postCodeFrom}>
               Post Code
               <input {...register('senderAddress.postCode')} type='text' />
+              <ErrorMessage
+                errors={errors}
+                name='senderAddress.postCode'
+                render={({ message }) => (
+                  <p className={styles.errorMessage}>{message}</p>
+                )}
+              />
             </label>
             <label className={styles.countryFrom}>
               Country
               <input {...register('senderAddress.country')} type='text' />
+              <ErrorMessage
+                errors={errors}
+                name='senderAddress.country'
+                render={({ message }) => (
+                  <p className={styles.errorMessage}>{message}</p>
+                )}
+              />
             </label>
           </fieldset>
 
@@ -153,26 +188,68 @@ const Form = () => {
             <label className={styles.clientTo}>
               Client`s Name
               <input {...register('clientName')} type='text' />
+              <ErrorMessage
+                errors={errors}
+                name='clientName'
+                render={({ message }) => (
+                  <p className={styles.errorMessage}>{message}</p>
+                )}
+              />
             </label>
             <label className={styles.emailTo}>
               Client`s Email
               <input {...register('clientEmail')} type='text' />
+              <ErrorMessage
+                errors={errors}
+                name='clientEmail'
+                render={({ message }) => (
+                  <p className={styles.errorMessage}>{message}</p>
+                )}
+              />
             </label>
             <label className={styles.streetTo}>
               Street Address
               <input {...register('clientAddress.street')} type='text' />
+              <ErrorMessage
+                errors={errors}
+                name='clientAddress.street'
+                render={({ message }) => (
+                  <p className={styles.errorMessage}>{message}</p>
+                )}
+              />
             </label>
             <label className={styles.cityTo}>
               City
               <input {...register('clientAddress.city')} type='text' />
+              <ErrorMessage
+                errors={errors}
+                name='clientAddress.city'
+                render={({ message }) => (
+                  <p className={styles.errorMessage}>{message}</p>
+                )}
+              />
             </label>
             <label className={styles.postCodeTo}>
               Post Code
               <input {...register('clientAddress.postCode')} type='text' />
+              <ErrorMessage
+                errors={errors}
+                name='clientAddress.postCode'
+                render={({ message }) => (
+                  <p className={styles.errorMessage}>{message}</p>
+                )}
+              />
             </label>
             <label className={styles.countryTo}>
               Country
               <input {...register('clientAddress.country')} type='text' />
+              <ErrorMessage
+                errors={errors}
+                name='clientAddress.country'
+                render={({ message }) => (
+                  <p className={styles.errorMessage}>{message}</p>
+                )}
+              />
             </label>
           </fieldset>
 
@@ -189,6 +266,13 @@ const Form = () => {
                 <option value='7'>Net 7 days</option>
                 <option value='1'>Net 1 day</option>
               </select>
+              <ErrorMessage
+                errors={errors}
+                name='paymentTerms'
+                render={({ message }) => (
+                  <p className={styles.errorMessage}>{message}</p>
+                )}
+              />
             </label>
 
             <label className={styles.projectDescription}>
@@ -198,11 +282,25 @@ const Form = () => {
                 placeholder='e.g Design and prototype'
                 type='text'
               />
+              <ErrorMessage
+                errors={errors}
+                name='description'
+                render={({ message }) => (
+                  <p className={styles.errorMessage}>{message}</p>
+                )}
+              />
             </label>
           </fieldset>
 
           <fieldset className={styles.itemsContainer}>
             <h5 className={styles.itemsContainer__title}>Item List</h5>
+            <ErrorMessage
+              errors={errors}
+              name='items'
+              render={({ message }) => (
+                <p className={styles.errorMessage}>{message}</p>
+              )}
+            />
 
             {/* ACHTUNG! area that gives me endless f@cking headaches IS HERE */}
 
@@ -226,6 +324,9 @@ const Form = () => {
                       type='text'
                       defaultValue={name}
                     />
+                    {errors.items?.[index]?.name && (
+                      <p className={styles.errorMessage}>Item`s name missing</p>
+                    )}
                   </label>
 
                   <label className={styles.itemQuantity}>
@@ -238,6 +339,9 @@ const Form = () => {
                       type='number'
                       defaultValue={quantity}
                     />
+                    {errors.items?.[index]?.quantity && (
+                      <p className={styles.errorMessage}>Fill quantity FFS</p>
+                    )}
                   </label>
                   <label className={styles.itemPrice}>
                     Price
@@ -249,6 +353,11 @@ const Form = () => {
                       defaultValue={price}
                       type='number'
                     />
+                    {errors.items?.[index]?.price && (
+                      <p className={styles.errorMessage}>
+                        Everything has its price
+                      </p>
+                    )}
                   </label>
 
                   <div className={styles.totalCounter}>

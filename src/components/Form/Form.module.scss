@@ -73,6 +73,7 @@
     line-height: $spartan-body1-lineHeight;
     letter-spacing: $spartan-body1-letterSpace;
     font-weight: 500;
+    min-height: 96px;
   }
 
   input {
@@ -112,6 +113,13 @@
   }
   input[type] {
     padding-left: 20px;
+  }
+
+  .errorMessage {
+    color: $cl-red;
+    font-size: 10px;
+    margin-top: 8px;
+    font-weight: lighter;
   }
 }
 
