@@ -1,7 +1,7 @@
-@import 'partials/variables';
-@import 'partials/layout';
-@import 'partials/breakpoints';
-@import 'partials/components';
+@import '../../../styles/partials/variables';
+@import '../../../styles/partials/layout';
+@import '../../../styles/partials/breakpoints';
+@import '../../../styles/partials/components';
 
 .invoiceWrapper {
   grid-column: 2 / 3;
