@@ -46,7 +46,7 @@ const Form = () => {
 
   useEffect(() => {
     reset(initialFormValues);
-    if (formOpen.isEditing) reset(invoiceToPrefill);
+    if (formOpen.isEditing && invoiceToPrefill) reset(invoiceToPrefill);
   }, [formOpen.isEditing, invoiceToPrefill, reset]);
 
   const submitFunction = (data) => {
@@ -113,7 +113,7 @@ const Form = () => {
         )}
 
         <div className={styles.editId}>
-          {formOpen.isEditing && invoiceId !== '/' ? (
+          {formOpen.isEditing && invoiceToPrefill ? (
             <h3>
               Edit<span>#{invoiceId}</span>
             </h3>
@@ -471,7 +471,7 @@ const Form = () => {
 
         {/* control buttons ******************* */}
         <fieldset className={styles.formButtonControls}>
-          {formOpen.isEditing && invoiceId !== '/' ? (
+          {formOpen.isEditing && invoiceToPrefill ? (
             <div className={styles.formButtonControls__panel}>
               <button
                 onClick={resetAndCloseForm}

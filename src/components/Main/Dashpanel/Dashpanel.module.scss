@@ -24,6 +24,11 @@
   display: flex;
   align-items: center;
 
+  @include media('>=768px') {
+    width: 150px;
+    height: 48px;
+  }
+
   &::before {
     content: '';
     background: url('../../../assets/icon-plus.svg');

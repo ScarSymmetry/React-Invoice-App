@@ -7,10 +7,12 @@ import {
   InvoicesContext,
   DispatchContext,
 } from '../../../context/invoices.context';
+import { useWindowSize } from '../../hooks/useWindowSize';
 
 const Dashpanel = ({ setInvoiceFilterStatus }) => {
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const { initialInvoices } = useContext(InvoicesContext);
+  const size = useWindowSize();
   const dispatch = useContext(DispatchContext);
 
   const InvoicesQuantity = initialInvoices.length;
@@ -19,9 +21,15 @@ const Dashpanel = ({ setInvoiceFilterStatus }) => {
     <nav className={styles.navWrapper}>
       <div className={styles.invoiceCount}>
         <h2>Invoices</h2>
-        <p>{`${InvoicesQuantity} invoice${
-          InvoicesQuantity === 1 ? '' : 's'
-        }`}</p>
+        {size.width < 768 ? (
+          <p>{`${InvoicesQuantity} invoice${
+            InvoicesQuantity === 1 ? '' : 's'
+          }`}</p>
+        ) : (
+          <p>{`There are ${InvoicesQuantity} total invoice${
+            InvoicesQuantity === 1 ? '' : 's'
+          }`}</p>
+        )}
       </div>
       <button
         className={styles.filterBtn}
@@ -30,7 +38,8 @@ const Dashpanel = ({ setInvoiceFilterStatus }) => {
         }}
       >
         <span>
-          Filter{' '}
+          {size.width < 768 ? 'Filter' : 'Filter by status'}
+
           <img
             className={dropDownOpen ? styles.active : undefined}
             src={arrow}
@@ -47,7 +56,9 @@ const Dashpanel = ({ setInvoiceFilterStatus }) => {
         }
         className={styles.btnInvoice}
       >
-        <span className={styles.mobileInvoice}>New</span>
+        <span className={styles.mobileInvoice}>
+          {size.width < 768 ? 'New' : 'New invoice'}
+        </span>
       </button>
 
       <Dropdown
