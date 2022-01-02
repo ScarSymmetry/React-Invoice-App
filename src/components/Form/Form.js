@@ -25,7 +25,9 @@ const Form = () => {
   const location = useLocation();
   const history = useHistory();
   const invoiceId = location.pathname.slice(-6);
-  const testshit = initialInvoices.find((invoice) => invoice.id === invoiceId);
+  const invoiceToPrefill = initialInvoices.find(
+    (invoice) => invoice.id === invoiceId
+  );
 
   const {
     register,
@@ -43,10 +45,9 @@ const Form = () => {
   const { fields, append, remove } = useFieldArray({ control, name: 'items' });
 
   useEffect(() => {
-    if (formOpen.isEditing) {
-      reset(testshit);
-    }
-  }, [formOpen.isEditing, testshit, reset]);
+    reset(initialFormValues);
+    if (formOpen.isEditing) reset(invoiceToPrefill);
+  }, [formOpen.isEditing, invoiceToPrefill, reset]);
 
   const submitFunction = (data) => {
     const [creationDate, paymentTermDate] = getValues([
@@ -112,7 +113,7 @@ const Form = () => {
         )}
 
         <div className={styles.editId}>
-          {formOpen.isEditing ? (
+          {formOpen.isEditing && invoiceId !== '/' ? (
             <h3>
               Edit<span>#{invoiceId}</span>
             </h3>
@@ -438,9 +439,7 @@ const Form = () => {
                       }}
                     />
                     {errors.items?.[index]?.price && (
-                      <p className={styles.errorMessage}>
-                        Price missing
-                      </p>
+                      <p className={styles.errorMessage}>Price missing</p>
                     )}
                   </label>
 
@@ -472,7 +471,7 @@ const Form = () => {
 
         {/* control buttons ******************* */}
         <fieldset className={styles.formButtonControls}>
-          {formOpen.isEditing ? (
+          {formOpen.isEditing && invoiceId !== '/' ? (
             <div className={styles.formButtonControls__panel}>
               <button
                 onClick={resetAndCloseForm}
