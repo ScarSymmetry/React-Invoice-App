@@ -1,10 +1,11 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 import { schema } from './validationObjects/schema';
 import { initialFormValues } from './validationObjects/initialFormValues';
 import { useWindowSize } from '../hooks/useWindowSize';
+import useClickOutside from '../hooks/useClickOutside';
 
 import chevron from '../../assets/icon-arrow-left.svg';
 import trashcan from '../../assets/icon-delete.svg';
@@ -28,6 +29,10 @@ const Form = () => {
   const invoiceToPrefill = initialInvoices.find(
     (invoice) => invoice.id === invoiceId
   );
+  const modalRef = useRef();
+  useClickOutside(modalRef, () => {
+    if (formOpen.isToggled) resetAndCloseForm();
+  });
 
   const {
     register,
@@ -101,7 +106,7 @@ const Form = () => {
 
   return (
     <Modal isOpen={formOpen.isToggled} opaque={false}>
-      <div className={styles.formContainer}>
+      <div className={styles.formContainer} ref={modalRef}>
         {size.width < 768 && (
           <button className={styles.backButton}>
             {' '}

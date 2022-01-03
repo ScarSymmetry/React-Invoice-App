@@ -367,6 +367,7 @@
   background-color: $cl-dark-grey-blue;
 
   @include media('>=768px') {
+    position: sticky;
     background-color: $cl-darker-grey-blue;
   }
 
