@@ -348,10 +348,10 @@
 }
 
 .formButtonControls {
-  position: sticky;
+  position: sticky !important;
+  z-index: 50;
 
   bottom: 0;
-  z-index: 50;
 
   grid-column: 1 / -1;
   grid-row: 5 / -1;
