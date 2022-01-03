@@ -341,14 +341,17 @@
 }
 
 .addNewItemButton {
-  margin-block: 24px;
+  margin-bottom: 90px;
+
   @include media('>=768px') {
-    margin-block: 8px;
+    margin-bottom: 100px;
   }
 }
 
 .formButtonControls {
-  position: sticky !important;
+  position: fixed;
+  width: 100%;
+  max-width: inherit;
   z-index: 50;
 
   bottom: 0;
