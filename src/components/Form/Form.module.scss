@@ -13,6 +13,7 @@
   color: $cl-light-BG;
   background-color: $cl-darker-grey-blue;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   & {
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
@@ -410,8 +411,6 @@
     }
 
     @include media('>=768px') {
-      .saveAndSendButton {
-      }
       .saveAsDraftButton {
         margin-left: auto;
         margin-right: 8px;
