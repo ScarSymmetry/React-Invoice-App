@@ -61,8 +61,8 @@ const Form = () => {
 
   useEffect(() => {
     formOpen.isToggled
-      ? disableBodyScroll(document.body)
-      : enableBodyScroll(document.body);
+      ? disableBodyScroll(modalRef)
+      : enableBodyScroll(modalRef);
     return () => {
       clearAllBodyScrollLocks();
     };

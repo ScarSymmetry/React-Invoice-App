@@ -3,7 +3,7 @@ import chevron from '../../assets/icon-arrow-left.svg';
 
 import DeletePopup from './DeletePopup';
 import { useParams, useHistory } from 'react-router';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 import {
@@ -20,12 +20,13 @@ const UserDetailsPage = () => {
   console.log(initialInvoices);
 
   const { id } = useParams();
+  const ref = useRef();
 
   const history = useHistory();
   const userDataDetails = initialInvoices.find((user) => user.id === id);
 
   useEffect(() => {
-    disableBodyScroll(document.body);
+    disableBodyScroll(ref);
     return () => {
       clearAllBodyScrollLocks();
     };
@@ -34,7 +35,7 @@ const UserDetailsPage = () => {
   if (!userDataDetails) return null;
 
   return (
-    <div className={styles.modalBody}>
+    <div className={styles.modalBody} ref={ref}>
       <DeletePopup
         open={deletePopUpOpen}
         invoiceId={id}
