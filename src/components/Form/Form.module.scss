@@ -371,7 +371,6 @@
   background-color: $cl-dark-grey-blue;
 
   @include media('>=768px') {
-    position: sticky;
     background-color: $cl-darker-grey-blue;
   }
 
@@ -381,18 +380,20 @@
     display: flex;
     margin: 0 auto;
     margin-inline: 24px;
-    justify-content: space-between;
+    flex: 1;
+    justify-content: space-around;
 
     align-items: center;
 
-    .cancelAndDiscardButton {
-      padding-inline: 16px;
+    .cancelButton {
+      margin-left: auto;
       width: 84px;
+      padding-inline: 16px;
     }
 
     .saveAsDraftButton {
       margin-left: auto;
-      margin-right: 8px;
+      margin-right: auto;
       padding-inline: 16px;
       width: 117px;
     }
@@ -400,6 +401,21 @@
     .saveAndSendButton {
       padding-inline: 16px;
       width: 112px;
+    }
+
+    .saveChangesButton {
+      margin-left: 8px;
+      padding-inline: 16px;
+      width: 138px;
+    }
+
+    @include media('>=768px') {
+      .saveAndSendButton {
+      }
+      .saveAsDraftButton {
+        margin-left: auto;
+        margin-right: 8px;
+      }
     }
   }
 }

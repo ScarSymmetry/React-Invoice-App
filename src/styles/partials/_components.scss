@@ -78,7 +78,7 @@
   padding-inline: 24px;
   font-size: $spartan-body1;
   line-height: $spartan-body1-lineHeight;
-  letter-spacing: $spartan-body1-letterSpace;
+
   font-weight: 700;
   transition: $fade-transition;
 }
@@ -118,7 +118,14 @@
   color: $cl-light-grey;
 }
 
-.cancelAndDiscardButton {
+.discardButton {
+  background-color: $cl-grey-blue;
+  &:hover {
+    color: $cl-light-grey;
+    background-color: $cl-bright-grey;
+  }
+}
+.cancelButton {
   background-color: $cl-grey-blue;
   &:hover {
     color: $cl-light-grey;
@@ -127,7 +134,6 @@
 }
 
 .saveChangesButton {
-  width: 130px;
   background-color: $cl-violet;
 
   &:hover {

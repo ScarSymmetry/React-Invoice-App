@@ -494,7 +494,7 @@ const Form = () => {
             <div className={styles.formButtonControls__panel}>
               <button
                 onClick={resetAndCloseForm}
-                className={`${styles.buttonComponent} ${styles.cancelAndDiscardButton}`}
+                className={`${styles.buttonComponent} ${styles.cancelButton}`}
               >
                 Cancel
               </button>
@@ -503,7 +503,7 @@ const Form = () => {
                 onClick={handleSubmit(editInvoice)}
                 // type='submit'
                 // form='registerForm'
-                className={`${styles.buttonComponent} ${styles.saveAndSendButton}`}
+                className={`${styles.buttonComponent} ${styles.saveChangesButton}`}
               >
                 Save Changes
               </button>
@@ -512,7 +512,7 @@ const Form = () => {
             <div className={styles.formButtonControls__panel}>
               <button
                 onClick={resetAndCloseForm}
-                className={`${styles.buttonComponent} ${styles.cancelAndDiscardButton}`}
+                className={`${styles.buttonComponent} ${styles.discardButton}`}
               >
                 Discard
               </button>
