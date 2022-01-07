@@ -349,7 +349,11 @@
 }
 
 .formButtonControls {
-  position: fixed;
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -o-sticky;
+  position: -ms-sticky;
+  position: sticky;
   width: 100%;
   max-width: inherit;
   z-index: 50;

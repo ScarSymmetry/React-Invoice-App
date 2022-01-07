@@ -5,10 +5,16 @@
 .modalBody {
   display: grid;
   margin: 0 auto;
+  position: fixed;
+  z-index: 150;
+  top: 0;
+  left: 0;
   row-gap: 16px;
   outline: 1px solid yellowgreen;
   height: 100%;
   width: 100%;
+  background-color: $cl-darker-grey-blue;
+
   grid-template-columns: 6.4vw 1fr 6.4vw;
   grid-template-rows: 72px repeat(2, max-content) 1fr 150px;
   color: $cl-light-BG;

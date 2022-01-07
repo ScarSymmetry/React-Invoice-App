@@ -6,7 +6,11 @@ import { schema } from './validationObjects/schema';
 import { initialFormValues } from './validationObjects/initialFormValues';
 import { useWindowSize } from '../hooks/useWindowSize';
 import useClickOutside from '../hooks/useClickOutside';
-
+import {
+  clearAllBodyScrollLocks,
+  disableBodyScroll,
+  enableBodyScroll,
+} from 'body-scroll-lock';
 import chevron from '../../assets/icon-arrow-left.svg';
 import trashcan from '../../assets/icon-delete.svg';
 import {
@@ -29,6 +33,7 @@ const Form = () => {
   const invoiceToPrefill = initialInvoices.find(
     (invoice) => invoice.id === invoiceId
   );
+
   const modalRef = useRef();
   useClickOutside(modalRef, () => {
     if (formOpen.isToggled) resetAndCloseForm();
@@ -53,6 +58,15 @@ const Form = () => {
     reset(initialFormValues);
     if (formOpen.isEditing && invoiceToPrefill) reset(invoiceToPrefill);
   }, [formOpen.isEditing, invoiceToPrefill, reset]);
+
+  useEffect(() => {
+    formOpen.isToggled
+      ? disableBodyScroll(document.body)
+      : enableBodyScroll(document.body);
+    return () => {
+      clearAllBodyScrollLocks();
+    };
+  }, [formOpen.isToggled]);
 
   const submitFunction = (data) => {
     const [creationDate, paymentTermDate] = getValues([

@@ -1,30 +1,41 @@
 import { createPortal } from 'react-dom';
 import styles from './Modal.module.scss';
-import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import { useRef, useEffect } from 'react';
+
+import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion';
 
 const rootModal = document.getElementById('modal');
+const animation = {
+  hidden: {
+    x: '-100%',
+    transition: { type: 'spring', duration: 0.5 },
+  },
+  visible: {
+    x: 0,
+    transition: { type: 'spring', duration: 0.5 },
+  },
+};
 
 const Modal = ({ children, isOpen = false, opaque }) => {
-  const modalRef = useRef();
-  useEffect(() => {
-    if (isOpen) disableBodyScroll(document.body);
-    return () => {
-      clearAllBodyScrollLocks();
-    };
-  }, [isOpen]);
-
-  if (!isOpen) return null;
+  // if (!isOpen) return null;
 
   return createPortal(
-    <div
-      ref={modalRef}
-      className={`${styles.modalWrapper} ${
-        opaque ? styles.backgroundOpaque : null
-      }`}
-    >
-      {children}
-    </div>,
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          variants={animation}
+          initial='hidden'
+          animate='visible'
+          exit='hidden'
+          key='modal'
+          className={`${styles.modalWrapper} ${
+            opaque ? styles.backgroundOpaque : null
+          }`}
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>,
+
     rootModal
   );
 };
