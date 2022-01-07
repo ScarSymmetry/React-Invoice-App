@@ -34,7 +34,7 @@ const Form = () => {
     (invoice) => invoice.id === invoiceId
   );
 
-  const modalRef = useRef();
+  const modalRef = useRef(null);
   useClickOutside(modalRef, () => {
     if (formOpen.isToggled) resetAndCloseForm();
   });
@@ -60,9 +60,13 @@ const Form = () => {
   }, [formOpen.isEditing, invoiceToPrefill, reset]);
 
   useEffect(() => {
-    formOpen.isToggled
-      ? disableBodyScroll(modalRef)
-      : enableBodyScroll(modalRef);
+    if (!formOpen.isToggled) return;
+    if (modalRef && modalRef.current) {
+      formOpen.isToggled
+        ? disableBodyScroll(modalRef.current)
+        : enableBodyScroll(modalRef.current);
+    }
+
     return () => {
       clearAllBodyScrollLocks();
     };

@@ -20,13 +20,16 @@ const UserDetailsPage = () => {
   console.log(initialInvoices);
 
   const { id } = useParams();
-  const ref = useRef();
+  const ref = useRef(null);
 
   const history = useHistory();
   const userDataDetails = initialInvoices.find((user) => user.id === id);
 
   useEffect(() => {
-    disableBodyScroll(ref);
+    if (ref && ref.current) {
+      disableBodyScroll(ref.current);
+    }
+
     return () => {
       clearAllBodyScrollLocks();
     };
