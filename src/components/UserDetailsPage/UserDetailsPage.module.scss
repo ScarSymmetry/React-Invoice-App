@@ -7,10 +7,9 @@
   margin: 0 auto;
   position: fixed;
   z-index: 150;
-  top: 0;
-  left: 0;
+  inset: auto 0 0 0;
   row-gap: 16px;
-  outline: 1px solid yellowgreen;
+
   height: calc(100% + 1px);
   width: 100%;
   background-color: $cl-darker-grey-blue;
@@ -377,12 +376,14 @@
   justify-content: space-between;
   padding-block: 22px;
   padding-inline: 24px;
-  position: -webkit-sticky;
-  position: -moz-sticky;
-  position: -o-sticky;
-  position: -ms-sticky;
-  position: sticky;
-  bottom: 0;
+  // position: -webkit-sticky;
+  // position: -moz-sticky;
+  // position: -o-sticky;
+  // position: -ms-sticky;
+  // position: sticky;
+  position: fixed;
+  z-index: 200;
+  inset: auto 0 0 0;
   width: 100%;
 
   background-color: $cl-dark-grey-blue;

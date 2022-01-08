@@ -350,16 +350,11 @@
 }
 
 .formButtonControls {
-  position: -webkit-sticky;
-  position: -moz-sticky;
-  position: -o-sticky;
-  position: -ms-sticky;
-  position: sticky;
   width: 100%;
   max-width: inherit;
   z-index: 50;
-
-  bottom: 0;
+  position: fixed;
+  inset: auto 0 0 0;
 
   grid-column: 1 / -1;
   grid-row: 5 / -1;
@@ -373,6 +368,11 @@
 
   @include media('>=768px') {
     background-color: $cl-darker-grey-blue;
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -o-sticky;
+    position: -ms-sticky;
+    position: sticky;
   }
 
   .formButtonControls__panel {

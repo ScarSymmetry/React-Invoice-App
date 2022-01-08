@@ -126,8 +126,7 @@ const Form = () => {
     <Modal isOpen={formOpen.isToggled} opaque={false}>
       <div className={styles.formContainer} ref={modalRef}>
         {size.width < 768 && (
-          <button className={styles.backButton}>
-            {' '}
+          <button className={styles.backButton} onClick={resetAndCloseForm}>
             <span>
               <img src={chevron} alt='back' />
             </span>{' '}
