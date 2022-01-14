@@ -352,7 +352,11 @@
   width: 100%;
   max-width: inherit;
   z-index: 50;
-  position: fixed;
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -o-sticky;
+  position: -ms-sticky;
+  position: sticky;
   inset: auto 0 0 0;
 
   grid-column: 1 / -1;
