@@ -36,7 +36,7 @@ const DeletePopup = ({ open, onClickOutside, invoiceId }) => {
         <div className={styles.buttonWrapper}>
           <button
             onClick={() => onClickOutside(false)}
-            className={`${styles.buttonComponent} ${styles.cancelAndDiscardButton}`}
+            className={`${styles.buttonComponent} ${styles.cancelButton}`}
           >
             Cancel
           </button>

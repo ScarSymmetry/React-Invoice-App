@@ -32,9 +32,13 @@
 .backButton {
   color: $cl-light-BG;
   border: none;
+
   cursor: pointer;
   padding-inline: 0px 12px;
-  padding-block: 12px;
+
+  width: 100px;
+  height: 42px;
+
   background-color: transparent;
   font-size: $spartan-body1;
   line-height: $spartan-body1-lineHeight;
@@ -42,7 +46,7 @@
   font-weight: 700;
 
   img {
-    margin-right: 23px;
+    margin-right: 30px;
   }
 }
 

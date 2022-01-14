@@ -4,16 +4,6 @@ import styles from './Modal.module.scss';
 import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion';
 
 const rootModal = document.getElementById('modal');
-const animation = {
-  hidden: {
-    x: '-100%',
-    transition: { type: 'spring', duration: 0.5 },
-  },
-  visible: {
-    x: 0,
-    transition: { type: 'spring', duration: 0.5 },
-  },
-};
 
 const Modal = ({ children, isOpen = false, opaque }) => {
   // if (!isOpen) return null;
@@ -22,10 +12,9 @@ const Modal = ({ children, isOpen = false, opaque }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          variants={animation}
-          initial='hidden'
-          animate='visible'
-          exit='hidden'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           key='modal'
           className={`${styles.modalWrapper} ${
             opaque ? styles.backgroundOpaque : null
