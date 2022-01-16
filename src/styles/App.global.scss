@@ -19,7 +19,7 @@ html {
 
 body {
   font-family: $font-spartan;
-  background-color: $cl-darker-grey-blue;
+  background-color: var(--background-color);
   width: 100%;
   min-width: 320px;
   min-height: 100%;

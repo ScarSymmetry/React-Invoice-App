@@ -56,8 +56,9 @@
 
 .invoiceCount {
   align-self: center;
-  color: $cl-light-BG;
+
   h2 {
+    color: var(--accented-font);
     font-size: $h2-spartan-bold;
     line-height: $h2-spartan-lineHeight;
     letter-spacing: $h2-spartan-letterSpace;
@@ -66,6 +67,7 @@
   }
 
   P {
+    color: var(--secondary-font);
     font-size: $spartan-body1;
     line-height: $spartan-body1-lineHeight;
     letter-spacing: $spartan-body1-letterSpace;
@@ -85,7 +87,7 @@
 .filterBtn {
   background: transparent;
   border: none;
-  color: $cl-light-BG;
+  color: var(--accented-font);
   font-size: $spartan-body1;
   line-height: $spartan-body1-lineHeight;
 

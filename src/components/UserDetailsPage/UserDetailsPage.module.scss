@@ -85,11 +85,16 @@
   grid-column: 2 / 3;
   grid-row: 4 / 5;
 
-  background-color: $cl-dark-grey-blue;
+  color: var(--accented-font);
+  background-color: var(--invoice-background);
   padding-block: 24px 24px;
   padding-inline: 24px 24px;
   box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
   border-radius: 8px;
+
+  & * p {
+    color: var(--secondary-font);
+  }
   @include media('>=768px') {
     grid-template-columns: 1fr 1fr 1.5fr;
     grid-template-rows: repeat(3, max-content);
@@ -247,6 +252,7 @@
         line-height: $spartan-body2-lineHeight;
         letter-spacing: $spartan-body2-letterSpace;
         font-weight: 500;
+        color: var(--secondary-font);
       }
 
       &__name {
@@ -296,6 +302,7 @@
       line-height: $spartan-body1-lineHeight;
       letter-spacing: $spartan-body1-letterSpace;
       font-weight: 700;
+      color: var(--accented-font);
       @include media('>=768px') {
         grid-column: 1 / 2;
       }

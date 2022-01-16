@@ -8,7 +8,7 @@
 }
 
 .noInvoices {
-  color: $cl-light-BG;
+  color: var(--accented-font);
   display: grid;
   place-items: center;
 
@@ -39,11 +39,11 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr 32px 1fr;
   cursor: pointer;
-  color: $cl-light-BG;
+  color: var(--accented-font);
   min-height: 134px;
   padding-inline: 24px 24px;
   padding-block: 24px 24px;
-  background-color: $cl-dark-grey-blue;
+  background-color: var(--invoice-background);
   outline: 1px solid transparent;
   border-radius: 8px;
   box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
@@ -83,6 +83,7 @@
     line-height: $spartan-body1-lineHeight;
     letter-spacing: $spartan-body1-letterSpace;
     font-weight: 500;
+    color: var(--secondary-font);
     @include media('>=768px') {
       grid-column: 3;
       grid-row: 1;
@@ -92,7 +93,7 @@
 
   .payment {
     align-self: end;
-    color: $cl-bright-grey;
+    color: var(--secondary-font);
     font-size: $spartan-body1;
     line-height: $spartan-body1-lineHeight;
     letter-spacing: $spartan-body1-letterSpace;
