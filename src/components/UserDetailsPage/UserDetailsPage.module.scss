@@ -12,7 +12,8 @@
 
   height: calc(100% + 1px);
   width: 100%;
-  background-color: $cl-darker-grey-blue;
+  background-color: var(--background-color);
+  transition: background-color 450ms ease-in-out;
 
   grid-template-columns: 6.4vw 1fr 6.4vw;
   grid-template-rows: 72px repeat(2, max-content) 1fr 150px;
@@ -51,7 +52,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $cl-dark-grey-blue;
+  background-color: var(--invoice-background);
   border-radius: 8px;
 
   min-height: 91px;
@@ -281,7 +282,7 @@
 
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    background-color: $cl-grey-blue;
+    background-color: var(--expando-background);
     padding-block: 24px 24px;
     padding-inline: 24px 24px;
 
@@ -309,7 +310,7 @@
     }
 
     .pricePerItem {
-      color: $cl-light-grey;
+      color: var(--secondary-font);
       grid-column: 1 / 2;
       grid-row: 3 / -1;
       font-size: $spartan-body1;
@@ -342,6 +343,7 @@
       line-height: $spartan-body1-lineHeight;
       letter-spacing: $spartan-body1-letterSpace;
       font-weight: 700;
+      color: var(--accented-font);
       @include media('>=768px') {
         grid-column: 3 / -1;
         grid-row: 1;
@@ -353,7 +355,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $cl-black;
+    background-color: var(--amount-background);
     padding-block: 24px 24px;
     padding-inline: 24px 24px;
     border-radius: 0px 0px 8px 8px;
@@ -363,6 +365,7 @@
       line-height: $spartan-body2-lineHeight;
       letter-spacing: $spartan-body2-letterSpace;
       font-weight: 500;
+      color: $cl-pure-white;
     }
 
     .totalPrice {
@@ -370,6 +373,7 @@
       line-height: $h2-spartan-lineHeight;
       letter-spacing: $h2-spartan-letterSpace;
       font-weight: 700;
+      color: $cl-pure-white;
     }
   }
 }

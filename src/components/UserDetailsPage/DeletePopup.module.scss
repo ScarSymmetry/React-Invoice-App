@@ -17,12 +17,12 @@
   padding: 32px;
   justify-content: space-between;
 
-  background-color: $cl-dark-grey-blue;
+  background-color: var(--background-color);
 }
 
 .textWrapper {
   .title {
-    color: white;
+    color: var(--accented-font);
     margin-bottom: 8px;
     font-size: $h2-spartan-bold;
     font-weight: 700;

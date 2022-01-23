@@ -157,11 +157,12 @@ const Form = () => {
 
           <div className={styles.editId}>
             {formOpen.isEditing && invoiceToPrefill ? (
-              <h3>
-                Edit<span>#{invoiceId}</span>
+              <h3 className={styles.formTitle}>
+                Edit<span>#</span>
+                {invoiceId}
               </h3>
             ) : (
-              <h3>New Invoice</h3>
+              <h3 className={styles.formTitle}>New Invoice</h3>
             )}
           </div>
 

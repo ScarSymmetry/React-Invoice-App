@@ -30,13 +30,14 @@
 }
 
 .backButton {
-  color: $cl-light-BG;
+  color: var(--accented-font);
   border: none;
 
   cursor: pointer;
   padding-inline: 0px 12px;
 
   width: 100px;
+  min-width: 100px;
   height: 42px;
 
   background-color: transparent;
@@ -51,6 +52,7 @@
 }
 
 .backButtonJustifyStart {
+  min-width: 100px;
   justify-self: start;
   grid-column: 2 / 3;
   grid-row: 1 / 2;
@@ -118,8 +120,8 @@
 
 .addNewItemButton {
   width: 100%;
-  background-color: $cl-grey-blue;
-  color: $cl-light-grey;
+  background-color: var(--input-border);
+  color: var(--secondary-font);
 }
 
 .discardButton {

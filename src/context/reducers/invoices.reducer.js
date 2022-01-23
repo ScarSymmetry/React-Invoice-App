@@ -79,6 +79,13 @@ const reducer = (state, action) => {
       };
     }
 
+    case 'CHANGE_THEME': {
+      return {
+        ...state,
+        darkMode: !state.darkMode,
+      };
+    }
+
     default:
       return state;
   }

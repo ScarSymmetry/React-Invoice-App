@@ -27,6 +27,7 @@ const defaultInvoices = {
     isEditing: false,
     isToggled: false,
   },
+  darkMode: true,
 };
 
 export const InvoicesContext = createContext();

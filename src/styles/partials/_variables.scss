@@ -14,7 +14,9 @@ $cl-black: hsl(231, 28%, 7%);
 
 $cl-red: hsl(0, 80%, 63%);
 $cl-light-red: hsl(0, 100%, 80%);
-$cl-light-BG: hsl(240, 27%, 98%);
+$cl-light-BG: hsla(240, 27%, 98%, 1);
+
+$cl-light-BG2: hsla(231, 67%, 99%, 1);
 $cl-darker-grey-blue: hsl(233, 30%, 11%);
 $cl-pure-white: hsla(0, 0%, 100%, 1);
 $overlay: hsla(228, 28%, 7%, 0.726);
@@ -23,12 +25,32 @@ $fade-transition: all 300ms ease-in-out;
 
 // colors
 
+// THEMES
+
 :root {
   --background-color: #{$cl-darker-grey-blue};
   --accented-font: #{$cl-pure-white};
   --secondary-font: #{$cl-bright-grey};
   --dropdown-background: #{$cl-grey-blue};
   --invoice-background: #{$cl-dark-grey-blue};
+  --expando-background: #{$cl-grey-blue};
+  --amount-background: #{$cl-black};
+  --checkbox-background: #{$cl-darker-grey-blue};
+  --input-background: #{$cl-dark-grey-blue};
+  --input-border: #{$cl-grey-blue};
+}
+
+.light {
+  --background-color: #{$cl-light-BG};
+  --accented-font: #{$cl-black};
+  --secondary-font: #{$cl-light-grey};
+  --dropdown-background: #{$cl-light-BG};
+  --invoice-background: #{$cl-pure-white};
+  --expando-background: #{$cl-light-BG2};
+  --amount-background: #{$cl-darker-grey-blue};
+  --checkbox-background: #{$cl-bright-grey};
+  --input-background: #{$cl-light-BG};
+  --input-border: #{$cl-bright-grey};
 }
 
 // ***********TYPOGRAPHY

@@ -11,7 +11,7 @@
   width: 100%;
   height: 100%;
   color: $cl-light-BG;
-  background-color: $cl-darker-grey-blue;
+  background-color: var(--background-color);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   & {
@@ -32,6 +32,10 @@
   @include media('>=1000px') {
     transform: translateX(100px);
   }
+}
+
+.formTitle {
+  color: var(--accented-font);
 }
 
 .backButton {
@@ -87,8 +91,8 @@
     height: 48px;
     margin-top: 10px;
     border-radius: 4px;
-    border: 1px solid $cl-grey-blue;
-    background-color: $cl-dark-grey-blue;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-background);
   }
 
   input:focus {
@@ -96,7 +100,8 @@
   }
 
   select {
-    color: $cl-light-BG;
+    color: var(--accented-font);
+    outline: none;
     max-width: 100%;
     width: 100%;
     display: block;
@@ -107,8 +112,8 @@
     height: 48px;
     margin-top: 10px;
     border-radius: 4px;
-    border: 1px solid $cl-grey-blue;
-    background-color: $cl-dark-grey-blue;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-background);
   }
 
   input[type],
@@ -123,7 +128,7 @@
     color: $cl-red;
     font-size: 10px;
     margin-top: 8px;
-    font-weight: lighter;
+    font-weight: bold;
   }
 }
 
@@ -370,7 +375,7 @@
   background-color: $cl-dark-grey-blue;
 
   @include media('>=768px') {
-    background-color: $cl-darker-grey-blue;
+    background-color: var(--background-color);
   }
 
   .formButtonControls__panel {
