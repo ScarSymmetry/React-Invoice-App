@@ -1,12 +1,11 @@
 import Modal from '../Modal/Modal';
 import styles from './DeletePopup.module.scss';
-import { useRef, useContext } from 'react';
+import { useRef } from 'react';
 import useClickOutside from '../hooks/useClickOutside';
-import { DispatchContext } from '../../context/invoices.context';
+
 import { useHistory } from 'react-router-dom';
 
 const DeletePopup = ({ open, onClickOutside, invoiceId }) => {
-  const dispatch = useContext(DispatchContext);
   const modalRef = useRef();
   const history = useHistory();
   useClickOutside(modalRef, () => {
@@ -16,8 +15,6 @@ const DeletePopup = ({ open, onClickOutside, invoiceId }) => {
   console.log(typeof invoiceId);
 
   const deleteInvoice = () => {
-    dispatch({ type: 'DELETE_INVOICE', payload: invoiceId });
-
     onClickOutside(false);
     history.push('/');
   };

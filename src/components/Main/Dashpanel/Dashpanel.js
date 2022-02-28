@@ -2,18 +2,13 @@ import { useState } from 'react';
 import styles from './Dashpanel.module.scss';
 import arrow from '../../../assets/icon-arrow-down.svg';
 import Dropdown from '../Dropdown/Dropdown';
-import { useContext } from 'react';
-import {
-  InvoicesContext,
-  DispatchContext,
-} from '../../../context/invoices.context';
+
 import { useWindowSize } from '../../hooks/useWindowSize';
 
 const Dashpanel = ({ setInvoiceFilterStatus }) => {
   const [dropDownOpen, setDropDownOpen] = useState(false);
-  const { initialInvoices } = useContext(InvoicesContext);
+  const initialInvoices = [];
   const size = useWindowSize();
-  const dispatch = useContext(DispatchContext);
 
   const InvoicesQuantity = initialInvoices.length;
 
@@ -48,12 +43,7 @@ const Dashpanel = ({ setInvoiceFilterStatus }) => {
         </span>
       </button>
       <button
-        onClick={() =>
-          dispatch({
-            type: 'OPEN_FORM',
-            payload: { isToggled: true, isEditing: false },
-          })
-        }
+        onClick={() => console.log('open form dispatch')}
         className={styles.btnInvoice}
       >
         <span className={styles.mobileInvoice}>

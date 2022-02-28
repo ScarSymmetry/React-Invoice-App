@@ -1,17 +1,13 @@
-import { useRef, useContext } from 'react';
+import { useRef } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
 
-import {
-  DispatchContext,
-  InvoicesContext,
-} from '../../../context/invoices.context';
 import styles from './Dropdown.module.scss';
 import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion';
 
 const Dropdown = ({ open, onClickOutside }) => {
   const modalRef = useRef();
-  const dispatch = useContext(DispatchContext);
-  const { statusCheckbox } = useContext(InvoicesContext);
+
+  const statusCheckbox = [];
 
   useClickOutside(modalRef, () => {
     if (open) onClickOutside(false);
@@ -35,13 +31,7 @@ const Dropdown = ({ open, onClickOutside }) => {
                   name={box.value}
                   id={box.id}
                   checked={box.checked}
-                  onChange={() => {
-                    dispatch({
-                      type: 'CHANGE_STATUS',
-                      payload: box.checked ? '' : box.value,
-                    });
-                    dispatch({ type: 'SET_FILTER', payload: index });
-                  }}
+                  onChange={() => console.log('change status and filter')}
                 />
                 <label htmlFor={box.id}>{box.value}</label>
               </div>

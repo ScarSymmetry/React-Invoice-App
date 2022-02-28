@@ -1,28 +1,14 @@
 import { useHistory } from 'react-router';
-import { useContext } from 'react';
-import { InvoicesContext } from '../../../context/invoices.context';
 import { numberFormatter, dateFormatter } from '../../../utils/formatters';
 import styles from './InvoiceItem.module.scss';
 import empty from '../../../assets/illustration-empty.svg';
 
 const InvoiceItem = () => {
   const history = useHistory();
-  const { initialInvoices, filter } = useContext(InvoicesContext);
 
-  const getFilteredInvoices = () => {
-    if (filter === 'paid') {
-      return initialInvoices.filter((invoice) => invoice.status === 'paid');
-    }
-    if (filter === 'pending') {
-      return initialInvoices.filter((invoice) => invoice.status === 'pending');
-    }
-    if (filter === 'draft') {
-      return initialInvoices.filter((invoice) => invoice.status === 'draft');
-    }
-    return initialInvoices;
-  };
+  //selectors
 
-  const filteredInvoices = getFilteredInvoices();
+  const filteredInvoices = [];
 
   if (!filteredInvoices || filteredInvoices.length === 0) {
     return (

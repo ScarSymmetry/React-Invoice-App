@@ -3,27 +3,17 @@ import chevron from '../../assets/icon-arrow-left.svg';
 
 import DeletePopup from './DeletePopup';
 import { useParams, useHistory } from 'react-router';
-import { useContext, useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
-import {
-  InvoicesContext,
-  DispatchContext,
-} from '../../context/invoices.context';
-
 const UserDetailsPage = () => {
-  const { initialInvoices } = useContext(InvoicesContext);
-  const dispatch = useContext(DispatchContext);
-
   const [deletePopUpOpen, setDeletePopUpOpen] = useState(false);
-
-  console.log(initialInvoices);
 
   const { id } = useParams();
   const ref = useRef(null);
 
   const history = useHistory();
-  const userDataDetails = initialInvoices.find((user) => user.id === id);
+  const userDataDetails = []
 
   useEffect(() => {
     if (ref && ref.current) {
@@ -34,8 +24,6 @@ const UserDetailsPage = () => {
       clearAllBodyScrollLocks();
     };
   }, []);
-
-  if (!userDataDetails) return null;
 
   return (
     <div className={styles.modalBody} ref={ref}>
@@ -152,12 +140,7 @@ const UserDetailsPage = () => {
 
       <div className={styles.buttonWrapper}>
         <button
-          onClick={() =>
-            dispatch({
-              type: 'OPEN_FORM',
-              payload: { isEditing: true, isToggled: true },
-            })
-          }
+          onClick={() => console.log('hey')}
           className={`${styles.buttonComponent} ${styles.editButton}`}
         >
           Edit
@@ -169,14 +152,12 @@ const UserDetailsPage = () => {
           Delete
         </button>
 
-        {userDataDetails.status !== 'paid' && (
-          <button
-            onClick={() => dispatch({ type: 'MARK_PAID', payload: id })}
-            className={`${styles.buttonComponent} ${styles.markAsPaidButton}`}
-          >
-            Mark as Paid
-          </button>
-        )}
+        <button
+          onClick={() => console.log('mark as paid dispatch')}
+          className={`${styles.buttonComponent} ${styles.markAsPaidButton}`}
+        >
+          Mark as Paid
+        </button>
       </div>
     </div>
   );
