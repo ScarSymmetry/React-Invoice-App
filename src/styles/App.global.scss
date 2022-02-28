@@ -1,34 +1,36 @@
 @import-normalize;
-@import "./partials/variables";
-@import "./partials/breakpoints";
-@import "./partials/components";
-@import "./partials/layout";
-
-html {
-	box-sizing: border-box;
-}
+@import './partials/variables';
+@import './partials/breakpoints';
+@import './partials/components';
+@import './partials/layout';
 
 *,
 *::before,
 *::after {
-	box-sizing: inherit;
-	margin: 0;
-	padding: 0;
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
 }
 
 body {
-	font-family: $font-spartan;
-	background-color: $cl-darker-grey-blue;
-	width: 100%;
-	min-width: 320px;
-	height: 100%;
+  font-family: $font-spartan;
+  background-color: var(--background-color);
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  transition: 450ms background-color ease-in-out;
 }
 
 a {
-	color: inherit;
-	text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 img {
-	max-width: 100%;
+  max-width: 100%;
 }

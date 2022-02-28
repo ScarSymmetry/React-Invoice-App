@@ -1,12 +1,14 @@
-@import "partials/breakpoints";
+@import './breakpoints';
 
 .grid-container {
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: 72px 32px 1fr;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 72px 32px 1fr;
+  @include media('>=768px') {
+    grid-template-rows: 136px max-content 65px 1fr;
+  }
 
-	@include media(">=1000px") {
-		grid-template-columns: 105px 0.5fr 3fr 0.5fr;
-		grid-template-rows: 72px max-content 65px 1fr;
-	}
+  @include media('>=1000px') {
+    grid-template-columns: 1fr minmax(730px, 1.7fr) 1fr;
+  }
 }

@@ -1,90 +1,126 @@
-@import "partials/variables";
-@import "partials/layout";
-@import "partials/breakpoints";
-@import "partials/components";
+@import '../../../styles/partials/variables';
+@import '../../../styles/partials/layout';
+@import '../../../styles/partials/breakpoints';
+@import '../../../styles/partials/components';
 
 .invoiceWrapper {
-	grid-column: 2 / 3;
+  grid-column: 2 / 3;
+}
+
+.noInvoices {
+  color: var(--accented-font);
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  .textWrapper {
+    margin-top: 36px;
+    max-width: 217px;
+    h2 {
+      margin-bottom: 24px;
+      font-size: $h2-spartan-bold;
+      line-height: $h2-spartan-lineHeight;
+      letter-spacing: $h2-spartan-letterSpace;
+    }
+    p {
+      font-size: $spartan-body1;
+      line-height: $spartan-body1-lineHeight;
+      letter-spacing: $spartan-body1-letterSpace;
+      text-align: center;
+    }
+  }
 }
 
 .frame {
-	display: grid;
+  display: grid;
 
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: 1fr 32px 1fr;
-	cursor: pointer;
-	color: $cl-light-BG;
-	min-height: 134px;
-	padding-inline: 24px 24px;
-	padding-block: 24px 24px;
-	background-color: $cl-dark-grey-blue;
-	border-radius: 8px;
-	box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
-	list-style: none;
-	margin-bottom: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 32px 1fr;
+  cursor: pointer;
+  color: var(--accented-font);
+  min-height: 134px;
+  padding-inline: 24px 24px;
+  padding-block: 24px 24px;
+  background-color: var(--invoice-background);
+  outline: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+  list-style: none;
+  margin-bottom: 16px;
+  transition: outline-color 350ms ease-in-out;
 
-	@include media(">=768px") {
-		grid-template-columns: repeat(5, 1fr);
-		grid-template-rows: 1fr;
-		align-items: center;
-		min-height: 72px;
-	}
+  &:hover {
+    outline-color: $cl-violet;
+  }
 
-	.userId {
-		font-size: $spartan-body1;
-		line-height: $spartan-body1-lineHeight;
-		letter-spacing: $spartan-body1-letterSpace;
-		font-weight: 700;
+  @include media('>=768px') {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    align-items: center;
+    min-height: 72px;
+  }
 
-		span {
-			color: $cl-light-grey-blue;
-		}
-		@include media(">=768px") {
-			grid-column: 1;
-			grid-row: 1;
-		}
-	}
+  .userId {
+    font-size: $spartan-body1;
+    line-height: $spartan-body1-lineHeight;
+    letter-spacing: $spartan-body1-letterSpace;
+    font-weight: 700;
 
-	.userName {
-		justify-self: end;
-		font-size: $spartan-body1;
-		line-height: $spartan-body1-lineHeight;
-		letter-spacing: $spartan-body1-letterSpace;
-		font-weight: 500;
-		@include media(">=768px") {
-			grid-column: 3;
-			grid-row: 1;
-			justify-self: center;
-		}
-	}
+    span {
+      color: $cl-light-grey-blue;
+    }
+    @include media('>=768px') {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
 
-	.payment {
-		align-self: end;
-		color: $cl-bright-grey;
-		font-size: $spartan-body1;
-		line-height: $spartan-body1-lineHeight;
-		letter-spacing: $spartan-body1-letterSpace;
-		font-weight: 500;
-		@include media(">=768px") {
-			grid-column: 2;
-			grid-row: 1;
-			align-self: center;
-		}
-	}
+  .userName {
+    justify-self: end;
+    font-size: $spartan-body1;
+    line-height: $spartan-body1-lineHeight;
+    letter-spacing: $spartan-body1-letterSpace;
+    font-weight: 500;
+    color: var(--secondary-font);
+    @include media('>=768px') {
+      grid-column: 3;
+      grid-row: 1;
+      justify-self: center;
+    }
+  }
 
-	.total {
-		align-self: end;
-		grid-column: 1 / 2;
-		@include media(">=768px") {
-			grid-column: 4;
-			grid-row: 1;
-			align-self: center;
-		}
-	}
+  .payment {
+    align-self: end;
+    color: var(--secondary-font);
+    font-size: $spartan-body1;
+    line-height: $spartan-body1-lineHeight;
+    letter-spacing: $spartan-body1-letterSpace;
+    font-weight: 500;
+    @include media('>=768px') {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: center;
+    }
+  }
+
+  .total {
+    align-self: end;
+    grid-column: 1 / 2;
+    @include media('>=768px') {
+      grid-column: 4;
+      grid-row: 1;
+      align-self: center;
+    }
+  }
 }
 
 .invoiceBox {
-	padding-bottom: 16px;
+  padding-bottom: 16px;
+  @include media('>=768px') {
+    padding-bottom: 0;
+  }
 
-	margin: 0 auto;
+  margin: 0 auto;
 }

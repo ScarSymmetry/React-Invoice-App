@@ -1,376 +1,425 @@
-@import "partials/variables";
-@import "partials/breakpoints";
-@import "partials/components";
-
-.backdrop {
-	position: absolute;
-	z-index: 100;
-	top: 72px;
-	left: 0;
-	width: 100%;
-	height: 100%;
-
-	background-color: $cl-darker-grey-blue;
-	overflow: auto;
-}
+@import '../../styles/partials/variables';
+@import '../../styles/partials/breakpoints';
+@import '../../styles/partials/components';
 
 .modalBody {
-	display: grid;
-	margin: 0 auto;
-	row-gap: 16px;
-	outline: 1px solid yellowgreen;
-	grid-template-columns: 6.4vw 1fr 6.4vw;
-	grid-template-rows: repeat(2, max-content) 1fr 150px;
-	color: $cl-light-BG;
+  display: grid;
+  margin: 0 auto;
+  position: fixed;
+  z-index: 150;
+  inset: auto 0 0 0;
+  row-gap: 16px;
 
-	@include media(">=768px") {
-		grid-template-rows: repeat(2, max-content) 1fr;
-	}
+  height: calc(100% + 1px);
+  width: 100%;
+  background-color: var(--background-color);
+  transition: background-color 450ms ease-in-out;
+
+  grid-template-columns: 6.4vw 1fr 6.4vw;
+  grid-template-rows: 72px repeat(2, max-content) 1fr 150px;
+  color: $cl-light-BG;
+
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @include media('>=768px') {
+    row-gap: 24px;
+    grid-template-rows: 80px minmax(48px, max-content) max-content max-content;
+  }
+  @include media('>=1000px') {
+    grid-template-columns: 105px minmax(6.4vw, 24vw) minmax(730px, 1fr) minmax(
+        6.4vw,
+        24vw
+      );
+    grid-template-rows: 64px minmax(48px, max-content) max-content max-content;
+  }
+}
+
+.navigationButton {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  @include media('>=768px') {
+    align-self: center;
+  }
+  @include media('>=1000px') {
+    grid-column: 3 / 4;
+  }
 }
 
 .statusPanel {
-	grid-column: 2 / 3;
-	grid-row: 2 / 3;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: $cl-dark-grey-blue;
-	border-radius: 8px;
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--invoice-background);
+  border-radius: 8px;
 
-	min-height: 91px;
-	padding-inline: 24px 24px;
-	padding-block: 24px 24px;
-	@include media(">=768px") {
-		justify-content: start;
-	}
+  min-height: 91px;
+  padding-inline: 24px 24px;
+  padding-block: 24px 24px;
+  @include media('>=768px') {
+    justify-content: start;
+  }
+  @include media('>=1000px') {
+    grid-column: 3 / 4;
+  }
 
-	.statusHeading {
-		font-size: $spartan-body1;
-		line-height: $spartan-body1-lineHeight;
-		letter-spacing: $spartan-body1-letterSpace;
-		font-weight: 700;
-		@include media(">=768px") {
-			color: $cl-light-grey;
-			margin-right: 16px;
-		}
-	}
+  .statusHeading {
+    font-size: $spartan-body1;
+    line-height: $spartan-body1-lineHeight;
+    letter-spacing: $spartan-body1-letterSpace;
+    font-weight: 700;
+    @include media('>=768px') {
+      color: $cl-light-grey;
+      margin-right: 16px;
+    }
+  }
 }
 
 .invoiceWrapper {
-	display: grid;
-	gap: 30px;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(4, max-content);
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, max-content);
 
-	grid-column: 2 / 3;
-	grid-row: 3 / 4;
+  grid-column: 2 / 3;
+  grid-row: 4 / 5;
 
-	background-color: $cl-dark-grey-blue;
-	padding-block: 24px 24px;
-	padding-inline: 24px 24px;
-	box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
-	border-radius: 8px;
-	@include media(">=768px") {
-		grid-template-columns: 1fr 1fr 1.5fr;
-		grid-template-rows: repeat(3, max-content);
-	}
+  color: var(--accented-font);
+  background-color: var(--invoice-background);
+  padding-block: 24px 24px;
+  padding-inline: 24px 24px;
+  box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+  border-radius: 8px;
 
-	.idAndSubject {
-		grid-column: 1 / -1;
-		grid-row: 1 / 2;
+  & * p {
+    color: var(--secondary-font);
+  }
+  @include media('>=768px') {
+    grid-template-columns: 1fr 1fr 1.5fr;
+    grid-template-rows: repeat(3, max-content);
+  }
+  @include media('>=1000px') {
+    grid-column: 3 / 4;
+  }
 
-		@include media(">=768px") {
-			grid-column: 1 / 2;
-			grid-row: 1 / 2;
+  .idAndSubject {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
 
-			.idNumber {
-				font-size: $h3-spartan-bold;
-				line-height: $h3-spartan-lineHeight;
-				letter-spacing: $h3-spartan-letterSpace;
-				font-weight: 700;
-				margin-bottom: 8px;
-			}
-		}
+    @include media('>=768px') {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
 
-		.idNumber {
-			text-transform: uppercase;
-			font-size: $spartan-body1;
-			line-height: $spartan-body1-lineHeight;
-			letter-spacing: $spartan-body1-letterSpace;
-			font-weight: 700;
+      .idNumber {
+        font-size: $h3-spartan-bold;
+        line-height: $h3-spartan-lineHeight;
+        letter-spacing: $h3-spartan-letterSpace;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+    }
 
-			span {
-				color: $cl-light-grey-blue;
-			}
-		}
-		.subject {
-			font-size: $spartan-body1;
-			line-height: $spartan-body1-lineHeight;
-			letter-spacing: $spartan-body1-letterSpace;
-			font-weight: 500;
-		}
-	}
+    .idNumber {
+      text-transform: uppercase;
+      font-size: $spartan-body1;
+      line-height: $spartan-body1-lineHeight;
+      letter-spacing: $spartan-body1-letterSpace;
+      font-weight: 700;
 
-	.detailedAdress {
-		grid-column: 1 / 2;
-		grid-row: 2 / 3;
+      span {
+        color: $cl-light-grey-blue;
+      }
+    }
+    .subject {
+      font-size: $spartan-body1;
+      line-height: $spartan-body1-lineHeight;
+      letter-spacing: $spartan-body1-letterSpace;
+      font-weight: 500;
+    }
+  }
 
-		@include media(">=768px") {
-			grid-column: 3 / 4;
-			grid-row: 1 / 2;
-			justify-self: end;
-		}
+  .detailedAdress {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
 
-		font-size: $spartan-body2;
-		line-height: $spartan-body2-lineHeight;
-		letter-spacing: $spartan-body2-letterSpace;
-		font-weight: 500;
-	}
+    @include media('>=768px') {
+      grid-column: 3 / 4;
+      grid-row: 1 / 2;
+      justify-self: end;
+    }
 
-	.invoicesDetails {
-		grid-column: 1 / 2;
-		grid-row: 3 / 4;
+    font-size: $spartan-body2;
+    line-height: $spartan-body2-lineHeight;
+    letter-spacing: $spartan-body2-letterSpace;
+    font-weight: 500;
+  }
 
-		@include media(">=768px") {
-			grid-column: 1 / 2;
-			grid-row: 2 / 3;
-		}
+  .invoicesDetails {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
 
-		.invoiceEvent {
-			font-size: $spartan-body1;
-			line-height: $spartan-body1-lineHeight;
-			letter-spacing: $spartan-body1-letterSpace;
-			font-weight: 500;
-			margin-bottom: 12px;
-		}
-		.invoiceDate {
-			font-size: $h3-spartan-bold;
-			line-height: $h3-spartan-lineHeight;
-			letter-spacing: $h3-spartan-letterSpace;
-			font-weight: 700;
-			margin-bottom: 32px;
-		}
-	}
+    @include media('>=768px') {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+    }
 
-	.billingDetails {
-		grid-column: 2 / -1;
-		grid-row: 3 / 4;
+    .invoiceEvent {
+      font-size: $spartan-body1;
+      line-height: $spartan-body1-lineHeight;
+      letter-spacing: $spartan-body1-letterSpace;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .invoiceDate {
+      font-size: $h3-spartan-bold;
+      line-height: $h3-spartan-lineHeight;
+      letter-spacing: $h3-spartan-letterSpace;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+  }
 
-		@include media(">=768px") {
-			grid-column: 2 / 3;
-			grid-row: 2 / 3;
-		}
+  .billingDetails {
+    grid-column: 2 / -1;
+    grid-row: 3 / 4;
 
-		.billTo {
-			font-size: $spartan-body1;
-			line-height: $spartan-body1-lineHeight;
-			letter-spacing: $spartan-body1-letterSpace;
-			font-weight: 500;
-		}
+    @include media('>=768px') {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+    }
 
-		.clientName {
-			font-size: $h3-spartan-bold;
-			line-height: $h3-spartan-lineHeight;
-			letter-spacing: $h3-spartan-letterSpace;
-			font-weight: 700;
-			margin-block: 12px 8px;
-		}
+    .billTo {
+      font-size: $spartan-body1;
+      line-height: $spartan-body1-lineHeight;
+      letter-spacing: $spartan-body1-letterSpace;
+      font-weight: 500;
+    }
 
-		p {
-			font-size: $spartan-body2;
-			line-height: $spartan-body2-lineHeight;
-			letter-spacing: $spartan-body2-letterSpace;
-			font-weight: 500;
-		}
-	}
+    .clientName {
+      font-size: $h3-spartan-bold;
+      line-height: $h3-spartan-lineHeight;
+      letter-spacing: $h3-spartan-letterSpace;
+      font-weight: 700;
+      margin-block: 12px 8px;
+    }
 
-	.emailDetails {
-		grid-column: 1 / -1;
-		grid-row: 4 / 5;
+    p {
+      font-size: $spartan-body2;
+      line-height: $spartan-body2-lineHeight;
+      letter-spacing: $spartan-body2-letterSpace;
+      font-weight: 500;
+    }
+  }
 
-		@include media(">=768px") {
-			grid-column: 3 / -1;
-			grid-row: 2 / 3;
-		}
+  .emailDetails {
+    grid-column: 1 / -1;
+    grid-row: 4 / 5;
 
-		.sentTo {
-			font-size: $spartan-body1;
-			line-height: $spartan-body1-lineHeight;
-			letter-spacing: $spartan-body1-letterSpace;
-			font-weight: 500;
-			margin-bottom: 12px;
-		}
+    @include media('>=768px') {
+      grid-column: 3 / -1;
+      grid-row: 2 / 3;
+    }
 
-		.clientEmail {
-			font-size: $h3-spartan-bold;
-			line-height: $h3-spartan-lineHeight;
-			letter-spacing: $h3-spartan-letterSpace;
-			font-weight: 700;
-		}
-	}
+    .sentTo {
+      font-size: $spartan-body1;
+      line-height: $spartan-body1-lineHeight;
+      letter-spacing: $spartan-body1-letterSpace;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .clientEmail {
+      font-size: $h3-spartan-bold;
+      line-height: $h3-spartan-lineHeight;
+      letter-spacing: $h3-spartan-letterSpace;
+      font-weight: 700;
+    }
+  }
 }
 
 .expandoCheckout {
-	grid-column: 1 / -1;
-	grid-row: 5 / 6;
+  grid-column: 1 / -1;
+  grid-row: 5 / 6;
 
-	.tableHeader {
-		display: none !important;
-		@include media(">=768px") {
-			display: grid !important;
+  .tableHeader {
+    display: none !important;
+    @include media('>=768px') {
+      display: grid !important;
 
-			& > h5 {
-				font-size: $spartan-body2;
-				line-height: $spartan-body2-lineHeight;
-				letter-spacing: $spartan-body2-letterSpace;
-				font-weight: 500;
-			}
+      & > h5 {
+        font-size: $spartan-body2;
+        line-height: $spartan-body2-lineHeight;
+        letter-spacing: $spartan-body2-letterSpace;
+        font-weight: 500;
+        color: var(--secondary-font);
+      }
 
-			&__name {
-				grid-column: 1 / 2;
-				grid-row: 1;
-			}
-			&__QTY {
-				grid-column: 2 / 3;
-				grid-row: 1;
-			}
-			&__price {
-				grid-column: 2 / 3;
-				grid-row: 1;
-				justify-self: end;
-			}
-			&__total {
-				grid-column: 3 / -1;
-				grid-row: 1;
-				justify-self: end;
-			}
-		}
-	}
+      &__name {
+        grid-column: 1 / 2;
+        grid-row: 1;
+      }
+      &__QTY {
+        grid-column: 2 / 3;
+        grid-row: 1;
+      }
+      &__price {
+        grid-column: 2 / 3;
+        grid-row: 1;
+        justify-self: end;
+      }
+      &__total {
+        grid-column: 3 / -1;
+        grid-row: 1;
+        justify-self: end;
+      }
+    }
+  }
 
-	.expandoCheckoutItem {
-		display: grid;
+  .expandoCheckoutItem {
+    display: grid;
 
-		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: repeat(3, 1fr);
-		background-color: $cl-grey-blue;
-		padding-block: 24px 24px;
-		padding-inline: 24px 24px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    background-color: var(--expando-background);
+    padding-block: 24px 24px;
+    padding-inline: 24px 24px;
 
-		@include media(">=768px") {
-			grid-template-columns: 2fr 1.5fr 1fr;
-			grid-template-rows: 1fr;
-		}
+    @include media('>=768px') {
+      grid-template-columns: 2fr 1.5fr 1fr;
+      grid-template-rows: 1fr;
+    }
 
-		&:first-child {
-			border-radius: 8px 8px 0px 0px;
-		}
+    &:first-child {
+      border-radius: 8px 8px 0px 0px;
+    }
 
-		.serviceDescription {
-			grid-column: 1 / 2;
-			grid-row: 1 / 2;
-			align-self: end;
-			font-size: $spartan-body1;
-			line-height: $spartan-body1-lineHeight;
-			letter-spacing: $spartan-body1-letterSpace;
-			font-weight: 700;
-			@include media(">=768px") {
-				grid-column: 1 / 2;
-			}
-		}
+    .serviceDescription {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      align-self: end;
+      font-size: $spartan-body1;
+      line-height: $spartan-body1-lineHeight;
+      letter-spacing: $spartan-body1-letterSpace;
+      font-weight: 700;
+      color: var(--accented-font);
+      @include media('>=768px') {
+        grid-column: 1 / 2;
+      }
+    }
 
-		.pricePerItem {
-			color: $cl-light-grey;
-			grid-column: 1 / 2;
-			grid-row: 3 / -1;
-			font-size: $spartan-body1;
-			line-height: $spartan-body1-lineHeight;
-			letter-spacing: $spartan-body1-letterSpace;
-			font-weight: 700;
+    .pricePerItem {
+      color: var(--secondary-font);
+      grid-column: 1 / 2;
+      grid-row: 3 / -1;
+      font-size: $spartan-body1;
+      line-height: $spartan-body1-lineHeight;
+      letter-spacing: $spartan-body1-letterSpace;
+      font-weight: 700;
 
-			@include media(">=768px") {
-				grid-column: 2 / 3;
-				grid-row: 1;
-				display: flex;
-				justify-content: space-between;
+      @include media('>=768px') {
+        grid-column: 2 / 3;
+        grid-row: 1;
+        display: flex;
+        justify-content: space-between;
 
-				.multiplier {
-					display: none;
-				}
+        .multiplier {
+          display: none;
+        }
 
-				.itemQuantity {
-					margin-left: 1rem;
-				}
-			}
-		}
+        .itemQuantity {
+          margin-left: 1rem;
+        }
+      }
+    }
 
-		.totalItemsPrice {
-			grid-column: 2 / 3;
-			grid-row: 2 / 3;
-			justify-self: end;
-			align-self: center;
-			font-size: $spartan-body1;
-			line-height: $spartan-body1-lineHeight;
-			letter-spacing: $spartan-body1-letterSpace;
-			font-weight: 700;
-			@include media(">=768px") {
-				grid-column: 3 / -1;
-				grid-row: 1;
-			}
-		}
-	}
-	// ************************__________________***************
-	.expandoCheckoutTotals {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		background-color: $cl-black;
-		padding-block: 24px 24px;
-		padding-inline: 24px 24px;
-		border-radius: 0px 0px 8px 8px;
-		min-height: 80px;
-		.expandoCheckoutAmount {
-			font-size: $spartan-body2;
-			line-height: $spartan-body2-lineHeight;
-			letter-spacing: $spartan-body2-letterSpace;
-			font-weight: 500;
-		}
+    .totalItemsPrice {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      justify-self: end;
+      align-self: center;
+      font-size: $spartan-body1;
+      line-height: $spartan-body1-lineHeight;
+      letter-spacing: $spartan-body1-letterSpace;
+      font-weight: 700;
+      color: var(--accented-font);
+      @include media('>=768px') {
+        grid-column: 3 / -1;
+        grid-row: 1;
+      }
+    }
+  }
+  // ************************__________________***************
+  .expandoCheckoutTotals {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--amount-background);
+    padding-block: 24px 24px;
+    padding-inline: 24px 24px;
+    border-radius: 0px 0px 8px 8px;
+    min-height: 80px;
+    .expandoCheckoutAmount {
+      font-size: $spartan-body2;
+      line-height: $spartan-body2-lineHeight;
+      letter-spacing: $spartan-body2-letterSpace;
+      font-weight: 500;
+      color: $cl-pure-white;
+    }
 
-		.totalPrice {
-			font-size: $h2-spartan-bold;
-			line-height: $h2-spartan-lineHeight;
-			letter-spacing: $h2-spartan-letterSpace;
-			font-weight: 700;
-		}
-	}
+    .totalPrice {
+      font-size: $h2-spartan-bold;
+      line-height: $h2-spartan-lineHeight;
+      letter-spacing: $h2-spartan-letterSpace;
+      font-weight: 700;
+      color: $cl-pure-white;
+    }
+  }
 }
 
 .buttonWrapper {
-	grid-column: 1 / -1;
-	grid-row: 4 / -1;
-	align-self: end;
+  grid-column: 1 / -1;
+  grid-row: 5 / -1;
+  align-self: end;
 
-	@include media(">=768px") {
-		position: static;
-		background-color: transparent;
-		grid-column: 2 / 3;
-		grid-row: 2 / 3;
-		justify-self: end;
-		align-self: center;
-		padding: 0;
+  display: flex;
+  justify-content: space-between;
+  padding-block: 22px;
+  padding-inline: 24px;
+  // position: -webkit-sticky;
+  // position: -moz-sticky;
+  // position: -o-sticky;
+  // position: -ms-sticky;
+  // position: sticky;
+  position: fixed;
+  z-index: 200;
+  inset: auto 0 0 0;
+  width: 100%;
 
-		max-width: 325px;
-		margin-right: 24px;
-	}
+  background-color: $cl-dark-grey-blue;
 
-	display: flex;
-	justify-content: space-between;
-	padding-block: 22px;
-	padding-inline: 24px;
-	position: sticky;
-	bottom: 0;
-	width: 100%;
+  box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+  @include media('>=768px') {
+    position: static;
+    background-color: transparent;
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    justify-self: end;
+    align-self: center;
+    padding: 0;
 
-	background-color: $cl-dark-grey-blue;
+    max-width: 325px;
+    margin-right: 24px;
 
-	box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+    .editButton {
+      margin-left: auto;
+    }
+    .deleteButton {
+      margin-inline: 8px;
+    }
+  }
+  @include media('>=1000px') {
+    grid-column: 3 / 4;
+  }
 }
