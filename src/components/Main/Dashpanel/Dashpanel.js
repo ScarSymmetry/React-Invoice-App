@@ -6,7 +6,7 @@ import Dropdown from '../Dropdown/Dropdown';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { useSelector } from 'react-redux';
 
-const Dashpanel = ({ setInvoiceFilterStatus }) => {
+const Dashpanel = ({ setInvoiceFilterStatus, setFormOpened }) => {
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const { invoices } = useSelector((state) => state.invoices);
 
@@ -44,10 +44,7 @@ const Dashpanel = ({ setInvoiceFilterStatus }) => {
           />
         </span>
       </button>
-      <button
-        onClick={() => console.log('open form dispatch')}
-        className={styles.btnInvoice}
-      >
+      <button onClick={() => setFormOpened(true)} className={styles.btnInvoice}>
         <span className={styles.mobileInvoice}>
           {size.width < 768 ? 'New' : 'New invoice'}
         </span>

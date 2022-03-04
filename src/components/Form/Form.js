@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
@@ -14,25 +14,29 @@ import {
 import chevron from '../../assets/icon-arrow-left.svg';
 import trashcan from '../../assets/icon-delete.svg';
 import { useLocation, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { addInvoice } from '../../redux/invoices';
 import { generateRandomId } from '../../utils/generateId';
 import dayjs from 'dayjs';
 import Modal from '../Modal/Modal';
 import styles from './Form.module.scss';
 import { motion } from 'framer-motion/dist/framer-motion';
 
-const Form = ({ formOpened }) => {
+const Form = ({ formOpened, setFormOpened }) => {
   const size = useWindowSize();
   const location = useLocation();
   const history = useHistory();
+  const { invoices } = useSelector((state) => state.invoices);
+  const dispatch = useDispatch();
   const invoiceId = location.pathname.slice(-6);
-  // const invoiceToPrefill = initialInvoices.find(
-  //   (invoice) => invoice.id === invoiceId
-  // );
-  const invoiceToPrefill = [];
+
+  const invoiceToPrefill = invoices?.find(
+    (invoice) => invoice.id === invoiceId
+  );
 
   const modalRef = useRef(null);
   useClickOutside(modalRef, () => {
-    // if (formOpen.isToggled) resetAndCloseForm();
+    if (formOpened) resetAndCloseForm();
   });
 
   const {
@@ -50,23 +54,23 @@ const Form = ({ formOpened }) => {
   });
   const { fields, append, remove } = useFieldArray({ control, name: 'items' });
 
-  // useEffect(() => {
-  //   reset(initialFormValues);
-  //   if (formOpen.isEditing && invoiceToPrefill) reset(invoiceToPrefill);
-  // }, [formOpen.isEditing, invoiceToPrefill, reset]);
+  useEffect(() => {
+    reset(initialFormValues);
+    if (formOpened && invoiceToPrefill) reset(invoiceToPrefill);
+  }, [formOpened, invoiceToPrefill, reset]);
 
-  // useEffect(() => {
-  //   if (!formOpen.isToggled) return;
-  //   if (modalRef && modalRef.current) {
-  //     formOpen.isToggled
-  //       ? disableBodyScroll(modalRef.current)
-  //       : enableBodyScroll(modalRef.current);
-  //   }
+  useEffect(() => {
+    if (!formOpened) return;
+    if (modalRef && modalRef.current) {
+      formOpened
+        ? disableBodyScroll(modalRef.current)
+        : enableBodyScroll(modalRef.current);
+    }
 
-  //   return () => {
-  //     clearAllBodyScrollLocks();
-  //   };
-  // }, [formOpen.isToggled]);
+    return () => {
+      clearAllBodyScrollLocks();
+    };
+  }, [formOpened]);
 
   const submitFunction = (data) => {
     const [creationDate, paymentTermDate] = getValues([
@@ -90,18 +94,13 @@ const Form = ({ formOpened }) => {
       ),
     };
 
-    // dispatch({ type: 'ADD_INVOICE', payload: formPayload });
-
+    dispatch(addInvoice(formPayload));
     resetAndCloseForm();
   };
 
   const resetAndCloseForm = () => {
-    // dispatch({
-    //   type: 'OPEN_FORM',
-    //   payload: { isToggled: false, isEditing: false },
-    // });
+    setFormOpened(false);
     reset(initialFormValues);
-
     history.push('/');
   };
 

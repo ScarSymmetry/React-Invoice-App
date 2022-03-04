@@ -8,7 +8,7 @@ import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { useSelector, useDispatch } from 'react-redux';
 import { markAsPaid } from '../../redux/invoices';
 
-const UserDetailsPage = () => {
+const UserDetailsPage = ({ callEditForm }) => {
   const [deletePopUpOpen, setDeletePopUpOpen] = useState(false);
   const { invoices } = useSelector((state) => state.invoices);
   const dispatch = useDispatch();
@@ -148,7 +148,7 @@ const UserDetailsPage = () => {
 
       <div className={styles.buttonWrapper}>
         <button
-          onClick={() => console.log('hey')}
+          onClick={() => callEditForm(true)}
           className={`${styles.buttonComponent} ${styles.editButton}`}
         >
           Edit

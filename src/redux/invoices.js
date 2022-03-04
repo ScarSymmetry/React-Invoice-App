@@ -18,8 +18,11 @@ export const invoiceSlice = createSlice({
       );
       state.invoices[paidInvoice].status = 'paid';
     },
+    addInvoice: (state, action) => {
+      state.invoices.push(action.payload);
+    },
   },
 });
 
-export const { deleteInvoice, markAsPaid } = invoiceSlice.actions;
+export const { deleteInvoice, markAsPaid, addInvoice } = invoiceSlice.actions;
 export default invoiceSlice.reducer;

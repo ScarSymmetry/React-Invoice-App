@@ -11,13 +11,13 @@ const App = () => {
     <div className='grid-container'>
       <Router>
         <Header />
-        <Main />
+        <Main setFormOpened={setFormOpened} />
 
         <Route path='/invoices/:id'>
-          <UserDetailsPage />
+          <UserDetailsPage callEditForm={setFormOpened}/>
         </Route>
 
-        <Form formOpened={formOpened} />
+        <Form formOpened={formOpened} setFormOpened={setFormOpened} />
       </Router>
     </div>
   );
