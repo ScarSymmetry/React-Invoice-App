@@ -5,15 +5,19 @@ import DeletePopup from './DeletePopup';
 import { useParams, useHistory } from 'react-router';
 import { useState, useEffect, useRef } from 'react';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { useSelector, useDispatch } from 'react-redux';
+import { markAsPaid } from '../../redux/invoices';
 
 const UserDetailsPage = () => {
   const [deletePopUpOpen, setDeletePopUpOpen] = useState(false);
+  const { invoices } = useSelector((state) => state.invoices);
+  const dispatch = useDispatch();
 
   const { id } = useParams();
   const ref = useRef(null);
 
   const history = useHistory();
-  const userDataDetails = []
+  const userDataDetails = invoices.find((invoice) => invoice.id === id);
 
   useEffect(() => {
     if (ref && ref.current) {
@@ -24,6 +28,10 @@ const UserDetailsPage = () => {
       clearAllBodyScrollLocks();
     };
   }, []);
+
+  const markInvoiceAsPaid = () => {
+    dispatch(markAsPaid(id));
+  };
 
   return (
     <div className={styles.modalBody} ref={ref}>
@@ -151,13 +159,14 @@ const UserDetailsPage = () => {
         >
           Delete
         </button>
-
-        <button
-          onClick={() => console.log('mark as paid dispatch')}
-          className={`${styles.buttonComponent} ${styles.markAsPaidButton}`}
-        >
-          Mark as Paid
-        </button>
+        {userDataDetails.status !== 'paid' && (
+          <button
+            onClick={markInvoiceAsPaid}
+            className={`${styles.buttonComponent} ${styles.markAsPaidButton}`}
+          >
+            Mark as Paid
+          </button>
+        )}
       </div>
     </div>
   );

@@ -1,14 +1,16 @@
 import { useHistory } from 'react-router';
 import { numberFormatter, dateFormatter } from '../../../utils/formatters';
+import { useSelector } from 'react-redux';
 import styles from './InvoiceItem.module.scss';
 import empty from '../../../assets/illustration-empty.svg';
 
 const InvoiceItem = () => {
   const history = useHistory();
+  const { invoices } = useSelector((state) => state.invoices);
 
   //selectors
 
-  const filteredInvoices = [];
+  const filteredInvoices = invoices;
 
   if (!filteredInvoices || filteredInvoices.length === 0) {
     return (

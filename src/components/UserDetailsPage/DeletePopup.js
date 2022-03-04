@@ -2,19 +2,22 @@ import Modal from '../Modal/Modal';
 import styles from './DeletePopup.module.scss';
 import { useRef } from 'react';
 import useClickOutside from '../hooks/useClickOutside';
-
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { deleteInvoice } from '../../redux/invoices';
 
 const DeletePopup = ({ open, onClickOutside, invoiceId }) => {
+  const dispatch = useDispatch();
+
   const modalRef = useRef();
   const history = useHistory();
+
   useClickOutside(modalRef, () => {
     if (open) onClickOutside(false);
   });
 
-  console.log(typeof invoiceId);
-
-  const deleteInvoice = () => {
+  const deleteInvoiceFromStore = () => {
+    dispatch(deleteInvoice(invoiceId));
     onClickOutside(false);
     history.push('/');
   };
@@ -39,7 +42,7 @@ const DeletePopup = ({ open, onClickOutside, invoiceId }) => {
           </button>
 
           <button
-            onClick={deleteInvoice}
+            onClick={deleteInvoiceFromStore}
             className={`${styles.buttonComponent} ${styles.deleteButton}`}
           >
             Delete
