@@ -4,13 +4,15 @@ import arrow from '../../../assets/icon-arrow-down.svg';
 import Dropdown from '../Dropdown/Dropdown';
 
 import { useWindowSize } from '../../hooks/useWindowSize';
+import { useSelector } from 'react-redux';
 
 const Dashpanel = ({ setInvoiceFilterStatus }) => {
   const [dropDownOpen, setDropDownOpen] = useState(false);
-  const initialInvoices = [];
+  const { invoices } = useSelector((state) => state.invoices);
+
   const size = useWindowSize();
 
-  const InvoicesQuantity = initialInvoices.length;
+  const InvoicesQuantity = invoices.length;
 
   return (
     <nav className={styles.navWrapper}>

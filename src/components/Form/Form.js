@@ -20,7 +20,7 @@ import Modal from '../Modal/Modal';
 import styles from './Form.module.scss';
 import { motion } from 'framer-motion/dist/framer-motion';
 
-const Form = () => {
+const Form = ({ formOpened }) => {
   const size = useWindowSize();
   const location = useLocation();
   const history = useHistory();
@@ -29,7 +29,6 @@ const Form = () => {
   //   (invoice) => invoice.id === invoiceId
   // );
   const invoiceToPrefill = [];
-  const formOpen = true;
 
   const modalRef = useRef(null);
   useClickOutside(modalRef, () => {
@@ -131,8 +130,8 @@ const Form = () => {
   };
 
   return (
-    <Modal isOpen={formOpen.isToggled} opaque={false}>
-      {formOpen.isToggled && (
+    <Modal isOpen={formOpened} opaque={false}>
+      {formOpened && (
         <motion.div
           className={styles.formContainer}
           ref={modalRef}
@@ -152,7 +151,7 @@ const Form = () => {
           )}
 
           <div className={styles.editId}>
-            {formOpen.isEditing && invoiceToPrefill ? (
+            {formOpened && invoiceToPrefill ? (
               <h3 className={styles.formTitle}>
                 Edit<span>#</span>
                 {invoiceId}
@@ -515,7 +514,7 @@ const Form = () => {
 
           {/* control buttons ******************* */}
           <fieldset className={styles.formButtonControls}>
-            {formOpen.isEditing && invoiceToPrefill ? (
+            {formOpened && invoiceToPrefill ? (
               <div className={styles.formButtonControls__panel}>
                 <button
                   onClick={resetAndCloseForm}
