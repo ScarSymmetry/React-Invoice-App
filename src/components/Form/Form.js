@@ -15,7 +15,7 @@ import chevron from '../../assets/icon-arrow-left.svg';
 import trashcan from '../../assets/icon-delete.svg';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { addInvoice } from '../../redux/invoices';
+import { addInvoice, updateInvoice } from '../../redux/invoices';
 import { generateRandomId } from '../../utils/generateId';
 import dayjs from 'dayjs';
 import Modal from '../Modal/Modal';
@@ -114,6 +114,15 @@ const Form = ({ formOpened, setFormOpened }) => {
     //   type: 'EDIT_INVOICE',
     //   payload: { id: data.id, data: data, total: GrandTotalValue },
     // });
+    const itemsArray = data.items?.map((item) => item);
+
+    const editedInvoices = {
+      ...data,
+      total: GrandTotalValue,
+    };
+
+    dispatch(updateInvoice(editedInvoices));
+
     resetAndCloseForm();
   };
 
@@ -492,7 +501,10 @@ const Form = ({ formOpened, setFormOpened }) => {
 
                     <button
                       type='button'
-                      onClick={() => remove(index)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        remove(index);
+                      }}
                       className={styles.deleteItem}
                     >
                       <img src={trashcan} alt='delete' />

@@ -33,6 +33,8 @@ const UserDetailsPage = ({ callEditForm }) => {
     dispatch(markAsPaid(id));
   };
 
+  if (!userDataDetails) return null;
+
   return (
     <div className={styles.modalBody} ref={ref}>
       <DeletePopup
@@ -124,7 +126,7 @@ const UserDetailsPage = ({ callEditForm }) => {
             <h5 className={styles.tableHeader__price}>Price</h5>
             <h5 className={styles.tableHeader__total}>Total</h5>
           </div>
-          {userDataDetails.items.map((item, index) => {
+          {userDataDetails.items?.map((item, index) => {
             return (
               <div key={index} className={styles.expandoCheckoutItem}>
                 <h5 className={styles.serviceDescription}>{item.name}</h5>
