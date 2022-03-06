@@ -34,6 +34,7 @@ export const invoiceSlice = createSlice({
         paymentTerms: action.payload.paymentTerms,
         description: action.payload.description,
         id: action.payload.id,
+        items: [...action.payload.items],
         createdAt: action.payload.createdAt,
         paymentDue: action.payload.paymentDue,
         status: action.payload.status,

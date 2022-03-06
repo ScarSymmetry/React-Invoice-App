@@ -61,7 +61,7 @@ const UserDetailsPage = ({ callEditForm }) => {
           className={`${styles.statusState} ${styles[userDataDetails.status]}`}
         >
           <div className={styles.indicator}></div>
-          <p className={styles.statusText}>{userDataDetails.status}</p>
+          <p className={styles.statusText}>{userDataDetails?.status}</p>
         </div>
       </div>
 
@@ -71,14 +71,14 @@ const UserDetailsPage = ({ callEditForm }) => {
             {' '}
             <span>#</span> {userDataDetails.id}
           </h5>
-          <p className={styles.subject}>{userDataDetails.description}</p>
+          <p className={styles.subject}>{userDataDetails?.description}</p>
         </div>
 
         <div className={styles.detailedAdress}>
           <p className={styles.street}>
             {userDataDetails.senderAddress.street}
           </p>
-          <p className={styles.city}>{userDataDetails.senderAddress.city}</p>
+          <p className={styles.city}>{userDataDetails?.senderAddress?.city}</p>
           <p className={styles.postCode}>
             {userDataDetails.senderAddress.postCode}
           </p>
@@ -89,32 +89,32 @@ const UserDetailsPage = ({ callEditForm }) => {
 
         <div className={styles.invoicesDetails}>
           <p className={styles.invoiceEvent}>Invoice Date</p>
-          <h5 className={styles.invoiceDate}>{userDataDetails.createdAt}</h5>
+          <h5 className={styles.invoiceDate}>{userDataDetails?.createdAt}</h5>
 
           <p className={styles.invoiceEvent}>Payment Due</p>
-          <h5 className={styles.invoiceDate}>{userDataDetails.paymentDue}</h5>
+          <h5 className={styles.invoiceDate}>{userDataDetails?.paymentDue}</h5>
         </div>
 
         <div className={styles.billingDetails}>
           <p className={styles.billTo}>Bill To</p>
-          <h5 className={styles.clientName}>{userDataDetails.clientName}</h5>
+          <h5 className={styles.clientName}>{userDataDetails?.clientName}</h5>
           <p className={styles.billingAdress}>
-            {userDataDetails.clientAddress.street}
+            {userDataDetails.clientAddress?.street}
           </p>
           <p className={styles.billingCity}>
-            {userDataDetails.clientAddress.city}
+            {userDataDetails.clientAddress?.city}
           </p>
           <p className={styles.billingPostCode}>
-            {userDataDetails.clientAddress.postCode}
+            {userDataDetails.clientAddress?.postCode}
           </p>
           <p className={styles.billingCountry}>
-            {userDataDetails.clientAddress.country}
+            {userDataDetails.clientAddress?.country}
           </p>
         </div>
 
         <div className={styles.emailDetails}>
           <p className={styles.sentTo}>Sent to</p>
-          <h5 className={styles.clientEmail}>{userDataDetails.clientEmail}</h5>
+          <h5 className={styles.clientEmail}>{userDataDetails?.clientEmail}</h5>
         </div>
 
         <section className={styles.expandoCheckout}>
@@ -141,7 +141,7 @@ const UserDetailsPage = ({ callEditForm }) => {
           })}
           <div className={styles.expandoCheckoutTotals}>
             <p className={styles.expandoCheckoutAmount}>Amount Due</p>
-            <h2 className={styles.totalPrice}>{userDataDetails.total}</h2>
+            <h2 className={styles.totalPrice}>{userDataDetails?.total}</h2>
           </div>
         </section>
       </section>

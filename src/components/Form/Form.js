@@ -21,6 +21,7 @@ import dayjs from 'dayjs';
 import Modal from '../Modal/Modal';
 import styles from './Form.module.scss';
 import { motion } from 'framer-motion/dist/framer-motion';
+import cloneDeep from 'lodash/cloneDeep';
 
 const Form = ({ formOpened, setFormOpened }) => {
   const size = useWindowSize();
@@ -110,18 +111,13 @@ const Form = ({ formOpened, setFormOpened }) => {
       0
     );
 
-    // dispatch({
-    //   type: 'EDIT_INVOICE',
-    //   payload: { id: data.id, data: data, total: GrandTotalValue },
-    // });
-    const itemsArray = data.items?.map((item) => item);
-
     const editedInvoices = {
       ...data,
       total: GrandTotalValue,
     };
 
-    dispatch(updateInvoice(editedInvoices));
+    // debugger;
+    dispatch(updateInvoice(cloneDeep(editedInvoices)));
 
     resetAndCloseForm();
   };
