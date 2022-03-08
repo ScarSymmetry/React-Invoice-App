@@ -21,7 +21,6 @@ import dayjs from 'dayjs';
 import Modal from '../Modal/Modal';
 import styles from './Form.module.scss';
 import { motion } from 'framer-motion/dist/framer-motion';
-import cloneDeep from 'lodash/cloneDeep';
 
 const Form = ({ formOpened, setFormOpened }) => {
   const size = useWindowSize();
@@ -106,18 +105,29 @@ const Form = ({ formOpened, setFormOpened }) => {
   };
 
   const editInvoice = (data) => {
-    const GrandTotalValue = data.items?.reduce(
-      (grandTotal, item) => grandTotal + item.total,
+    const itemArrayTotal = data.items?.map((item) => {
+      if (!item.total) {
+        return {
+          ...item,
+          total: Number(item.quantity) * Number(item.price),
+        };
+      }
+      return item;
+    });
+
+    const GrandTotalValue = itemArrayTotal.reduce(
+      (grandTotal, item) => Number(grandTotal) + Number(item.total),
       0
     );
 
     const editedInvoices = {
       ...data,
+      items: itemArrayTotal,
       total: GrandTotalValue,
     };
 
     // debugger;
-    dispatch(updateInvoice(cloneDeep(editedInvoices)));
+    dispatch(updateInvoice(editedInvoices));
 
     resetAndCloseForm();
   };
@@ -417,8 +427,6 @@ const Form = ({ formOpened, setFormOpened }) => {
                 )}
               />
 
-              {/* ACHTUNG! area that gives me endless f@cking headaches IS HERE */}
-
               {fields.map(({ id, name, quantity, price }, index) => {
                 const [quantityOfItems, priceOfItems] = watch([
                   `items.${index}.quantity`,
@@ -427,8 +435,6 @@ const Form = ({ formOpened, setFormOpened }) => {
 
                 const totalPrice =
                   (Number(quantityOfItems) || 0) * (Number(priceOfItems) || 0);
-
-                setValue(`items.${index}.total`, totalPrice);
 
                 return (
                   <div key={id} className={styles.itemList}>

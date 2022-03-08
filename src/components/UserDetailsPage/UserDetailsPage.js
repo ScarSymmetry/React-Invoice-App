@@ -141,7 +141,7 @@ const UserDetailsPage = ({ callEditForm }) => {
           })}
           <div className={styles.expandoCheckoutTotals}>
             <p className={styles.expandoCheckoutAmount}>Amount Due</p>
-            <h2 className={styles.totalPrice}>{userDataDetails?.total}</h2>
+            <h2 className={styles.totalPrice}>{userDataDetails.total}</h2>
           </div>
         </section>
       </section>
