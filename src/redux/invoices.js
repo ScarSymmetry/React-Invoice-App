@@ -5,6 +5,7 @@ export const invoiceSlice = createSlice({
   name: 'invoices',
   initialState: {
     invoices: data,
+    statusFilter: 'all',
   },
   reducers: {
     deleteInvoice: (state, action) => {
@@ -26,24 +27,23 @@ export const invoiceSlice = createSlice({
         (invoice) => invoice.id === action.payload.id
       );
 
-      Object.assign(editedInvoice, {
-        clientName: action.payload.clientName,
-        clientAddress: { ...action.payload.clientAddress },
-        senderAddress: { ...action.payload.senderAddress },
-        clientEmail: action.payload.clientEmail,
-        paymentTerms: action.payload.paymentTerms,
-        description: action.payload.description,
-        id: action.payload.id,
-        items: [...action.payload.items],
-        createdAt: action.payload.createdAt,
-        paymentDue: action.payload.paymentDue,
-        status: action.payload.status,
-        total: action.payload.total,
-      });
+      if (editedInvoice) {
+        Object.assign(editedInvoice, {
+          ...action.payload,
+        });
+      }
+    },
+    changeStatus: (state, action) => {
+      state.statusFilter = action.payload;
     },
   },
 });
 
-export const { deleteInvoice, markAsPaid, addInvoice, updateInvoice } =
-  invoiceSlice.actions;
+export const {
+  deleteInvoice,
+  markAsPaid,
+  addInvoice,
+  updateInvoice,
+  changeStatus,
+} = invoiceSlice.actions;
 export default invoiceSlice.reducer;

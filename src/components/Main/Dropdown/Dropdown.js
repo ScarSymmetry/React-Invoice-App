@@ -1,13 +1,50 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
 
 import styles from './Dropdown.module.scss';
 import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion';
+import { useDispatch } from 'react-redux';
+import { changeStatus } from '../../../redux/invoices';
 
 const Dropdown = ({ open, onClickOutside }) => {
   const modalRef = useRef();
+  const dispatch = useDispatch();
+  const [statusCheckbox, setStatusCheckbox] = useState([
+    {
+      id: 0,
+      value: 'draft',
+      checked: false,
+    },
+    {
+      id: 1,
+      value: 'pending',
+      checked: false,
+    },
+    {
+      id: 2,
+      value: 'paid',
+      checked: false,
+    },
+  ]);
 
-  const statusCheckbox = [];
+  const handleCheckBox = (id) => {
+    setStatusCheckbox(
+      statusCheckbox.map((status) => {
+        if (status.id === id) {
+          const filterByStatus = status.checked ? '' : status.value;
+          dispatch(changeStatus(filterByStatus));
+          return {
+            ...status,
+            checked: !status.checked,
+          };
+        }
+        return {
+          ...status,
+          checked: false,
+        };
+      })
+    );
+  };
 
   useClickOutside(modalRef, () => {
     if (open) onClickOutside(false);
@@ -31,7 +68,9 @@ const Dropdown = ({ open, onClickOutside }) => {
                   name={box.value}
                   id={box.id}
                   checked={box.checked}
-                  onChange={() => console.log('change status and filter')}
+                  onChange={() => {
+                    handleCheckBox(index);
+                  }}
                 />
                 <label htmlFor={box.id}>{box.value}</label>
               </div>

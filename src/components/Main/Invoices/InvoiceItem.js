@@ -6,13 +6,27 @@ import empty from '../../../assets/illustration-empty.svg';
 
 const InvoiceItem = () => {
   const history = useHistory();
-  const { invoices } = useSelector((state) => state.invoices);
+  const { invoices, statusFilter } = useSelector((state) => state.invoices);
 
-  //selectors
+  console.log(statusFilter);
 
-  const filteredInvoices = invoices;
+  // const statusFilter = '';
+  const getFilteredInvoices = () => {
+    if (statusFilter === 'paid') {
+      return invoices.filter((invoice) => invoice.status === 'paid');
+    }
+    if (statusFilter === 'pending') {
+      return invoices.filter((invoice) => invoice.status === 'pending');
+    }
+    if (statusFilter === 'draft') {
+      return invoices.filter((invoice) => invoice.status === 'draft');
+    }
+    return invoices;
+  };
 
-  if (!filteredInvoices || filteredInvoices.length === 0) {
+  const invoicesToRender = getFilteredInvoices();
+
+  if (!invoicesToRender || invoicesToRender.length === 0) {
     return (
       <section className={styles.invoiceWrapper}>
         <div className={styles.noInvoices}>
@@ -32,7 +46,7 @@ const InvoiceItem = () => {
   return (
     <section className={styles.invoiceWrapper}>
       <ul className={styles.invoiceBox}>
-        {filteredInvoices.map((user) => {
+        {invoicesToRender.map((user) => {
           const paymentDue = new Date(user.paymentDue);
 
           return (
