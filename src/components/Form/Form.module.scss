@@ -118,7 +118,7 @@
 
   input[type],
   input[type]::placeholder {
-    color: $cl-light-BG;
+    color: var(--accented-font);
   }
   input[type] {
     padding-left: 20px;
