@@ -6,6 +6,7 @@ export const invoiceSlice = createSlice({
   initialState: {
     invoices: data,
     statusFilter: 'all',
+    darkTheme: true,
   },
   reducers: {
     deleteInvoice: (state, action) => {
@@ -36,6 +37,9 @@ export const invoiceSlice = createSlice({
     changeStatus: (state, action) => {
       state.statusFilter = action.payload;
     },
+    changeTheme: (state) => {
+      state.darkTheme = !state.darkTheme;
+    },
   },
 });
 
@@ -45,5 +49,6 @@ export const {
   addInvoice,
   updateInvoice,
   changeStatus,
+  changeTheme,
 } = invoiceSlice.actions;
 export default invoiceSlice.reducer;

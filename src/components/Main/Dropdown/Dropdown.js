@@ -27,11 +27,11 @@ const Dropdown = ({ open, onClickOutside }) => {
     },
   ]);
 
-  const handleCheckBox = (id) => {
+  const handleCheckBox = (id, e) => {
     setStatusCheckbox(
       statusCheckbox.map((status) => {
         if (status.id === id) {
-          const filterByStatus = status.checked ? '' : status.value;
+          const filterByStatus = e.target.checked ? status.value : '';
           dispatch(changeStatus(filterByStatus));
           return {
             ...status,
@@ -68,8 +68,8 @@ const Dropdown = ({ open, onClickOutside }) => {
                   name={box.value}
                   id={box.id}
                   checked={box.checked}
-                  onChange={() => {
-                    handleCheckBox(index);
+                  onChange={(e) => {
+                    handleCheckBox(index, e);
                   }}
                 />
                 <label htmlFor={box.id}>{box.value}</label>
