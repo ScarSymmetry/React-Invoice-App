@@ -8,9 +8,6 @@ const InvoiceItem = () => {
   const history = useHistory();
   const { invoices, statusFilter } = useSelector((state) => state.invoices);
 
-  console.log(statusFilter);
-
-  // const statusFilter = '';
   const getFilteredInvoices = () => {
     if (statusFilter === 'paid') {
       return invoices.filter((invoice) => invoice.status === 'paid');

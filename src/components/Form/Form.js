@@ -78,6 +78,7 @@ const Form = ({ formOpened, setFormOpened }) => {
       'paymentTerms',
     ]);
 
+    const creationDateISO = dayjs(creationDate).format('YYYY-MM-DD');
     const paymentDueISO = dayjs(creationDate)
       .add(Number(paymentTermDate), 'day')
       .format('YYYY-MM-DD');
@@ -87,6 +88,7 @@ const Form = ({ formOpened, setFormOpened }) => {
       ...data,
 
       id: generateRandomId(),
+      createdAt: creationDateISO,
       paymentDue: paymentDueISO,
       total: data.items.reduce(
         (grandTotal, item) => grandTotal + item.total,
@@ -119,9 +121,20 @@ const Form = ({ formOpened, setFormOpened }) => {
       (grandTotal, item) => Number(grandTotal) + Number(item.total),
       0
     );
+    const [creationDate, paymentTermDate] = getValues([
+      'createdAt',
+      'paymentTerms',
+    ]);
+
+    const creationDateISO = dayjs(creationDate).format('YYYY-MM-DD');
+    const paymentDueISO = dayjs(creationDate)
+      .add(Number(paymentTermDate), 'day')
+      .format('YYYY-MM-DD');
 
     const editedInvoices = {
       ...data,
+      createdAt: creationDateISO,
+      paymentDue: paymentDueISO,
       items: itemArrayTotal,
       total: GrandTotalValue,
     };
@@ -379,6 +392,13 @@ const Form = ({ formOpened, setFormOpened }) => {
               <label className={styles.invoiceStart}>
                 Invoice Date
                 <input {...register('createdAt')} type='date' />
+                <ErrorMessage
+                  errors={errors}
+                  name='createdAt'
+                  render={({ message }) => (
+                    <p className={styles.errorMessage}>{message}</p>
+                  )}
+                />
               </label>
               <label className={styles.paymentDropdown}>
                 Payment Terms

@@ -1,8 +1,13 @@
 import * as yup from 'yup';
+import dayjs from 'dayjs';
 
 export const schema = yup.object().shape({
   description: yup.string().required('Fill the description'),
   paymentTerms: yup.string().required('Payment terms required'),
+  createdAt: yup.date().transform((value, originalValue, context) => {
+    if (!context.isType(value))
+      return dayjs(originalValue).format('YYYY-MM-DD');
+  }),
   clientName: yup
     .string()
     .max(25, 'nice joke')

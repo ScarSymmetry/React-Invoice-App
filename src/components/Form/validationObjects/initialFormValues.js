@@ -1,6 +1,8 @@
+import dayjs from 'dayjs';
+
 export const initialFormValues = {
   id: '',
-  createdAt: new Date().toISOString().slice(0, 10),
+  createdAt: dayjs().format('YYYY-MM-DD'),
   paymentDue: '',
   description: '',
   paymentTerms: 30,

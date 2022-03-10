@@ -6,6 +6,7 @@ import styles from './Header.module.scss';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeTheme } from '../../redux/invoices';
+import dayjs from 'dayjs';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,10 @@ const Header = () => {
         <img src={logo} alt='logo' className={styles.logo} />
       </div>
       <div
-        onClick={() => dispatch(changeTheme())}
+        onClick={() => {
+          dispatch(changeTheme());
+          console.log(dayjs().format('YYYY-MM-DD'));
+        }}
         className={styles.themeToggler}
       >
         <img src={darkTheme ? sun : moon} alt='toggle theme' />
