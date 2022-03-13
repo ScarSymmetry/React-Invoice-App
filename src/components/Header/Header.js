@@ -3,7 +3,7 @@ import sun from '../../assets/icon-sun.svg';
 import moon from '../../assets/icon-moon.svg';
 import avatar from '../../assets/eastwood.jpg';
 import styles from './Header.module.scss';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeTheme } from '../../redux/invoices';
 import dayjs from 'dayjs';
@@ -12,7 +12,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const { darkTheme } = useSelector((state) => state.invoices);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     darkTheme
       ? (document.body.className = '')
       : (document.body.className = 'light');
