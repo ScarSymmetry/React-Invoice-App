@@ -5,7 +5,7 @@ export const invoiceSlice = createSlice({
   name: 'invoices',
   initialState: {
     invoices: data,
-    statusFilter: 'all',
+    statusFilter: '',
     darkTheme: true,
   },
   reducers: {
