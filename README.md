@@ -20,6 +20,8 @@ This is a solution to the [Invoice app challenge on Frontend Mentor](https://www
 
 ## Overview
 
+- with-redux:[https://github.com/ScarSymmetry/React-Invoice-App/tree/with-redux] with-redux branch using Redux Toolkit
+- master:[https://github.com/ScarSymmetry/React-Invoice-App/tree/master] master branch is built using useReducer and useContext. The UI and filters persist state aswell which is not really optimal for the UX. 
 ### The challenge
 
 Users should be able to:
@@ -41,8 +43,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Solution on FEM](https://www.frontendmentor.io/solutions/invoiceapp-using-react-reduxtoolkitreacthookformand-scss-modules-dHexU4QmJ)
+- Live Site URL: [Vercel](https://react-invoice-app-lyart.vercel.app)
 
 ## My process
 
@@ -64,11 +66,11 @@ Users should be able to:
 
 ### What I learned
 
-Tried the new way of writing redux logic with immer under the hood. 
+Tried the new way of writing redux logic with immer under the hood. I cant say i`ve learned framer-motion as i didnt really focus on it , but its a fantastic tool that eliminates all the "unmount" pain.
 
 ### Continued development
 
-Haven`t finished mount/unmount animations with framer-motion yet. Also there is a small problem with the date and Yup not validating properly. Flashing theme on reload is annoying.
+Haven`t finished mount/unmount animations with framer-motion yet. Also there is a small problem with the date and Yup not validating properly. Flashing theme on reload is annoying.Accessibility is bad as i didnt focus on it.
 
 
 
